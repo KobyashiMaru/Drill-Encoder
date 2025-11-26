@@ -1,0 +1,18 @@
+[
+    {
+        "merged": "/Users/hao/.gradle/daemon/8.11.1/com.example.drillencoder.app-mergeDebugResources-35:/layout/activity_start.xml",
+        "source": "/Users/hao/.gradle/daemon/8.11.1/com.example.drillencoder.app-main-38:/layout/activity_start.xml"
+    },
+    {
+        "merged": "/Users/hao/.gradle/daemon/8.11.1/com.example.drillencoder.app-mergeDebugResources-35:/layout/activity_main.xml",
+        "source": "/Users/hao/.gradle/daemon/8.11.1/com.example.drillencoder.app-main-38:/layout/activity_main.xml"
+    },
+    {
+        "merged": "com.example.drillencoder.app-mergeDebugResources-35:/layout/activity_main.xml",
+        "source": "com.example.drillencoder.app-main-38:/layout/activity_main.xml"
+    },
+    {
+        "merged": "com.example.drillencoder.app-mergeDebugResources-35:/layout/activity_start.xml",
+        "source": "com.example.drillencoder.app-main-38:/layout/activity_start.xml"
+    }
+]

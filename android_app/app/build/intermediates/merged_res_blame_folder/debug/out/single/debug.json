@@ -1,0 +1,10 @@
+[
+    {
+        "merged": "/Users/hao/.gradle/daemon/8.2/com.example.drillencoder.app-merged_res-36:/layout_activity_main.xml.flat",
+        "source": "/Users/hao/.gradle/daemon/8.2/com.example.drillencoder.app-main-38:/layout/activity_main.xml"
+    },
+    {
+        "merged": "com.example.drillencoder.app-merged_res-36:/layout_activity_main.xml.flat",
+        "source": "com.example.drillencoder.app-main-38:/layout/activity_main.xml"
+    }
+]

@@ -1,0 +1,26 @@
+[
+    {
+        "merged": "/Users/hao/.gradle/daemon/8.11.1/com.example.drillencoder.app-debug-36:/color_button_state_selector.xml.flat",
+        "source": "/Users/hao/.gradle/daemon/8.11.1/com.example.drillencoder.app-main-38:/color/button_state_selector.xml"
+    },
+    {
+        "merged": "/Users/hao/.gradle/daemon/8.11.1/com.example.drillencoder.app-debug-36:/layout_activity_main.xml.flat",
+        "source": "/Users/hao/.gradle/daemon/8.11.1/com.example.drillencoder.app-main-38:/layout/activity_main.xml"
+    },
+    {
+        "merged": "/Users/hao/.gradle/daemon/8.11.1/com.example.drillencoder.app-debug-36:/layout_activity_start.xml.flat",
+        "source": "/Users/hao/.gradle/daemon/8.11.1/com.example.drillencoder.app-main-38:/layout/activity_start.xml"
+    },
+    {
+        "merged": "/Users/hao/.gradle/daemon/8.11.1/com.example.drillencoder.app-debug-36:/drawable_wormhole_circle.xml.flat",
+        "source": "/Users/hao/.gradle/daemon/8.11.1/com.example.drillencoder.app-main-38:/drawable/wormhole_circle.xml"
+    },
+    {
+        "merged": "com.example.drillencoder.app-debug-36:/layout_activity_main.xml.flat",
+        "source": "com.example.drillencoder.app-main-38:/layout/activity_main.xml"
+    },
+    {
+        "merged": "com.example.drillencoder.app-debug-36:/layout_activity_start.xml.flat",
+        "source": "com.example.drillencoder.app-main-38:/layout/activity_start.xml"
+    }
+]

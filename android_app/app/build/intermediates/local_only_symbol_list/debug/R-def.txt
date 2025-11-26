@@ -1,0 +1,8 @@
+R_DEF: Internal format may change without notice
+local
+id btnToggleConsole
+id consoleScrollView
+id overlay
+id tvConsole
+id viewFinder
+layout activity_main
