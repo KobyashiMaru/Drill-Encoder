@@ -1,17 +1,17 @@
 -- Merging decision tree log ---
 manifest
-ADDED from /Users/hao/hao/vibe_coding_project/drill_encoder/android_app/app/src/main/AndroidManifest.xml:2:1-26:12
-INJECTED from /Users/hao/hao/vibe_coding_project/drill_encoder/android_app/app/src/main/AndroidManifest.xml:2:1-26:12
-INJECTED from /Users/hao/hao/vibe_coding_project/drill_encoder/android_app/app/src/main/AndroidManifest.xml:2:1-26:12
-INJECTED from /Users/hao/hao/vibe_coding_project/drill_encoder/android_app/app/src/main/AndroidManifest.xml:2:1-26:12
+ADDED from /Users/hao/hao/vibe_coding_project/drill_encoder/android_app/app/src/main/AndroidManifest.xml:2:1-28:12
+INJECTED from /Users/hao/hao/vibe_coding_project/drill_encoder/android_app/app/src/main/AndroidManifest.xml:2:1-28:12
+INJECTED from /Users/hao/hao/vibe_coding_project/drill_encoder/android_app/app/src/main/AndroidManifest.xml:2:1-28:12
+INJECTED from /Users/hao/hao/vibe_coding_project/drill_encoder/android_app/app/src/main/AndroidManifest.xml:2:1-28:12
 MERGED from [androidx.databinding:viewbinding:8.10.1] /Users/hao/.gradle/caches/8.11.1/transforms/58a5496a1e6aabd8b8dd95b98ab2ce4d/transformed/jetified-viewbinding-8.10.1/AndroidManifest.xml:2:1-7:12
 MERGED from [com.google.android.material:material:1.11.0] /Users/hao/.gradle/caches/8.11.1/transforms/00eeb6492ea48024bbce31944ca0b755/transformed/material-1.11.0/AndroidManifest.xml:17:1-24:12
 MERGED from [androidx.constraintlayout:constraintlayout:2.1.4] /Users/hao/.gradle/caches/8.11.1/transforms/0a0912fd2d00a5fdfac076b4b09d7c49/transformed/constraintlayout-2.1.4/AndroidManifest.xml:2:1-11:12
-MERGED from [androidx.camera:camera-video:1.3.1] /Users/hao/.gradle/caches/8.11.1/transforms/5fa5d0d409140bc402b5b02e27b416f5/transformed/jetified-camera-video-1.3.1/AndroidManifest.xml:2:1-7:12
-MERGED from [androidx.camera:camera-lifecycle:1.3.1] /Users/hao/.gradle/caches/8.11.1/transforms/7139b495b46e6364ec7d7a7849ebd088/transformed/jetified-camera-lifecycle-1.3.1/AndroidManifest.xml:2:1-7:12
-MERGED from [androidx.camera:camera-camera2:1.3.1] /Users/hao/.gradle/caches/8.11.1/transforms/531ad38f25b4ecbb794f553496da0208/transformed/jetified-camera-camera2-1.3.1/AndroidManifest.xml:17:1-36:12
-MERGED from [androidx.camera:camera-core:1.3.1] /Users/hao/.gradle/caches/8.11.1/transforms/a262421c31e83c753360cf82c9caed1b/transformed/jetified-camera-core-1.3.1/AndroidManifest.xml:17:1-36:12
-MERGED from [androidx.camera:camera-view:1.3.1] /Users/hao/.gradle/caches/8.11.1/transforms/955182a36e50487846bfa24ccef90b33/transformed/jetified-camera-view-1.3.1/AndroidManifest.xml:2:1-7:12
+MERGED from [androidx.camera:camera-video:1.4.0] /Users/hao/.gradle/caches/8.11.1/transforms/e7c758f253229e508e48f30c3f5b7d42/transformed/jetified-camera-video-1.4.0/AndroidManifest.xml:2:1-7:12
+MERGED from [androidx.camera:camera-lifecycle:1.4.0] /Users/hao/.gradle/caches/8.11.1/transforms/702c5672b4b15c0b0960e047ba672a67/transformed/jetified-camera-lifecycle-1.4.0/AndroidManifest.xml:2:1-7:12
+MERGED from [androidx.camera:camera-camera2:1.4.0] /Users/hao/.gradle/caches/8.11.1/transforms/25fcd82cdad59cbcfe9e93eaa4258a8c/transformed/jetified-camera-camera2-1.4.0/AndroidManifest.xml:17:1-36:12
+MERGED from [androidx.camera:camera-core:1.4.0] /Users/hao/.gradle/caches/8.11.1/transforms/5f051679434ac0ed76af4f4bd8581a88/transformed/jetified-camera-core-1.4.0/AndroidManifest.xml:17:1-36:12
+MERGED from [androidx.camera:camera-view:1.4.0] /Users/hao/.gradle/caches/8.11.1/transforms/59ab992780b018f7c8b3f13cae7fb33e/transformed/jetified-camera-view-1.4.0/AndroidManifest.xml:2:1-7:12
 MERGED from [androidx.appcompat:appcompat-resources:1.6.1] /Users/hao/.gradle/caches/8.11.1/transforms/838ab88feda69ca8852c852ede95ac4f/transformed/jetified-appcompat-resources-1.6.1/AndroidManifest.xml:17:1-22:12
 MERGED from [androidx.appcompat:appcompat:1.6.1] /Users/hao/.gradle/caches/8.11.1/transforms/e1ed7f4c16f690bc5610c61551d82aa4/transformed/appcompat-1.6.1/AndroidManifest.xml:17:1-22:12
 MERGED from [androidx.emoji2:emoji2-views-helper:1.2.0] /Users/hao/.gradle/caches/8.11.1/transforms/69d450ce34b78a93a709dd6697d159a0/transformed/jetified-emoji2-views-helper-1.2.0/AndroidManifest.xml:2:1-7:12
@@ -39,24 +39,27 @@ MERGED from [androidx.lifecycle:lifecycle-viewmodel:2.6.1] /Users/hao/.gradle/ca
 MERGED from [androidx.lifecycle:lifecycle-runtime:2.6.1] /Users/hao/.gradle/caches/8.11.1/transforms/4ee432316ecc287082d6380af4ad053f/transformed/lifecycle-runtime-2.6.1/AndroidManifest.xml:2:1-7:12
 MERGED from [androidx.lifecycle:lifecycle-viewmodel-savedstate:2.6.1] /Users/hao/.gradle/caches/8.11.1/transforms/2402e1cfe4f0213b5d68bbad76f8ad87/transformed/jetified-lifecycle-viewmodel-savedstate-2.6.1/AndroidManifest.xml:17:1-22:12
 MERGED from [androidx.core:core-ktx:1.12.0] /Users/hao/.gradle/caches/8.11.1/transforms/e375b153fe1ed42ccf4e4352f81b930e/transformed/jetified-core-ktx-1.12.0/AndroidManifest.xml:2:1-7:12
-MERGED from [androidx.annotation:annotation-experimental:1.3.1] /Users/hao/.gradle/caches/8.11.1/transforms/4cf417d7476823310454bf834525dcff/transformed/jetified-annotation-experimental-1.3.1/AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.annotation:annotation-experimental:1.4.1] /Users/hao/.gradle/caches/8.11.1/transforms/836403ee7967db315d67aa7db84f03f1/transformed/jetified-annotation-experimental-1.4.1/AndroidManifest.xml:2:1-7:12
+MERGED from [androidx.profileinstaller:profileinstaller:1.3.0] /Users/hao/.gradle/caches/8.11.1/transforms/eb4dc569fc02f386c16cb2f51ab96e96/transformed/jetified-profileinstaller-1.3.0/AndroidManifest.xml:17:1-55:12
+MERGED from [androidx.startup:startup-runtime:1.1.1] /Users/hao/.gradle/caches/8.11.1/transforms/4c0e1de3e474f92145a88e6f84910ed6/transformed/jetified-startup-runtime-1.1.1/AndroidManifest.xml:17:1-33:12
+MERGED from [androidx.tracing:tracing:1.2.0] /Users/hao/.gradle/caches/8.11.1/transforms/3eeeb19f0bafce2de4e9d903d231c31f/transformed/jetified-tracing-1.2.0/AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.tracing:tracing-ktx:1.2.0] /Users/hao/.gradle/caches/8.11.1/transforms/34482332cfb0c08cdba9a79c220ce3db/transformed/jetified-tracing-ktx-1.2.0/AndroidManifest.xml:17:1-22:12
+MERGED from [com.google.ar:core:1.52.0] /Users/hao/.gradle/caches/8.11.1/transforms/70e1695df42544dd7c0c9a5880f806ce/transformed/jetified-core-1.52.0/AndroidManifest.xml:8:1-45:12
 MERGED from [androidx.cursoradapter:cursoradapter:1.0.0] /Users/hao/.gradle/caches/8.11.1/transforms/46887193a79b8fbe1a56ec4a29ee0420/transformed/cursoradapter-1.0.0/AndroidManifest.xml:17:1-22:12
 MERGED from [androidx.cardview:cardview:1.0.0] /Users/hao/.gradle/caches/8.11.1/transforms/07dd424c0328e25495175d5c29c6e6f9/transformed/cardview-1.0.0/AndroidManifest.xml:17:1-22:12
 MERGED from [androidx.exifinterface:exifinterface:1.3.2] /Users/hao/.gradle/caches/8.11.1/transforms/5194fd8a1702822fd8397f58c6f3adea/transformed/exifinterface-1.3.2/AndroidManifest.xml:17:1-24:12
 MERGED from [androidx.interpolator:interpolator:1.0.0] /Users/hao/.gradle/caches/8.11.1/transforms/b011d7f4b23aae2b6816eb12e2e70587/transformed/interpolator-1.0.0/AndroidManifest.xml:17:1-22:12
 MERGED from [androidx.versionedparcelable:versionedparcelable:1.1.1] /Users/hao/.gradle/caches/8.11.1/transforms/04f10ee4d47d08ae6e71c6e771d3c2c6/transformed/versionedparcelable-1.1.1/AndroidManifest.xml:17:1-27:12
-MERGED from [androidx.profileinstaller:profileinstaller:1.3.0] /Users/hao/.gradle/caches/8.11.1/transforms/eb4dc569fc02f386c16cb2f51ab96e96/transformed/jetified-profileinstaller-1.3.0/AndroidManifest.xml:17:1-55:12
-MERGED from [androidx.startup:startup-runtime:1.1.1] /Users/hao/.gradle/caches/8.11.1/transforms/4c0e1de3e474f92145a88e6f84910ed6/transformed/jetified-startup-runtime-1.1.1/AndroidManifest.xml:17:1-33:12
-MERGED from [androidx.tracing:tracing:1.0.0] /Users/hao/.gradle/caches/8.11.1/transforms/1fa5406b5062a0d311c50bb5f035253c/transformed/jetified-tracing-1.0.0/AndroidManifest.xml:17:1-24:12
 MERGED from [androidx.arch.core:core-runtime:2.2.0] /Users/hao/.gradle/caches/8.11.1/transforms/2fea3c632c3583f9e105f5cd9bcb7977/transformed/core-runtime-2.2.0/AndroidManifest.xml:17:1-22:12
 MERGED from [androidx.documentfile:documentfile:1.0.0] /Users/hao/.gradle/caches/8.11.1/transforms/01418bb550025142e0e3298c93b24be0/transformed/documentfile-1.0.0/AndroidManifest.xml:17:1-22:12
 MERGED from [androidx.localbroadcastmanager:localbroadcastmanager:1.0.0] /Users/hao/.gradle/caches/8.11.1/transforms/42329f160f54b7f4f272dcbe6a4e4055/transformed/localbroadcastmanager-1.0.0/AndroidManifest.xml:17:1-22:12
 MERGED from [androidx.print:print:1.0.0] /Users/hao/.gradle/caches/8.11.1/transforms/6fa72741bc3973cc893bf1e79624a3f0/transformed/print-1.0.0/AndroidManifest.xml:17:1-22:12
-MERGED from [org.tensorflow:tensorflow-lite-support:0.4.4] /Users/hao/.gradle/caches/8.11.1/transforms/0b8f578300ccdf5efa21b9dc1479805f/transformed/jetified-tensorflow-lite-support-0.4.4/AndroidManifest.xml:2:1-5:12
-MERGED from [org.tensorflow:tensorflow-lite:2.14.0] /Users/hao/.gradle/caches/8.11.1/transforms/7ef5bb606566dcb4785b3a08935c6b6b/transformed/jetified-tensorflow-lite-2.14.0/AndroidManifest.xml:2:1-11:12
-MERGED from [org.tensorflow:tensorflow-lite-gpu:2.14.0] /Users/hao/.gradle/caches/8.11.1/transforms/7160bb7cc5963b2c72de4860176eecbc/transformed/jetified-tensorflow-lite-gpu-2.14.0/AndroidManifest.xml:2:1-11:12
-MERGED from [org.tensorflow:tensorflow-lite-support-api:0.4.4] /Users/hao/.gradle/caches/8.11.1/transforms/a8057dd932e9e22e4299b5076aa730ac/transformed/jetified-tensorflow-lite-support-api-0.4.4/AndroidManifest.xml:2:1-5:12
-MERGED from [org.tensorflow:tensorflow-lite-api:2.14.0] /Users/hao/.gradle/caches/8.11.1/transforms/052b892b6a0be585963c36a980945706/transformed/jetified-tensorflow-lite-api-2.14.0/AndroidManifest.xml:2:1-11:12
+MERGED from [com.google.ai.edge.litert:litert-support:1.4.1] /Users/hao/.gradle/caches/8.11.1/transforms/a389adb3c290e9b07f704c0d37b7c25e/transformed/jetified-litert-support-1.4.1/AndroidManifest.xml:2:1-5:12
+MERGED from [com.google.ai.edge.litert:litert:1.4.1] /Users/hao/.gradle/caches/8.11.1/transforms/eeb2c3b6f53649823bba92f39730255c/transformed/jetified-litert-1.4.1/AndroidManifest.xml:2:1-11:12
+MERGED from [com.google.ai.edge.litert:litert-gpu:1.4.1] /Users/hao/.gradle/caches/8.11.1/transforms/cb78d3e5abf799612f8b22148c2d9630/transformed/jetified-litert-gpu-1.4.1/AndroidManifest.xml:2:1-11:12
+MERGED from [com.google.ai.edge.litert:litert-support-api:1.4.1] /Users/hao/.gradle/caches/8.11.1/transforms/69103e62f79bf60de38febbc0c02892e/transformed/jetified-litert-support-api-1.4.1/AndroidManifest.xml:2:1-5:12
+MERGED from [com.google.ai.edge.litert:litert-api:1.4.1] /Users/hao/.gradle/caches/8.11.1/transforms/4e0b9400376791071aef15f6108b4035/transformed/jetified-litert-api-1.4.1/AndroidManifest.xml:2:1-11:12
+MERGED from [com.google.ai.edge.litert:litert-gpu-api:1.4.1] /Users/hao/.gradle/caches/8.11.1/transforms/48585ed9293ad5bb11270defa763a8aa/transformed/jetified-litert-gpu-api-1.4.1/AndroidManifest.xml:2:1-21:12
 MERGED from [com.google.android.odml:image:1.0.0-beta1] /Users/hao/.gradle/caches/8.11.1/transforms/4517809c2dc8f1310bb0568ab7140fce/transformed/jetified-image-1.0.0-beta1/AndroidManifest.xml:2:1-9:12
 	package
 		INJECTED from /Users/hao/hao/vibe_coding_project/drill_encoder/android_app/app/src/main/AndroidManifest.xml
@@ -77,34 +80,38 @@ ADDED from /Users/hao/hao/vibe_coding_project/drill_encoder/android_app/app/src/
 	android:name
 		ADDED from /Users/hao/hao/vibe_coding_project/drill_encoder/android_app/app/src/main/AndroidManifest.xml:6:22-62
 application
-ADDED from /Users/hao/hao/vibe_coding_project/drill_encoder/android_app/app/src/main/AndroidManifest.xml:8:5-24:19
-INJECTED from /Users/hao/hao/vibe_coding_project/drill_encoder/android_app/app/src/main/AndroidManifest.xml:8:5-24:19
+ADDED from /Users/hao/hao/vibe_coding_project/drill_encoder/android_app/app/src/main/AndroidManifest.xml:8:5-26:19
+INJECTED from /Users/hao/hao/vibe_coding_project/drill_encoder/android_app/app/src/main/AndroidManifest.xml:8:5-26:19
 MERGED from [com.google.android.material:material:1.11.0] /Users/hao/.gradle/caches/8.11.1/transforms/00eeb6492ea48024bbce31944ca0b755/transformed/material-1.11.0/AndroidManifest.xml:22:5-20
 MERGED from [com.google.android.material:material:1.11.0] /Users/hao/.gradle/caches/8.11.1/transforms/00eeb6492ea48024bbce31944ca0b755/transformed/material-1.11.0/AndroidManifest.xml:22:5-20
 MERGED from [androidx.constraintlayout:constraintlayout:2.1.4] /Users/hao/.gradle/caches/8.11.1/transforms/0a0912fd2d00a5fdfac076b4b09d7c49/transformed/constraintlayout-2.1.4/AndroidManifest.xml:9:5-20
 MERGED from [androidx.constraintlayout:constraintlayout:2.1.4] /Users/hao/.gradle/caches/8.11.1/transforms/0a0912fd2d00a5fdfac076b4b09d7c49/transformed/constraintlayout-2.1.4/AndroidManifest.xml:9:5-20
-MERGED from [androidx.camera:camera-camera2:1.3.1] /Users/hao/.gradle/caches/8.11.1/transforms/531ad38f25b4ecbb794f553496da0208/transformed/jetified-camera-camera2-1.3.1/AndroidManifest.xml:23:5-34:19
-MERGED from [androidx.camera:camera-camera2:1.3.1] /Users/hao/.gradle/caches/8.11.1/transforms/531ad38f25b4ecbb794f553496da0208/transformed/jetified-camera-camera2-1.3.1/AndroidManifest.xml:23:5-34:19
-MERGED from [androidx.camera:camera-core:1.3.1] /Users/hao/.gradle/caches/8.11.1/transforms/a262421c31e83c753360cf82c9caed1b/transformed/jetified-camera-core-1.3.1/AndroidManifest.xml:23:5-34:19
-MERGED from [androidx.camera:camera-core:1.3.1] /Users/hao/.gradle/caches/8.11.1/transforms/a262421c31e83c753360cf82c9caed1b/transformed/jetified-camera-core-1.3.1/AndroidManifest.xml:23:5-34:19
+MERGED from [androidx.camera:camera-camera2:1.4.0] /Users/hao/.gradle/caches/8.11.1/transforms/25fcd82cdad59cbcfe9e93eaa4258a8c/transformed/jetified-camera-camera2-1.4.0/AndroidManifest.xml:23:5-34:19
+MERGED from [androidx.camera:camera-camera2:1.4.0] /Users/hao/.gradle/caches/8.11.1/transforms/25fcd82cdad59cbcfe9e93eaa4258a8c/transformed/jetified-camera-camera2-1.4.0/AndroidManifest.xml:23:5-34:19
+MERGED from [androidx.camera:camera-core:1.4.0] /Users/hao/.gradle/caches/8.11.1/transforms/5f051679434ac0ed76af4f4bd8581a88/transformed/jetified-camera-core-1.4.0/AndroidManifest.xml:23:5-34:19
+MERGED from [androidx.camera:camera-core:1.4.0] /Users/hao/.gradle/caches/8.11.1/transforms/5f051679434ac0ed76af4f4bd8581a88/transformed/jetified-camera-core-1.4.0/AndroidManifest.xml:23:5-34:19
 MERGED from [androidx.emoji2:emoji2:1.2.0] /Users/hao/.gradle/caches/8.11.1/transforms/98c6d0cb6812bb2b59a04ad53707ad66/transformed/jetified-emoji2-1.2.0/AndroidManifest.xml:23:5-33:19
 MERGED from [androidx.emoji2:emoji2:1.2.0] /Users/hao/.gradle/caches/8.11.1/transforms/98c6d0cb6812bb2b59a04ad53707ad66/transformed/jetified-emoji2-1.2.0/AndroidManifest.xml:23:5-33:19
 MERGED from [androidx.core:core:1.12.0] /Users/hao/.gradle/caches/8.11.1/transforms/128fa081ffbd2aedd15e2b6a1b8704f7/transformed/core-1.12.0/AndroidManifest.xml:28:5-89
 MERGED from [androidx.core:core:1.12.0] /Users/hao/.gradle/caches/8.11.1/transforms/128fa081ffbd2aedd15e2b6a1b8704f7/transformed/core-1.12.0/AndroidManifest.xml:28:5-89
 MERGED from [androidx.lifecycle:lifecycle-process:2.6.1] /Users/hao/.gradle/caches/8.11.1/transforms/aae860ec5be03271e2f35aecdcf9b581/transformed/jetified-lifecycle-process-2.6.1/AndroidManifest.xml:23:5-33:19
 MERGED from [androidx.lifecycle:lifecycle-process:2.6.1] /Users/hao/.gradle/caches/8.11.1/transforms/aae860ec5be03271e2f35aecdcf9b581/transformed/jetified-lifecycle-process-2.6.1/AndroidManifest.xml:23:5-33:19
-MERGED from [androidx.versionedparcelable:versionedparcelable:1.1.1] /Users/hao/.gradle/caches/8.11.1/transforms/04f10ee4d47d08ae6e71c6e771d3c2c6/transformed/versionedparcelable-1.1.1/AndroidManifest.xml:24:5-25:19
-MERGED from [androidx.versionedparcelable:versionedparcelable:1.1.1] /Users/hao/.gradle/caches/8.11.1/transforms/04f10ee4d47d08ae6e71c6e771d3c2c6/transformed/versionedparcelable-1.1.1/AndroidManifest.xml:24:5-25:19
 MERGED from [androidx.profileinstaller:profileinstaller:1.3.0] /Users/hao/.gradle/caches/8.11.1/transforms/eb4dc569fc02f386c16cb2f51ab96e96/transformed/jetified-profileinstaller-1.3.0/AndroidManifest.xml:23:5-53:19
 MERGED from [androidx.profileinstaller:profileinstaller:1.3.0] /Users/hao/.gradle/caches/8.11.1/transforms/eb4dc569fc02f386c16cb2f51ab96e96/transformed/jetified-profileinstaller-1.3.0/AndroidManifest.xml:23:5-53:19
 MERGED from [androidx.startup:startup-runtime:1.1.1] /Users/hao/.gradle/caches/8.11.1/transforms/4c0e1de3e474f92145a88e6f84910ed6/transformed/jetified-startup-runtime-1.1.1/AndroidManifest.xml:25:5-31:19
 MERGED from [androidx.startup:startup-runtime:1.1.1] /Users/hao/.gradle/caches/8.11.1/transforms/4c0e1de3e474f92145a88e6f84910ed6/transformed/jetified-startup-runtime-1.1.1/AndroidManifest.xml:25:5-31:19
-MERGED from [org.tensorflow:tensorflow-lite:2.14.0] /Users/hao/.gradle/caches/8.11.1/transforms/7ef5bb606566dcb4785b3a08935c6b6b/transformed/jetified-tensorflow-lite-2.14.0/AndroidManifest.xml:9:5-20
-MERGED from [org.tensorflow:tensorflow-lite:2.14.0] /Users/hao/.gradle/caches/8.11.1/transforms/7ef5bb606566dcb4785b3a08935c6b6b/transformed/jetified-tensorflow-lite-2.14.0/AndroidManifest.xml:9:5-20
-MERGED from [org.tensorflow:tensorflow-lite-gpu:2.14.0] /Users/hao/.gradle/caches/8.11.1/transforms/7160bb7cc5963b2c72de4860176eecbc/transformed/jetified-tensorflow-lite-gpu-2.14.0/AndroidManifest.xml:9:5-20
-MERGED from [org.tensorflow:tensorflow-lite-gpu:2.14.0] /Users/hao/.gradle/caches/8.11.1/transforms/7160bb7cc5963b2c72de4860176eecbc/transformed/jetified-tensorflow-lite-gpu-2.14.0/AndroidManifest.xml:9:5-20
-MERGED from [org.tensorflow:tensorflow-lite-api:2.14.0] /Users/hao/.gradle/caches/8.11.1/transforms/052b892b6a0be585963c36a980945706/transformed/jetified-tensorflow-lite-api-2.14.0/AndroidManifest.xml:9:5-20
-MERGED from [org.tensorflow:tensorflow-lite-api:2.14.0] /Users/hao/.gradle/caches/8.11.1/transforms/052b892b6a0be585963c36a980945706/transformed/jetified-tensorflow-lite-api-2.14.0/AndroidManifest.xml:9:5-20
+MERGED from [com.google.ar:core:1.52.0] /Users/hao/.gradle/caches/8.11.1/transforms/70e1695df42544dd7c0c9a5880f806ce/transformed/jetified-core-1.52.0/AndroidManifest.xml:29:5-43:19
+MERGED from [com.google.ar:core:1.52.0] /Users/hao/.gradle/caches/8.11.1/transforms/70e1695df42544dd7c0c9a5880f806ce/transformed/jetified-core-1.52.0/AndroidManifest.xml:29:5-43:19
+MERGED from [androidx.versionedparcelable:versionedparcelable:1.1.1] /Users/hao/.gradle/caches/8.11.1/transforms/04f10ee4d47d08ae6e71c6e771d3c2c6/transformed/versionedparcelable-1.1.1/AndroidManifest.xml:24:5-25:19
+MERGED from [androidx.versionedparcelable:versionedparcelable:1.1.1] /Users/hao/.gradle/caches/8.11.1/transforms/04f10ee4d47d08ae6e71c6e771d3c2c6/transformed/versionedparcelable-1.1.1/AndroidManifest.xml:24:5-25:19
+MERGED from [com.google.ai.edge.litert:litert:1.4.1] /Users/hao/.gradle/caches/8.11.1/transforms/eeb2c3b6f53649823bba92f39730255c/transformed/jetified-litert-1.4.1/AndroidManifest.xml:9:5-20
+MERGED from [com.google.ai.edge.litert:litert:1.4.1] /Users/hao/.gradle/caches/8.11.1/transforms/eeb2c3b6f53649823bba92f39730255c/transformed/jetified-litert-1.4.1/AndroidManifest.xml:9:5-20
+MERGED from [com.google.ai.edge.litert:litert-gpu:1.4.1] /Users/hao/.gradle/caches/8.11.1/transforms/cb78d3e5abf799612f8b22148c2d9630/transformed/jetified-litert-gpu-1.4.1/AndroidManifest.xml:9:5-20
+MERGED from [com.google.ai.edge.litert:litert-gpu:1.4.1] /Users/hao/.gradle/caches/8.11.1/transforms/cb78d3e5abf799612f8b22148c2d9630/transformed/jetified-litert-gpu-1.4.1/AndroidManifest.xml:9:5-20
+MERGED from [com.google.ai.edge.litert:litert-api:1.4.1] /Users/hao/.gradle/caches/8.11.1/transforms/4e0b9400376791071aef15f6108b4035/transformed/jetified-litert-api-1.4.1/AndroidManifest.xml:9:5-20
+MERGED from [com.google.ai.edge.litert:litert-api:1.4.1] /Users/hao/.gradle/caches/8.11.1/transforms/4e0b9400376791071aef15f6108b4035/transformed/jetified-litert-api-1.4.1/AndroidManifest.xml:9:5-20
+MERGED from [com.google.ai.edge.litert:litert-gpu-api:1.4.1] /Users/hao/.gradle/caches/8.11.1/transforms/48585ed9293ad5bb11270defa763a8aa/transformed/jetified-litert-gpu-api-1.4.1/AndroidManifest.xml:5:5-19:19
+MERGED from [com.google.ai.edge.litert:litert-gpu-api:1.4.1] /Users/hao/.gradle/caches/8.11.1/transforms/48585ed9293ad5bb11270defa763a8aa/transformed/jetified-litert-gpu-api-1.4.1/AndroidManifest.xml:5:5-19:19
 MERGED from [com.google.android.odml:image:1.0.0-beta1] /Users/hao/.gradle/caches/8.11.1/transforms/4517809c2dc8f1310bb0568ab7140fce/transformed/jetified-image-1.0.0-beta1/AndroidManifest.xml:7:5-20
 MERGED from [com.google.android.odml:image:1.0.0-beta1] /Users/hao/.gradle/caches/8.11.1/transforms/4517809c2dc8f1310bb0568ab7140fce/transformed/jetified-image-1.0.0-beta1/AndroidManifest.xml:7:5-20
 	android:extractNativeLibs
@@ -141,6 +148,12 @@ ADDED from /Users/hao/hao/vibe_coding_project/drill_encoder/android_app/app/src/
 		ADDED from /Users/hao/hao/vibe_coding_project/drill_encoder/android_app/app/src/main/AndroidManifest.xml:23:13-81
 	android:name
 		ADDED from /Users/hao/hao/vibe_coding_project/drill_encoder/android_app/app/src/main/AndroidManifest.xml:21:13-41
+meta-data#com.google.ar.core
+ADDED from /Users/hao/hao/vibe_coding_project/drill_encoder/android_app/app/src/main/AndroidManifest.xml:25:9-81
+	android:value
+		ADDED from /Users/hao/hao/vibe_coding_project/drill_encoder/android_app/app/src/main/AndroidManifest.xml:25:54-78
+	android:name
+		ADDED from /Users/hao/hao/vibe_coding_project/drill_encoder/android_app/app/src/main/AndroidManifest.xml:25:20-53
 uses-sdk
 INJECTED from /Users/hao/hao/vibe_coding_project/drill_encoder/android_app/app/src/main/AndroidManifest.xml reason: use-sdk injection requested
 INJECTED from /Users/hao/hao/vibe_coding_project/drill_encoder/android_app/app/src/main/AndroidManifest.xml
@@ -151,16 +164,16 @@ MERGED from [com.google.android.material:material:1.11.0] /Users/hao/.gradle/cac
 MERGED from [com.google.android.material:material:1.11.0] /Users/hao/.gradle/caches/8.11.1/transforms/00eeb6492ea48024bbce31944ca0b755/transformed/material-1.11.0/AndroidManifest.xml:20:5-44
 MERGED from [androidx.constraintlayout:constraintlayout:2.1.4] /Users/hao/.gradle/caches/8.11.1/transforms/0a0912fd2d00a5fdfac076b4b09d7c49/transformed/constraintlayout-2.1.4/AndroidManifest.xml:5:5-7:41
 MERGED from [androidx.constraintlayout:constraintlayout:2.1.4] /Users/hao/.gradle/caches/8.11.1/transforms/0a0912fd2d00a5fdfac076b4b09d7c49/transformed/constraintlayout-2.1.4/AndroidManifest.xml:5:5-7:41
-MERGED from [androidx.camera:camera-video:1.3.1] /Users/hao/.gradle/caches/8.11.1/transforms/5fa5d0d409140bc402b5b02e27b416f5/transformed/jetified-camera-video-1.3.1/AndroidManifest.xml:5:5-44
-MERGED from [androidx.camera:camera-video:1.3.1] /Users/hao/.gradle/caches/8.11.1/transforms/5fa5d0d409140bc402b5b02e27b416f5/transformed/jetified-camera-video-1.3.1/AndroidManifest.xml:5:5-44
-MERGED from [androidx.camera:camera-lifecycle:1.3.1] /Users/hao/.gradle/caches/8.11.1/transforms/7139b495b46e6364ec7d7a7849ebd088/transformed/jetified-camera-lifecycle-1.3.1/AndroidManifest.xml:5:5-44
-MERGED from [androidx.camera:camera-lifecycle:1.3.1] /Users/hao/.gradle/caches/8.11.1/transforms/7139b495b46e6364ec7d7a7849ebd088/transformed/jetified-camera-lifecycle-1.3.1/AndroidManifest.xml:5:5-44
-MERGED from [androidx.camera:camera-camera2:1.3.1] /Users/hao/.gradle/caches/8.11.1/transforms/531ad38f25b4ecbb794f553496da0208/transformed/jetified-camera-camera2-1.3.1/AndroidManifest.xml:21:5-44
-MERGED from [androidx.camera:camera-camera2:1.3.1] /Users/hao/.gradle/caches/8.11.1/transforms/531ad38f25b4ecbb794f553496da0208/transformed/jetified-camera-camera2-1.3.1/AndroidManifest.xml:21:5-44
-MERGED from [androidx.camera:camera-core:1.3.1] /Users/hao/.gradle/caches/8.11.1/transforms/a262421c31e83c753360cf82c9caed1b/transformed/jetified-camera-core-1.3.1/AndroidManifest.xml:21:5-44
-MERGED from [androidx.camera:camera-core:1.3.1] /Users/hao/.gradle/caches/8.11.1/transforms/a262421c31e83c753360cf82c9caed1b/transformed/jetified-camera-core-1.3.1/AndroidManifest.xml:21:5-44
-MERGED from [androidx.camera:camera-view:1.3.1] /Users/hao/.gradle/caches/8.11.1/transforms/955182a36e50487846bfa24ccef90b33/transformed/jetified-camera-view-1.3.1/AndroidManifest.xml:5:5-44
-MERGED from [androidx.camera:camera-view:1.3.1] /Users/hao/.gradle/caches/8.11.1/transforms/955182a36e50487846bfa24ccef90b33/transformed/jetified-camera-view-1.3.1/AndroidManifest.xml:5:5-44
+MERGED from [androidx.camera:camera-video:1.4.0] /Users/hao/.gradle/caches/8.11.1/transforms/e7c758f253229e508e48f30c3f5b7d42/transformed/jetified-camera-video-1.4.0/AndroidManifest.xml:5:5-44
+MERGED from [androidx.camera:camera-video:1.4.0] /Users/hao/.gradle/caches/8.11.1/transforms/e7c758f253229e508e48f30c3f5b7d42/transformed/jetified-camera-video-1.4.0/AndroidManifest.xml:5:5-44
+MERGED from [androidx.camera:camera-lifecycle:1.4.0] /Users/hao/.gradle/caches/8.11.1/transforms/702c5672b4b15c0b0960e047ba672a67/transformed/jetified-camera-lifecycle-1.4.0/AndroidManifest.xml:5:5-44
+MERGED from [androidx.camera:camera-lifecycle:1.4.0] /Users/hao/.gradle/caches/8.11.1/transforms/702c5672b4b15c0b0960e047ba672a67/transformed/jetified-camera-lifecycle-1.4.0/AndroidManifest.xml:5:5-44
+MERGED from [androidx.camera:camera-camera2:1.4.0] /Users/hao/.gradle/caches/8.11.1/transforms/25fcd82cdad59cbcfe9e93eaa4258a8c/transformed/jetified-camera-camera2-1.4.0/AndroidManifest.xml:21:5-44
+MERGED from [androidx.camera:camera-camera2:1.4.0] /Users/hao/.gradle/caches/8.11.1/transforms/25fcd82cdad59cbcfe9e93eaa4258a8c/transformed/jetified-camera-camera2-1.4.0/AndroidManifest.xml:21:5-44
+MERGED from [androidx.camera:camera-core:1.4.0] /Users/hao/.gradle/caches/8.11.1/transforms/5f051679434ac0ed76af4f4bd8581a88/transformed/jetified-camera-core-1.4.0/AndroidManifest.xml:21:5-44
+MERGED from [androidx.camera:camera-core:1.4.0] /Users/hao/.gradle/caches/8.11.1/transforms/5f051679434ac0ed76af4f4bd8581a88/transformed/jetified-camera-core-1.4.0/AndroidManifest.xml:21:5-44
+MERGED from [androidx.camera:camera-view:1.4.0] /Users/hao/.gradle/caches/8.11.1/transforms/59ab992780b018f7c8b3f13cae7fb33e/transformed/jetified-camera-view-1.4.0/AndroidManifest.xml:5:5-44
+MERGED from [androidx.camera:camera-view:1.4.0] /Users/hao/.gradle/caches/8.11.1/transforms/59ab992780b018f7c8b3f13cae7fb33e/transformed/jetified-camera-view-1.4.0/AndroidManifest.xml:5:5-44
 MERGED from [androidx.appcompat:appcompat-resources:1.6.1] /Users/hao/.gradle/caches/8.11.1/transforms/838ab88feda69ca8852c852ede95ac4f/transformed/jetified-appcompat-resources-1.6.1/AndroidManifest.xml:20:5-44
 MERGED from [androidx.appcompat:appcompat-resources:1.6.1] /Users/hao/.gradle/caches/8.11.1/transforms/838ab88feda69ca8852c852ede95ac4f/transformed/jetified-appcompat-resources-1.6.1/AndroidManifest.xml:20:5-44
 MERGED from [androidx.appcompat:appcompat:1.6.1] /Users/hao/.gradle/caches/8.11.1/transforms/e1ed7f4c16f690bc5610c61551d82aa4/transformed/appcompat-1.6.1/AndroidManifest.xml:20:5-44
@@ -215,8 +228,18 @@ MERGED from [androidx.lifecycle:lifecycle-viewmodel-savedstate:2.6.1] /Users/hao
 MERGED from [androidx.lifecycle:lifecycle-viewmodel-savedstate:2.6.1] /Users/hao/.gradle/caches/8.11.1/transforms/2402e1cfe4f0213b5d68bbad76f8ad87/transformed/jetified-lifecycle-viewmodel-savedstate-2.6.1/AndroidManifest.xml:20:5-44
 MERGED from [androidx.core:core-ktx:1.12.0] /Users/hao/.gradle/caches/8.11.1/transforms/e375b153fe1ed42ccf4e4352f81b930e/transformed/jetified-core-ktx-1.12.0/AndroidManifest.xml:5:5-44
 MERGED from [androidx.core:core-ktx:1.12.0] /Users/hao/.gradle/caches/8.11.1/transforms/e375b153fe1ed42ccf4e4352f81b930e/transformed/jetified-core-ktx-1.12.0/AndroidManifest.xml:5:5-44
-MERGED from [androidx.annotation:annotation-experimental:1.3.1] /Users/hao/.gradle/caches/8.11.1/transforms/4cf417d7476823310454bf834525dcff/transformed/jetified-annotation-experimental-1.3.1/AndroidManifest.xml:20:5-44
-MERGED from [androidx.annotation:annotation-experimental:1.3.1] /Users/hao/.gradle/caches/8.11.1/transforms/4cf417d7476823310454bf834525dcff/transformed/jetified-annotation-experimental-1.3.1/AndroidManifest.xml:20:5-44
+MERGED from [androidx.annotation:annotation-experimental:1.4.1] /Users/hao/.gradle/caches/8.11.1/transforms/836403ee7967db315d67aa7db84f03f1/transformed/jetified-annotation-experimental-1.4.1/AndroidManifest.xml:5:5-44
+MERGED from [androidx.annotation:annotation-experimental:1.4.1] /Users/hao/.gradle/caches/8.11.1/transforms/836403ee7967db315d67aa7db84f03f1/transformed/jetified-annotation-experimental-1.4.1/AndroidManifest.xml:5:5-44
+MERGED from [androidx.profileinstaller:profileinstaller:1.3.0] /Users/hao/.gradle/caches/8.11.1/transforms/eb4dc569fc02f386c16cb2f51ab96e96/transformed/jetified-profileinstaller-1.3.0/AndroidManifest.xml:21:5-44
+MERGED from [androidx.profileinstaller:profileinstaller:1.3.0] /Users/hao/.gradle/caches/8.11.1/transforms/eb4dc569fc02f386c16cb2f51ab96e96/transformed/jetified-profileinstaller-1.3.0/AndroidManifest.xml:21:5-44
+MERGED from [androidx.startup:startup-runtime:1.1.1] /Users/hao/.gradle/caches/8.11.1/transforms/4c0e1de3e474f92145a88e6f84910ed6/transformed/jetified-startup-runtime-1.1.1/AndroidManifest.xml:21:5-23:41
+MERGED from [androidx.startup:startup-runtime:1.1.1] /Users/hao/.gradle/caches/8.11.1/transforms/4c0e1de3e474f92145a88e6f84910ed6/transformed/jetified-startup-runtime-1.1.1/AndroidManifest.xml:21:5-23:41
+MERGED from [androidx.tracing:tracing:1.2.0] /Users/hao/.gradle/caches/8.11.1/transforms/3eeeb19f0bafce2de4e9d903d231c31f/transformed/jetified-tracing-1.2.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.tracing:tracing:1.2.0] /Users/hao/.gradle/caches/8.11.1/transforms/3eeeb19f0bafce2de4e9d903d231c31f/transformed/jetified-tracing-1.2.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.tracing:tracing-ktx:1.2.0] /Users/hao/.gradle/caches/8.11.1/transforms/34482332cfb0c08cdba9a79c220ce3db/transformed/jetified-tracing-ktx-1.2.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.tracing:tracing-ktx:1.2.0] /Users/hao/.gradle/caches/8.11.1/transforms/34482332cfb0c08cdba9a79c220ce3db/transformed/jetified-tracing-ktx-1.2.0/AndroidManifest.xml:20:5-44
+MERGED from [com.google.ar:core:1.52.0] /Users/hao/.gradle/caches/8.11.1/transforms/70e1695df42544dd7c0c9a5880f806ce/transformed/jetified-core-1.52.0/AndroidManifest.xml:16:5-18:41
+MERGED from [com.google.ar:core:1.52.0] /Users/hao/.gradle/caches/8.11.1/transforms/70e1695df42544dd7c0c9a5880f806ce/transformed/jetified-core-1.52.0/AndroidManifest.xml:16:5-18:41
 MERGED from [androidx.cursoradapter:cursoradapter:1.0.0] /Users/hao/.gradle/caches/8.11.1/transforms/46887193a79b8fbe1a56ec4a29ee0420/transformed/cursoradapter-1.0.0/AndroidManifest.xml:20:5-44
 MERGED from [androidx.cursoradapter:cursoradapter:1.0.0] /Users/hao/.gradle/caches/8.11.1/transforms/46887193a79b8fbe1a56ec4a29ee0420/transformed/cursoradapter-1.0.0/AndroidManifest.xml:20:5-44
 MERGED from [androidx.cardview:cardview:1.0.0] /Users/hao/.gradle/caches/8.11.1/transforms/07dd424c0328e25495175d5c29c6e6f9/transformed/cardview-1.0.0/AndroidManifest.xml:20:5-44
@@ -227,12 +250,6 @@ MERGED from [androidx.interpolator:interpolator:1.0.0] /Users/hao/.gradle/caches
 MERGED from [androidx.interpolator:interpolator:1.0.0] /Users/hao/.gradle/caches/8.11.1/transforms/b011d7f4b23aae2b6816eb12e2e70587/transformed/interpolator-1.0.0/AndroidManifest.xml:20:5-44
 MERGED from [androidx.versionedparcelable:versionedparcelable:1.1.1] /Users/hao/.gradle/caches/8.11.1/transforms/04f10ee4d47d08ae6e71c6e771d3c2c6/transformed/versionedparcelable-1.1.1/AndroidManifest.xml:20:5-22:41
 MERGED from [androidx.versionedparcelable:versionedparcelable:1.1.1] /Users/hao/.gradle/caches/8.11.1/transforms/04f10ee4d47d08ae6e71c6e771d3c2c6/transformed/versionedparcelable-1.1.1/AndroidManifest.xml:20:5-22:41
-MERGED from [androidx.profileinstaller:profileinstaller:1.3.0] /Users/hao/.gradle/caches/8.11.1/transforms/eb4dc569fc02f386c16cb2f51ab96e96/transformed/jetified-profileinstaller-1.3.0/AndroidManifest.xml:21:5-44
-MERGED from [androidx.profileinstaller:profileinstaller:1.3.0] /Users/hao/.gradle/caches/8.11.1/transforms/eb4dc569fc02f386c16cb2f51ab96e96/transformed/jetified-profileinstaller-1.3.0/AndroidManifest.xml:21:5-44
-MERGED from [androidx.startup:startup-runtime:1.1.1] /Users/hao/.gradle/caches/8.11.1/transforms/4c0e1de3e474f92145a88e6f84910ed6/transformed/jetified-startup-runtime-1.1.1/AndroidManifest.xml:21:5-23:41
-MERGED from [androidx.startup:startup-runtime:1.1.1] /Users/hao/.gradle/caches/8.11.1/transforms/4c0e1de3e474f92145a88e6f84910ed6/transformed/jetified-startup-runtime-1.1.1/AndroidManifest.xml:21:5-23:41
-MERGED from [androidx.tracing:tracing:1.0.0] /Users/hao/.gradle/caches/8.11.1/transforms/1fa5406b5062a0d311c50bb5f035253c/transformed/jetified-tracing-1.0.0/AndroidManifest.xml:20:5-22:41
-MERGED from [androidx.tracing:tracing:1.0.0] /Users/hao/.gradle/caches/8.11.1/transforms/1fa5406b5062a0d311c50bb5f035253c/transformed/jetified-tracing-1.0.0/AndroidManifest.xml:20:5-22:41
 MERGED from [androidx.arch.core:core-runtime:2.2.0] /Users/hao/.gradle/caches/8.11.1/transforms/2fea3c632c3583f9e105f5cd9bcb7977/transformed/core-runtime-2.2.0/AndroidManifest.xml:20:5-44
 MERGED from [androidx.arch.core:core-runtime:2.2.0] /Users/hao/.gradle/caches/8.11.1/transforms/2fea3c632c3583f9e105f5cd9bcb7977/transformed/core-runtime-2.2.0/AndroidManifest.xml:20:5-44
 MERGED from [androidx.documentfile:documentfile:1.0.0] /Users/hao/.gradle/caches/8.11.1/transforms/01418bb550025142e0e3298c93b24be0/transformed/documentfile-1.0.0/AndroidManifest.xml:20:5-44
@@ -241,16 +258,16 @@ MERGED from [androidx.localbroadcastmanager:localbroadcastmanager:1.0.0] /Users/
 MERGED from [androidx.localbroadcastmanager:localbroadcastmanager:1.0.0] /Users/hao/.gradle/caches/8.11.1/transforms/42329f160f54b7f4f272dcbe6a4e4055/transformed/localbroadcastmanager-1.0.0/AndroidManifest.xml:20:5-44
 MERGED from [androidx.print:print:1.0.0] /Users/hao/.gradle/caches/8.11.1/transforms/6fa72741bc3973cc893bf1e79624a3f0/transformed/print-1.0.0/AndroidManifest.xml:20:5-44
 MERGED from [androidx.print:print:1.0.0] /Users/hao/.gradle/caches/8.11.1/transforms/6fa72741bc3973cc893bf1e79624a3f0/transformed/print-1.0.0/AndroidManifest.xml:20:5-44
-MERGED from [org.tensorflow:tensorflow-lite-support:0.4.4] /Users/hao/.gradle/caches/8.11.1/transforms/0b8f578300ccdf5efa21b9dc1479805f/transformed/jetified-tensorflow-lite-support-0.4.4/AndroidManifest.xml:4:3-71
-MERGED from [org.tensorflow:tensorflow-lite-support:0.4.4] /Users/hao/.gradle/caches/8.11.1/transforms/0b8f578300ccdf5efa21b9dc1479805f/transformed/jetified-tensorflow-lite-support-0.4.4/AndroidManifest.xml:4:3-71
-MERGED from [org.tensorflow:tensorflow-lite:2.14.0] /Users/hao/.gradle/caches/8.11.1/transforms/7ef5bb606566dcb4785b3a08935c6b6b/transformed/jetified-tensorflow-lite-2.14.0/AndroidManifest.xml:6:5-7:38
-MERGED from [org.tensorflow:tensorflow-lite:2.14.0] /Users/hao/.gradle/caches/8.11.1/transforms/7ef5bb606566dcb4785b3a08935c6b6b/transformed/jetified-tensorflow-lite-2.14.0/AndroidManifest.xml:6:5-7:38
-MERGED from [org.tensorflow:tensorflow-lite-gpu:2.14.0] /Users/hao/.gradle/caches/8.11.1/transforms/7160bb7cc5963b2c72de4860176eecbc/transformed/jetified-tensorflow-lite-gpu-2.14.0/AndroidManifest.xml:6:5-7:38
-MERGED from [org.tensorflow:tensorflow-lite-gpu:2.14.0] /Users/hao/.gradle/caches/8.11.1/transforms/7160bb7cc5963b2c72de4860176eecbc/transformed/jetified-tensorflow-lite-gpu-2.14.0/AndroidManifest.xml:6:5-7:38
-MERGED from [org.tensorflow:tensorflow-lite-support-api:0.4.4] /Users/hao/.gradle/caches/8.11.1/transforms/a8057dd932e9e22e4299b5076aa730ac/transformed/jetified-tensorflow-lite-support-api-0.4.4/AndroidManifest.xml:4:3-71
-MERGED from [org.tensorflow:tensorflow-lite-support-api:0.4.4] /Users/hao/.gradle/caches/8.11.1/transforms/a8057dd932e9e22e4299b5076aa730ac/transformed/jetified-tensorflow-lite-support-api-0.4.4/AndroidManifest.xml:4:3-71
-MERGED from [org.tensorflow:tensorflow-lite-api:2.14.0] /Users/hao/.gradle/caches/8.11.1/transforms/052b892b6a0be585963c36a980945706/transformed/jetified-tensorflow-lite-api-2.14.0/AndroidManifest.xml:6:5-7:38
-MERGED from [org.tensorflow:tensorflow-lite-api:2.14.0] /Users/hao/.gradle/caches/8.11.1/transforms/052b892b6a0be585963c36a980945706/transformed/jetified-tensorflow-lite-api-2.14.0/AndroidManifest.xml:6:5-7:38
+MERGED from [com.google.ai.edge.litert:litert-support:1.4.1] /Users/hao/.gradle/caches/8.11.1/transforms/a389adb3c290e9b07f704c0d37b7c25e/transformed/jetified-litert-support-1.4.1/AndroidManifest.xml:4:3-71
+MERGED from [com.google.ai.edge.litert:litert-support:1.4.1] /Users/hao/.gradle/caches/8.11.1/transforms/a389adb3c290e9b07f704c0d37b7c25e/transformed/jetified-litert-support-1.4.1/AndroidManifest.xml:4:3-71
+MERGED from [com.google.ai.edge.litert:litert:1.4.1] /Users/hao/.gradle/caches/8.11.1/transforms/eeb2c3b6f53649823bba92f39730255c/transformed/jetified-litert-1.4.1/AndroidManifest.xml:6:5-7:38
+MERGED from [com.google.ai.edge.litert:litert:1.4.1] /Users/hao/.gradle/caches/8.11.1/transforms/eeb2c3b6f53649823bba92f39730255c/transformed/jetified-litert-1.4.1/AndroidManifest.xml:6:5-7:38
+MERGED from [com.google.ai.edge.litert:litert-gpu:1.4.1] /Users/hao/.gradle/caches/8.11.1/transforms/cb78d3e5abf799612f8b22148c2d9630/transformed/jetified-litert-gpu-1.4.1/AndroidManifest.xml:6:5-7:38
+MERGED from [com.google.ai.edge.litert:litert-gpu:1.4.1] /Users/hao/.gradle/caches/8.11.1/transforms/cb78d3e5abf799612f8b22148c2d9630/transformed/jetified-litert-gpu-1.4.1/AndroidManifest.xml:6:5-7:38
+MERGED from [com.google.ai.edge.litert:litert-support-api:1.4.1] /Users/hao/.gradle/caches/8.11.1/transforms/69103e62f79bf60de38febbc0c02892e/transformed/jetified-litert-support-api-1.4.1/AndroidManifest.xml:4:3-71
+MERGED from [com.google.ai.edge.litert:litert-support-api:1.4.1] /Users/hao/.gradle/caches/8.11.1/transforms/69103e62f79bf60de38febbc0c02892e/transformed/jetified-litert-support-api-1.4.1/AndroidManifest.xml:4:3-71
+MERGED from [com.google.ai.edge.litert:litert-api:1.4.1] /Users/hao/.gradle/caches/8.11.1/transforms/4e0b9400376791071aef15f6108b4035/transformed/jetified-litert-api-1.4.1/AndroidManifest.xml:6:5-7:38
+MERGED from [com.google.ai.edge.litert:litert-api:1.4.1] /Users/hao/.gradle/caches/8.11.1/transforms/4e0b9400376791071aef15f6108b4035/transformed/jetified-litert-api-1.4.1/AndroidManifest.xml:6:5-7:38
 MERGED from [com.google.android.odml:image:1.0.0-beta1] /Users/hao/.gradle/caches/8.11.1/transforms/4517809c2dc8f1310bb0568ab7140fce/transformed/jetified-image-1.0.0-beta1/AndroidManifest.xml:5:5-44
 MERGED from [com.google.android.odml:image:1.0.0-beta1] /Users/hao/.gradle/caches/8.11.1/transforms/4517809c2dc8f1310bb0568ab7140fce/transformed/jetified-image-1.0.0-beta1/AndroidManifest.xml:5:5-44
 	android:targetSdkVersion
@@ -258,25 +275,25 @@ MERGED from [com.google.android.odml:image:1.0.0-beta1] /Users/hao/.gradle/cache
 	android:minSdkVersion
 		INJECTED from /Users/hao/hao/vibe_coding_project/drill_encoder/android_app/app/src/main/AndroidManifest.xml
 service#androidx.camera.core.impl.MetadataHolderService
-ADDED from [androidx.camera:camera-camera2:1.3.1] /Users/hao/.gradle/caches/8.11.1/transforms/531ad38f25b4ecbb794f553496da0208/transformed/jetified-camera-camera2-1.3.1/AndroidManifest.xml:24:9-33:19
-MERGED from [androidx.camera:camera-core:1.3.1] /Users/hao/.gradle/caches/8.11.1/transforms/a262421c31e83c753360cf82c9caed1b/transformed/jetified-camera-core-1.3.1/AndroidManifest.xml:29:9-33:78
-MERGED from [androidx.camera:camera-core:1.3.1] /Users/hao/.gradle/caches/8.11.1/transforms/a262421c31e83c753360cf82c9caed1b/transformed/jetified-camera-core-1.3.1/AndroidManifest.xml:29:9-33:78
+ADDED from [androidx.camera:camera-camera2:1.4.0] /Users/hao/.gradle/caches/8.11.1/transforms/25fcd82cdad59cbcfe9e93eaa4258a8c/transformed/jetified-camera-camera2-1.4.0/AndroidManifest.xml:24:9-33:19
+MERGED from [androidx.camera:camera-core:1.4.0] /Users/hao/.gradle/caches/8.11.1/transforms/5f051679434ac0ed76af4f4bd8581a88/transformed/jetified-camera-core-1.4.0/AndroidManifest.xml:29:9-33:78
+MERGED from [androidx.camera:camera-core:1.4.0] /Users/hao/.gradle/caches/8.11.1/transforms/5f051679434ac0ed76af4f4bd8581a88/transformed/jetified-camera-core-1.4.0/AndroidManifest.xml:29:9-33:78
 	tools:node
-		ADDED from [androidx.camera:camera-camera2:1.3.1] /Users/hao/.gradle/caches/8.11.1/transforms/531ad38f25b4ecbb794f553496da0208/transformed/jetified-camera-camera2-1.3.1/AndroidManifest.xml:29:13-31
+		ADDED from [androidx.camera:camera-camera2:1.4.0] /Users/hao/.gradle/caches/8.11.1/transforms/25fcd82cdad59cbcfe9e93eaa4258a8c/transformed/jetified-camera-camera2-1.4.0/AndroidManifest.xml:29:13-31
 	android:enabled
-		ADDED from [androidx.camera:camera-camera2:1.3.1] /Users/hao/.gradle/caches/8.11.1/transforms/531ad38f25b4ecbb794f553496da0208/transformed/jetified-camera-camera2-1.3.1/AndroidManifest.xml:26:13-36
+		ADDED from [androidx.camera:camera-camera2:1.4.0] /Users/hao/.gradle/caches/8.11.1/transforms/25fcd82cdad59cbcfe9e93eaa4258a8c/transformed/jetified-camera-camera2-1.4.0/AndroidManifest.xml:26:13-36
 	android:exported
-		ADDED from [androidx.camera:camera-camera2:1.3.1] /Users/hao/.gradle/caches/8.11.1/transforms/531ad38f25b4ecbb794f553496da0208/transformed/jetified-camera-camera2-1.3.1/AndroidManifest.xml:27:13-37
+		ADDED from [androidx.camera:camera-camera2:1.4.0] /Users/hao/.gradle/caches/8.11.1/transforms/25fcd82cdad59cbcfe9e93eaa4258a8c/transformed/jetified-camera-camera2-1.4.0/AndroidManifest.xml:27:13-37
 	tools:ignore
-		ADDED from [androidx.camera:camera-camera2:1.3.1] /Users/hao/.gradle/caches/8.11.1/transforms/531ad38f25b4ecbb794f553496da0208/transformed/jetified-camera-camera2-1.3.1/AndroidManifest.xml:28:13-75
+		ADDED from [androidx.camera:camera-camera2:1.4.0] /Users/hao/.gradle/caches/8.11.1/transforms/25fcd82cdad59cbcfe9e93eaa4258a8c/transformed/jetified-camera-camera2-1.4.0/AndroidManifest.xml:28:13-75
 	android:name
-		ADDED from [androidx.camera:camera-camera2:1.3.1] /Users/hao/.gradle/caches/8.11.1/transforms/531ad38f25b4ecbb794f553496da0208/transformed/jetified-camera-camera2-1.3.1/AndroidManifest.xml:25:13-75
+		ADDED from [androidx.camera:camera-camera2:1.4.0] /Users/hao/.gradle/caches/8.11.1/transforms/25fcd82cdad59cbcfe9e93eaa4258a8c/transformed/jetified-camera-camera2-1.4.0/AndroidManifest.xml:25:13-75
 meta-data#androidx.camera.core.impl.MetadataHolderService.DEFAULT_CONFIG_PROVIDER
-ADDED from [androidx.camera:camera-camera2:1.3.1] /Users/hao/.gradle/caches/8.11.1/transforms/531ad38f25b4ecbb794f553496da0208/transformed/jetified-camera-camera2-1.3.1/AndroidManifest.xml:30:13-32:89
+ADDED from [androidx.camera:camera-camera2:1.4.0] /Users/hao/.gradle/caches/8.11.1/transforms/25fcd82cdad59cbcfe9e93eaa4258a8c/transformed/jetified-camera-camera2-1.4.0/AndroidManifest.xml:30:13-32:89
 	android:value
-		ADDED from [androidx.camera:camera-camera2:1.3.1] /Users/hao/.gradle/caches/8.11.1/transforms/531ad38f25b4ecbb794f553496da0208/transformed/jetified-camera-camera2-1.3.1/AndroidManifest.xml:32:17-86
+		ADDED from [androidx.camera:camera-camera2:1.4.0] /Users/hao/.gradle/caches/8.11.1/transforms/25fcd82cdad59cbcfe9e93eaa4258a8c/transformed/jetified-camera-camera2-1.4.0/AndroidManifest.xml:32:17-86
 	android:name
-		ADDED from [androidx.camera:camera-camera2:1.3.1] /Users/hao/.gradle/caches/8.11.1/transforms/531ad38f25b4ecbb794f553496da0208/transformed/jetified-camera-camera2-1.3.1/AndroidManifest.xml:31:17-103
+		ADDED from [androidx.camera:camera-camera2:1.4.0] /Users/hao/.gradle/caches/8.11.1/transforms/25fcd82cdad59cbcfe9e93eaa4258a8c/transformed/jetified-camera-camera2-1.4.0/AndroidManifest.xml:31:17-103
 provider#androidx.startup.InitializationProvider
 ADDED from [androidx.emoji2:emoji2:1.2.0] /Users/hao/.gradle/caches/8.11.1/transforms/98c6d0cb6812bb2b59a04ad53707ad66/transformed/jetified-emoji2-1.2.0/AndroidManifest.xml:24:9-32:20
 MERGED from [androidx.lifecycle:lifecycle-process:2.6.1] /Users/hao/.gradle/caches/8.11.1/transforms/aae860ec5be03271e2f35aecdcf9b581/transformed/jetified-lifecycle-process-2.6.1/AndroidManifest.xml:24:9-32:20
@@ -367,3 +384,51 @@ action#androidx.profileinstaller.action.BENCHMARK_OPERATION
 ADDED from [androidx.profileinstaller:profileinstaller:1.3.0] /Users/hao/.gradle/caches/8.11.1/transforms/eb4dc569fc02f386c16cb2f51ab96e96/transformed/jetified-profileinstaller-1.3.0/AndroidManifest.xml:50:17-95
 	android:name
 		ADDED from [androidx.profileinstaller:profileinstaller:1.3.0] /Users/hao/.gradle/caches/8.11.1/transforms/eb4dc569fc02f386c16cb2f51ab96e96/transformed/jetified-profileinstaller-1.3.0/AndroidManifest.xml:50:25-92
+queries
+ADDED from [com.google.ar:core:1.52.0] /Users/hao/.gradle/caches/8.11.1/transforms/70e1695df42544dd7c0c9a5880f806ce/transformed/jetified-core-1.52.0/AndroidManifest.xml:20:5-27:15
+package#com.google.ar.core
+ADDED from [com.google.ar:core:1.52.0] /Users/hao/.gradle/caches/8.11.1/transforms/70e1695df42544dd7c0c9a5880f806ce/transformed/jetified-core-1.52.0/AndroidManifest.xml:21:9-54
+	android:name
+		ADDED from [com.google.ar:core:1.52.0] /Users/hao/.gradle/caches/8.11.1/transforms/70e1695df42544dd7c0c9a5880f806ce/transformed/jetified-core-1.52.0/AndroidManifest.xml:21:18-51
+package#com.android.vending
+ADDED from [com.google.ar:core:1.52.0] /Users/hao/.gradle/caches/8.11.1/transforms/70e1695df42544dd7c0c9a5880f806ce/transformed/jetified-core-1.52.0/AndroidManifest.xml:22:9-55
+	android:name
+		ADDED from [com.google.ar:core:1.52.0] /Users/hao/.gradle/caches/8.11.1/transforms/70e1695df42544dd7c0c9a5880f806ce/transformed/jetified-core-1.52.0/AndroidManifest.xml:22:18-52
+intent#action:name:com.google.android.play.core.install.BIND_INSTALL_SERVICE
+ADDED from [com.google.ar:core:1.52.0] /Users/hao/.gradle/caches/8.11.1/transforms/70e1695df42544dd7c0c9a5880f806ce/transformed/jetified-core-1.52.0/AndroidManifest.xml:24:9-26:18
+action#com.google.android.play.core.install.BIND_INSTALL_SERVICE
+ADDED from [com.google.ar:core:1.52.0] /Users/hao/.gradle/caches/8.11.1/transforms/70e1695df42544dd7c0c9a5880f806ce/transformed/jetified-core-1.52.0/AndroidManifest.xml:25:13-96
+	android:name
+		ADDED from [com.google.ar:core:1.52.0] /Users/hao/.gradle/caches/8.11.1/transforms/70e1695df42544dd7c0c9a5880f806ce/transformed/jetified-core-1.52.0/AndroidManifest.xml:25:21-93
+meta-data#com.google.ar.core.min_apk_version
+ADDED from [com.google.ar:core:1.52.0] /Users/hao/.gradle/caches/8.11.1/transforms/70e1695df42544dd7c0c9a5880f806ce/transformed/jetified-core-1.52.0/AndroidManifest.xml:32:9-34:41
+	android:value
+		ADDED from [com.google.ar:core:1.52.0] /Users/hao/.gradle/caches/8.11.1/transforms/70e1695df42544dd7c0c9a5880f806ce/transformed/jetified-core-1.52.0/AndroidManifest.xml:34:13-38
+	android:name
+		ADDED from [com.google.ar:core:1.52.0] /Users/hao/.gradle/caches/8.11.1/transforms/70e1695df42544dd7c0c9a5880f806ce/transformed/jetified-core-1.52.0/AndroidManifest.xml:33:13-62
+activity#com.google.ar.core.InstallActivity
+ADDED from [com.google.ar:core:1.52.0] /Users/hao/.gradle/caches/8.11.1/transforms/70e1695df42544dd7c0c9a5880f806ce/transformed/jetified-core-1.52.0/AndroidManifest.xml:36:9-42:80
+	android:excludeFromRecents
+		ADDED from [com.google.ar:core:1.52.0] /Users/hao/.gradle/caches/8.11.1/transforms/70e1695df42544dd7c0c9a5880f806ce/transformed/jetified-core-1.52.0/AndroidManifest.xml:39:13-46
+	android:launchMode
+		ADDED from [com.google.ar:core:1.52.0] /Users/hao/.gradle/caches/8.11.1/transforms/70e1695df42544dd7c0c9a5880f806ce/transformed/jetified-core-1.52.0/AndroidManifest.xml:41:13-43
+	android:exported
+		ADDED from [com.google.ar:core:1.52.0] /Users/hao/.gradle/caches/8.11.1/transforms/70e1695df42544dd7c0c9a5880f806ce/transformed/jetified-core-1.52.0/AndroidManifest.xml:40:13-37
+	android:configChanges
+		ADDED from [com.google.ar:core:1.52.0] /Users/hao/.gradle/caches/8.11.1/transforms/70e1695df42544dd7c0c9a5880f806ce/transformed/jetified-core-1.52.0/AndroidManifest.xml:38:13-74
+	android:theme
+		ADDED from [com.google.ar:core:1.52.0] /Users/hao/.gradle/caches/8.11.1/transforms/70e1695df42544dd7c0c9a5880f806ce/transformed/jetified-core-1.52.0/AndroidManifest.xml:42:13-77
+	android:name
+		ADDED from [com.google.ar:core:1.52.0] /Users/hao/.gradle/caches/8.11.1/transforms/70e1695df42544dd7c0c9a5880f806ce/transformed/jetified-core-1.52.0/AndroidManifest.xml:37:13-62
+uses-native-library
+ADDED from [com.google.ai.edge.litert:litert-gpu-api:1.4.1] /Users/hao/.gradle/caches/8.11.1/transforms/48585ed9293ad5bb11270defa763a8aa/transformed/jetified-litert-gpu-api-1.4.1/AndroidManifest.xml:8:9-10:40
+	android:required
+		ADDED from [com.google.ai.edge.litert:litert-gpu-api:1.4.1] /Users/hao/.gradle/caches/8.11.1/transforms/48585ed9293ad5bb11270defa763a8aa/transformed/jetified-litert-gpu-api-1.4.1/AndroidManifest.xml:10:13-37
+	android:name
+		ADDED from [com.google.ai.edge.litert:litert-gpu-api:1.4.1] /Users/hao/.gradle/caches/8.11.1/transforms/48585ed9293ad5bb11270defa763a8aa/transformed/jetified-litert-gpu-api-1.4.1/AndroidManifest.xml:9:13-40
+uses-permission#android.permission.WRITE_EXTERNAL_STORAGE
+IMPLIED from /Users/hao/hao/vibe_coding_project/drill_encoder/android_app/app/src/main/AndroidManifest.xml:2:1-28:12 reason: org.tensorflow.lite.gpu.api has a targetSdkVersion < 4
+uses-permission#android.permission.READ_PHONE_STATE
+IMPLIED from /Users/hao/hao/vibe_coding_project/drill_encoder/android_app/app/src/main/AndroidManifest.xml:2:1-28:12 reason: org.tensorflow.lite.gpu.api has a targetSdkVersion < 4
+uses-permission#android.permission.READ_EXTERNAL_STORAGE
+IMPLIED from /Users/hao/hao/vibe_coding_project/drill_encoder/android_app/app/src/main/AndroidManifest.xml:2:1-28:12 reason: org.tensorflow.lite.gpu.api requested WRITE_EXTERNAL_STORAGE

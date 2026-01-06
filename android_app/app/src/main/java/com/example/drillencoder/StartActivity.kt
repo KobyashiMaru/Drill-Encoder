@@ -112,6 +112,7 @@ class StartActivity : AppCompatActivity() {
             override fun onAnimationEnd(animation: Animator) {
                 // Launch Camera
                 val intent = Intent(this@StartActivity, MainActivity::class.java)
+                intent.putExtra("INFERENCE_METHOD", actvInference.text.toString())
                 startActivity(intent)
                 overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out)
                 // finish() - Removed to allow going back

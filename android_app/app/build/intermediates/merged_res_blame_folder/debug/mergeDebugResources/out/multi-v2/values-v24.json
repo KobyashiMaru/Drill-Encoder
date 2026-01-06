@@ -1,7 +1,7 @@
 {
     "logs": [
         {
-            "outputFile": "com.example.drillencoder.app-mergeDebugResources-34:/values-v24/values-v24.xml",
+            "outputFile": "com.example.drillencoder.app-mergeDebugResources-37:/values-v24/values-v24.xml",
             "map": [
                 {
                     "source": "/Users/hao/.gradle/caches/8.11.1/transforms/e1ed7f4c16f690bc5610c61551d82aa4/transformed/appcompat-1.6.1/res/values-v24/values-v24.xml",

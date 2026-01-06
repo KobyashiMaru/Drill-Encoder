@@ -8,7 +8,10 @@ import android.util.AttributeSet
 import android.view.View
 
 data class Person(val keypoints: List<Keypoint>)
-data class Keypoint(val x: Float, val y: Float, val conf: Float)
+data class Keypoint(
+    val x: Float, val y: Float, val conf: Float,
+    var x3d: Float = 0f, var y3d: Float = 0f, var z3d: Float = 0f
+)
 
 class OverlayView(context: Context, attrs: AttributeSet?) : View(context, attrs) {
     private var results: List<Person> = emptyList()

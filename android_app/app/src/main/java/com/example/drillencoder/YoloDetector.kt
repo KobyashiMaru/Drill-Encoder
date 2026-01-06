@@ -3,6 +3,11 @@ package com.example.drillencoder
 import android.content.Context
 import android.graphics.Bitmap
 import org.tensorflow.lite.Interpreter
+import org.tensorflow.lite.nnapi.NnApiDelegate
+import org.tensorflow.lite.gpu.CompatibilityList
+import org.tensorflow.lite.gpu.GpuDelegate
+import org.tensorflow.lite.Delegate
+import android.os.Build
 import org.tensorflow.lite.support.common.FileUtil
 import org.tensorflow.lite.support.image.ImageProcessor
 import org.tensorflow.lite.support.image.TensorImage
@@ -19,6 +24,45 @@ class YoloDetector(context: Context, modelPath: String) {
     init {
         val model = FileUtil.loadMappedFile(context, modelPath)
         val options = Interpreter.Options()
+        var delegate: Delegate?
+
+        try {
+            // 1. Priority: Try NNAPI first (Best for NPU)
+            // Only try on newer Android versions where drivers are more stable (e.g., Android 10+)
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
+                delegate = NnApiDelegate()
+                options.addDelegate(delegate)
+                android.util.Log.d("YoloDetector", "Initialized using NNAPI")
+            } else {
+                // On older phones, NNAPI is risky. Skip to GPU.
+                throw RuntimeException("NNAPI too old")
+            }
+        } catch (e: Exception) {
+            // NNAPI Failed. Clean up if partial init happened
+            android.util.Log.w("YoloDetector", "NNAPI initialization failed: ${e.message}. Falling back to GPU.")
+            // delegate = null // Removed redundant assignment
+            options.setUseNNAPI(false) // clear flag if any
+
+            // 2. Fallback: Try GPU Delegate (Very stable, good speed)
+            try {
+                val compatList = CompatibilityList()
+                if (compatList.isDelegateSupportedOnThisDevice) {
+                    delegate = GpuDelegate(compatList.bestOptionsForThisDevice)
+                    options.addDelegate(delegate)
+                    android.util.Log.d("YoloDetector", "Initialized using GPU")
+                } else {
+                    // 3. Fallback: CPU (Universal, slow but safe)
+                    // Default options use CPU with XNNPACK (automatically enabled)
+                    android.util.Log.d("YoloDetector", "GPU not supported. Falling back to CPU")
+                    options.setNumThreads(4) // standard optimization
+                }
+            } catch (e: Exception) {
+                // GPU Failed. Fallback to CPU
+                android.util.Log.w("YoloDetector", "GPU initialization failed: ${e.message}. Falling back to CPU.")
+                options.setNumThreads(4)
+            }
+        }
+
         interpreter = Interpreter(model, options)
     }
 

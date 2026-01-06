@@ -1,6 +1,7 @@
 R_DEF: Internal format may change without notice
 local
 color button_state_selector
+drawable focus_ring
 drawable wormhole_circle
 id actvInference
 id actvModel
@@ -8,9 +9,11 @@ id btnBack
 id btnOpenCamera
 id btnToggleConsole
 id consoleScrollView
+id focusRing
 id ivWormhole
 id overlay
 id particleView
+id surfaceView
 id tilInference
 id tilModel
 id tvConsole

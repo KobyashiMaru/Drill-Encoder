@@ -18,10 +18,23 @@
 
     <uses-permission android:name="com.example.drillencoder.DYNAMIC_RECEIVER_NOT_EXPORTED_PERMISSION" />
 
+    <queries>
+        <package android:name="com.google.ar.core" />
+        <package android:name="com.android.vending" />
+
+        <intent>
+            <action android:name="com.google.android.play.core.install.BIND_INSTALL_SERVICE" />
+        </intent>
+    </queries>
+
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+
     <application
         android:appComponentFactory="androidx.core.app.CoreComponentFactory"
         android:debuggable="true"
-        android:extractNativeLibs="false"
+        android:extractNativeLibs="true"
         android:label="Drill Encoder"
         android:testOnly="true"
         android:theme="@style/Theme.MaterialComponents.DayNight.NoActionBar" >
@@ -39,6 +52,10 @@
             android:name="com.example.drillencoder.MainActivity"
             android:exported="false"
             android:theme="@style/Theme.MaterialComponents.DayNight.NoActionBar" />
+
+        <meta-data
+            android:name="com.google.ar.core"
+            android:value="optional" />
 
         <service
             android:name="androidx.camera.core.impl.MetadataHolderService"
@@ -82,7 +99,30 @@
             <intent-filter>
                 <action android:name="androidx.profileinstaller.action.BENCHMARK_OPERATION" />
             </intent-filter>
-        </receiver>
+        </receiver> <!-- The minimal version code of ARCore APK required for an app using this SDK. -->
+        <meta-data
+            android:name="com.google.ar.core.min_apk_version"
+            android:value="252570000" /> <!-- This activity is critical for installing ARCore when it is not already present. -->
+        <activity
+            android:name="com.google.ar.core.InstallActivity"
+            android:configChanges="keyboardHidden|orientation|screenSize"
+            android:excludeFromRecents="true"
+            android:exported="false"
+            android:launchMode="singleTop"
+            android:theme="@android:style/Theme.Material.Light.Dialog.Alert" />
+        <!--
+ Applications that target Android S+ require explicit declaration of
+             any referenced vendor-provided libraries.
+        -->
+        <uses-native-library
+            android:name="libOpenCL.so"
+            android:required="false" />
+        <uses-native-library
+            android:name="libOpenCL-car.so"
+            android:required="false" />
+        <uses-native-library
+            android:name="libOpenCL-pixel.so"
+            android:required="false" />
     </application>
 
 </manifest>

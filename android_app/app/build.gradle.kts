@@ -13,6 +13,8 @@ android {
         targetSdk = 34
         versionCode = 1
         versionName = "1.0"
+        renderscriptTargetApi = 30
+        renderscriptSupportModeEnabled = true
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     }
@@ -33,6 +35,11 @@ android {
     buildFeatures {
         viewBinding = true
     }
+    packaging {
+        jniLibs {
+            useLegacyPackaging = true
+        }
+    }
 }
 
 dependencies {
@@ -42,14 +49,17 @@ dependencies {
     implementation("androidx.constraintlayout:constraintlayout:2.1.4")
     
     // CameraX
-    val cameraxVersion = "1.3.1"
+    val cameraxVersion = "1.4.0"
     implementation("androidx.camera:camera-core:${cameraxVersion}")
     implementation("androidx.camera:camera-camera2:${cameraxVersion}")
     implementation("androidx.camera:camera-lifecycle:${cameraxVersion}")
     implementation("androidx.camera:camera-view:${cameraxVersion}")
     
-    // TensorFlow Lite
-    implementation("org.tensorflow:tensorflow-lite:2.14.0")
-    implementation("org.tensorflow:tensorflow-lite-support:0.4.4")
-    implementation("org.tensorflow:tensorflow-lite-gpu:2.14.0")
+    // LiteRT (formerly TensorFlow Lite)
+    implementation("com.google.ai.edge.litert:litert:1.4.1")
+    implementation("com.google.ai.edge.litert:litert-support:1.4.1")
+    implementation("com.google.ai.edge.litert:litert-gpu:1.4.1")
+
+    // ARCore
+    implementation("com.google.ar:core:1.52.0")
 }

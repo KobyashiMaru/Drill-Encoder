@@ -1,7 +1,7 @@
 {
     "logs": [
         {
-            "outputFile": "com.example.drillencoder.app-mergeDebugResources-34:/values-en-rIN/values-en-rIN.xml",
+            "outputFile": "com.example.drillencoder.app-mergeDebugResources-37:/values-en-rIN/values-en-rIN.xml",
             "map": [
                 {
                     "source": "/Users/hao/.gradle/caches/8.11.1/transforms/128fa081ffbd2aedd15e2b6a1b8704f7/transformed/core-1.12.0/res/values-en-rIN/values-en-rIN.xml",
