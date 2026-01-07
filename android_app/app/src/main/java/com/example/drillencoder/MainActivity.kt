@@ -242,6 +242,7 @@ class MainActivity : AppCompatActivity() {
     private var hasLoggedARCoreSuccess = false
 
     private fun startARCoreSession() {
+        Log.i(TAG, "ANTIGRAVITY: Starting ARCore Session - Code Version 2.0")
         hasLoggedARCoreSuccess = false // Reset on start
         if (session == null) {
             try {
@@ -351,46 +352,38 @@ class MainActivity : AppCompatActivity() {
                         }
 
                         // Check if depth is available
-                        var successfulDepth = false
+                        // Try to acquire and use depth image in one go
                         try {
-                             val depthImage = frame.acquireRawDepthImage16Bits()
-                             depthImage.use { _ -> successfulDepth = true }
-                        } catch (e: Exception) {
-                            // Depth might not be available yet
-                        }
-                        
-                        // We need to re-acquire depth to use it
-                        if (successfulDepth) {
-                            try {
-                                frame.acquireRawDepthImage16Bits().use { depthImage ->
-                                    transformedPersons.forEach { person ->
-                                        person.keypoints.forEach { kpt ->
-                                            if (kpt.conf > 0.3f) {
-                                                // access coordinates. Since kpt is now normalized to view,
-                                                // we reconvert to screen pixels for BodyMeasureEngine
-                                                val screenX = kpt.x * viewWidth
-                                                val screenY = kpt.y * viewHeight
-                                                
-                                                val position3d = bodyMeasureEngine.get3DJointPositionWithProvidedDepth(
-                                                    frame, depthImage, screenX, screenY
-                                                ) { msg ->
-                                                    // Log critical depth errors for high conf points
-                                                    if (kpt.conf > 0.8f) {
-                                                         runOnUiThread { logToConsole("3D Err: $msg") }
-                                                    }
+                            val depthImage = frame.acquireRawDepthImage16Bits()
+                            depthImage.use { depthImage ->
+                                transformedPersons.forEach { person ->
+                                    person.keypoints.forEach { kpt ->
+                                        if (kpt.conf > 0.3f) {
+                                            // access coordinates. Since kpt is now normalized to view,
+                                            // we reconvert to screen pixels for BodyMeasureEngine
+                                            val screenX = kpt.x * viewWidth
+                                            val screenY = kpt.y * viewHeight
+                                            
+                                            val position3d = bodyMeasureEngine.get3DJointPositionWithProvidedDepth(
+                                                frame, depthImage, screenX, screenY
+                                            ) { msg ->
+                                                // Log critical depth errors for high conf points
+                                                if (kpt.conf > 0.8f) {
+                                                     runOnUiThread { logToConsole("3D Err: $msg") }
                                                 }
-                                                if (position3d != null) {
-                                                    kpt.x3d = position3d[0]
-                                                    kpt.y3d = position3d[1]
-                                                    kpt.z3d = position3d[2]
-                                                }
+                                            }
+                                            if (position3d != null) {
+                                                kpt.x3d = position3d[0]
+                                                kpt.y3d = position3d[1]
+                                                kpt.z3d = position3d[2]
                                             }
                                         }
                                     }
                                 }
-                            } catch (e: Exception) {
-                                // runOnUiThread { logToConsole("Depth not ready: ${e.message}") }
                             }
+                        } catch (e: Exception) {
+                            // Depth might not be available yet or acquisition failed
+                            // runOnUiThread { logToConsole("Depth not ready: ${e.message}") }
                         }
 
                         runOnUiThread {
@@ -421,20 +414,42 @@ class MainActivity : AppCompatActivity() {
                         
                         try {
                             val cameraImage = frame.acquireCameraImage()
-                            val width = cameraImage.width
-                            val height = cameraImage.height
-                            val nv21Data = ImageUtils.imageToNv21ByteArray(cameraImage)
-                            cameraImage.close() // Close IMMEDIATELY on GL thread
+                            val width: Int
+                            val height: Int
+                            val nv21Data: ByteArray
+                            try {
+                                width = cameraImage.width
+                                height = cameraImage.height
+                                nv21Data = ImageUtils.imageToNv21ByteArray(cameraImage)
+                            } finally {
+                                cameraImage.close() // Close IMMEDIATELY on GL thread
+                            }
 
                             processingExecutor.execute {
+                                val startTime = System.currentTimeMillis()
                                 try {
                                     // Log start of detection
                                     // runOnUiThread { logToConsole("[ToF] Processing frame...") }
 
-                                    val bitmap = ImageUtils.nv21ToBitmap(nv21Data, width, height, applicationContext)
+                                    val bitmap: Bitmap
+                                    try {
+                                        bitmap = ImageUtils.nv21ToBitmap(nv21Data, width, height, applicationContext)
+                                    } catch (e: Exception) {
+                                        throw RuntimeException("Failed to convert NV21 to Bitmap: ${e.message}", e)
+                                    }
+                                    
+                                    // DIAGNOSTIC: Check bitmap validity
+                                    if (bitmap.width == 0 || bitmap.height == 0) {
+                                        throw RuntimeException("Created 0-size bitmap")
+                                    }
+                                    
                                     val matrix = android.graphics.Matrix()
                                     matrix.postRotate(90f)
                                     val rotatedBitmap = Bitmap.createBitmap(bitmap, 0, 0, bitmap.width, bitmap.height, matrix, true)
+                                    
+                                    // DIAGNOSTIC: Log input to detector
+                                    // Log.d(TAG, "Sending to detector: ${rotatedBitmap.width}x${rotatedBitmap.height}")
+                                    
                                     val persons = yoloDetector.detect(rotatedBitmap)
                                     
                                     // Un-rotate keypoints to match Sensor Coordinates (Image Normalized)
@@ -447,22 +462,35 @@ class MainActivity : AppCompatActivity() {
                                         Person(newKpts)
                                     }
                                     
-                                    pendingDetection = unrotatedPersons
-                                } catch (e: Exception) {
-                                    Log.e(TAG, "Error in background processing", e)
-                                    runOnUiThread { logToConsole("Error ToF Processing: ${e.message}") }
+                                    // DIAGNOSTIC LOOP: Ensure we see 0 results if that's what we got
+                                    if (unrotatedPersons.isEmpty()) {
+                                        // runOnUiThread { logToConsole("ToF Detection returned 0 persons") }
+                                    }
+                                } catch (t: Throwable) {
+                                    Log.e(TAG, "Error in background processing", t)
+                                    runOnUiThread { logToConsole("Error ToF Processing: ${t.javaClass.simpleName} - ${t.message}") }
                                 } finally {
-                                    isProcessing = false // Allow next frame to be processed
+                                    // DIAGNOSTIC: Log total time
+                                    val duration = System.currentTimeMillis() - startTime
+                                    // Log.d(TAG, "Frame processing took ${duration}ms")
+                                    if (duration > 1000) {
+                                         runOnUiThread { logToConsole("WARNING: Slow processing detected (${duration}ms)") }
+                                    }
+                                    isProcessing = false // Ensure lock is ALWAYS released
                                 }
                             }
-                        } catch (e: Exception) {
-                            // If acquisition fails, reset flag
+                        } catch (e: com.google.ar.core.exceptions.ResourceExhaustedException) {
+                            // Log.e(TAG, "Resource Exhausted (ANTIGRAVITY CHECK): ${e.message}")
                             isProcessing = false
-                            // Log only once in a while or if it's not a common "Not ready" error
-                            if (e !is com.google.ar.core.exceptions.NotYetAvailableException) {
-                                Log.e(TAG, "Failed to acquire camera image", e)
-                            }
+                        } catch (t: Throwable) {
+                             // Catch EVERYTHING including OutOfMemoryError, LinkageError, etc.
+                             Log.e(TAG, "CRITICAL FAILURE in Frame Processing Loop", t)
+                             isProcessing = false
+                             runOnUiThread { logToConsole("CRITICAL: ${t.javaClass.simpleName} - ${t.message}") }
                         }
+                    } else if (isProcessing) {
+                         // DIAGNOSTIC: Detect if we are stuck
+                         // Log.d(TAG, "Skipping frame: processing still in progress")
                     }
                 } catch (t: Throwable) {
                     Log.e(TAG, "Exception on the OpenGL thread", t)

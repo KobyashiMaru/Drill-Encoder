@@ -33,10 +33,10 @@ com.example.drillencoder.app-jetified-core-ktx-1.12.0-31 /Users/hao/.gradle/cach
 com.example.drillencoder.app-jetified-camera-video-1.4.0-32 /Users/hao/.gradle/caches/8.11.1/transforms/e7c758f253229e508e48f30c3f5b7d42/transformed/jetified-camera-video-1.4.0/res
 com.example.drillencoder.app-jetified-profileinstaller-1.3.0-33 /Users/hao/.gradle/caches/8.11.1/transforms/eb4dc569fc02f386c16cb2f51ab96e96/transformed/jetified-profileinstaller-1.3.0/res
 com.example.drillencoder.app-jetified-activity-1.8.0-34 /Users/hao/.gradle/caches/8.11.1/transforms/faaba5712da2c810d6ccccde65f75557/transformed/jetified-activity-1.8.0/res
-com.example.drillencoder.app-pngs-35 /Users/hao/hao/vibe_coding_project/drill_encoder/android_app/app/build/generated/res/pngs/debug
-com.example.drillencoder.app-resValues-36 /Users/hao/hao/vibe_coding_project/drill_encoder/android_app/app/build/generated/res/resValues/debug
-com.example.drillencoder.app-packageDebugResources-37 /Users/hao/hao/vibe_coding_project/drill_encoder/android_app/app/build/intermediates/incremental/debug/packageDebugResources/merged.dir
-com.example.drillencoder.app-packageDebugResources-38 /Users/hao/hao/vibe_coding_project/drill_encoder/android_app/app/build/intermediates/incremental/debug/packageDebugResources/stripped.dir
-com.example.drillencoder.app-debug-39 /Users/hao/hao/vibe_coding_project/drill_encoder/android_app/app/build/intermediates/merged_res/debug/mergeDebugResources
-com.example.drillencoder.app-debug-40 /Users/hao/hao/vibe_coding_project/drill_encoder/android_app/app/src/debug/res
-com.example.drillencoder.app-main-41 /Users/hao/hao/vibe_coding_project/drill_encoder/android_app/app/src/main/res
+com.example.drillencoder.app-pngs-35 /Users/hao/hao/vibe_coding_project/Drill-Encoder/android_app/app/build/generated/res/pngs/debug
+com.example.drillencoder.app-resValues-36 /Users/hao/hao/vibe_coding_project/Drill-Encoder/android_app/app/build/generated/res/resValues/debug
+com.example.drillencoder.app-packageDebugResources-37 /Users/hao/hao/vibe_coding_project/Drill-Encoder/android_app/app/build/intermediates/incremental/debug/packageDebugResources/merged.dir
+com.example.drillencoder.app-packageDebugResources-38 /Users/hao/hao/vibe_coding_project/Drill-Encoder/android_app/app/build/intermediates/incremental/debug/packageDebugResources/stripped.dir
+com.example.drillencoder.app-debug-39 /Users/hao/hao/vibe_coding_project/Drill-Encoder/android_app/app/build/intermediates/merged_res/debug/mergeDebugResources
+com.example.drillencoder.app-debug-40 /Users/hao/hao/vibe_coding_project/Drill-Encoder/android_app/app/src/debug/res
+com.example.drillencoder.app-main-41 /Users/hao/hao/vibe_coding_project/Drill-Encoder/android_app/app/src/main/res

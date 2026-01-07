@@ -9,12 +9,12 @@
 9        android:targetSdkVersion="34" />
 10
 11    <uses-feature android:name="android.hardware.camera.any" />
-11-->/Users/hao/hao/vibe_coding_project/drill_encoder/android_app/app/src/main/AndroidManifest.xml:5:5-64
-11-->/Users/hao/hao/vibe_coding_project/drill_encoder/android_app/app/src/main/AndroidManifest.xml:5:19-61
+11-->/Users/hao/hao/vibe_coding_project/Drill-Encoder/android_app/app/src/main/AndroidManifest.xml:5:5-64
+11-->/Users/hao/hao/vibe_coding_project/Drill-Encoder/android_app/app/src/main/AndroidManifest.xml:5:19-61
 12
 13    <uses-permission android:name="android.permission.CAMERA" />
-13-->/Users/hao/hao/vibe_coding_project/drill_encoder/android_app/app/src/main/AndroidManifest.xml:6:5-65
-13-->/Users/hao/hao/vibe_coding_project/drill_encoder/android_app/app/src/main/AndroidManifest.xml:6:22-62
+13-->/Users/hao/hao/vibe_coding_project/Drill-Encoder/android_app/app/src/main/AndroidManifest.xml:6:5-65
+13-->/Users/hao/hao/vibe_coding_project/Drill-Encoder/android_app/app/src/main/AndroidManifest.xml:6:22-62
 14
 15    <permission
 15-->[androidx.core:core:1.12.0] /Users/hao/.gradle/caches/8.11.1/transforms/128fa081ffbd2aedd15e2b6a1b8704f7/transformed/core-1.12.0/AndroidManifest.xml:22:5-24:47
@@ -49,50 +49,50 @@
 32    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
 33
 34    <application
-34-->/Users/hao/hao/vibe_coding_project/drill_encoder/android_app/app/src/main/AndroidManifest.xml:8:5-26:19
+34-->/Users/hao/hao/vibe_coding_project/Drill-Encoder/android_app/app/src/main/AndroidManifest.xml:8:5-26:19
 35        android:appComponentFactory="androidx.core.app.CoreComponentFactory"
 35-->[androidx.core:core:1.12.0] /Users/hao/.gradle/caches/8.11.1/transforms/128fa081ffbd2aedd15e2b6a1b8704f7/transformed/core-1.12.0/AndroidManifest.xml:28:18-86
 36        android:debuggable="true"
 37        android:extractNativeLibs="true"
 38        android:label="Drill Encoder"
-38-->/Users/hao/hao/vibe_coding_project/drill_encoder/android_app/app/src/main/AndroidManifest.xml:9:9-38
+38-->/Users/hao/hao/vibe_coding_project/Drill-Encoder/android_app/app/src/main/AndroidManifest.xml:9:9-38
 39        android:testOnly="true"
 40        android:theme="@style/Theme.MaterialComponents.DayNight.NoActionBar" >
-40-->/Users/hao/hao/vibe_coding_project/drill_encoder/android_app/app/src/main/AndroidManifest.xml:10:9-77
+40-->/Users/hao/hao/vibe_coding_project/Drill-Encoder/android_app/app/src/main/AndroidManifest.xml:10:9-77
 41        <activity
-41-->/Users/hao/hao/vibe_coding_project/drill_encoder/android_app/app/src/main/AndroidManifest.xml:11:9-19:20
+41-->/Users/hao/hao/vibe_coding_project/Drill-Encoder/android_app/app/src/main/AndroidManifest.xml:11:9-19:20
 42            android:name="com.example.drillencoder.StartActivity"
-42-->/Users/hao/hao/vibe_coding_project/drill_encoder/android_app/app/src/main/AndroidManifest.xml:12:13-42
+42-->/Users/hao/hao/vibe_coding_project/Drill-Encoder/android_app/app/src/main/AndroidManifest.xml:12:13-42
 43            android:exported="true"
-43-->/Users/hao/hao/vibe_coding_project/drill_encoder/android_app/app/src/main/AndroidManifest.xml:13:13-36
+43-->/Users/hao/hao/vibe_coding_project/Drill-Encoder/android_app/app/src/main/AndroidManifest.xml:13:13-36
 44            android:theme="@style/Theme.MaterialComponents.DayNight.NoActionBar" >
-44-->/Users/hao/hao/vibe_coding_project/drill_encoder/android_app/app/src/main/AndroidManifest.xml:14:13-81
+44-->/Users/hao/hao/vibe_coding_project/Drill-Encoder/android_app/app/src/main/AndroidManifest.xml:14:13-81
 45            <intent-filter>
-45-->/Users/hao/hao/vibe_coding_project/drill_encoder/android_app/app/src/main/AndroidManifest.xml:15:13-18:29
+45-->/Users/hao/hao/vibe_coding_project/Drill-Encoder/android_app/app/src/main/AndroidManifest.xml:15:13-18:29
 46                <action android:name="android.intent.action.MAIN" />
-46-->/Users/hao/hao/vibe_coding_project/drill_encoder/android_app/app/src/main/AndroidManifest.xml:16:17-69
-46-->/Users/hao/hao/vibe_coding_project/drill_encoder/android_app/app/src/main/AndroidManifest.xml:16:25-66
+46-->/Users/hao/hao/vibe_coding_project/Drill-Encoder/android_app/app/src/main/AndroidManifest.xml:16:17-69
+46-->/Users/hao/hao/vibe_coding_project/Drill-Encoder/android_app/app/src/main/AndroidManifest.xml:16:25-66
 47
 48                <category android:name="android.intent.category.LAUNCHER" />
-48-->/Users/hao/hao/vibe_coding_project/drill_encoder/android_app/app/src/main/AndroidManifest.xml:17:17-77
-48-->/Users/hao/hao/vibe_coding_project/drill_encoder/android_app/app/src/main/AndroidManifest.xml:17:27-74
+48-->/Users/hao/hao/vibe_coding_project/Drill-Encoder/android_app/app/src/main/AndroidManifest.xml:17:17-77
+48-->/Users/hao/hao/vibe_coding_project/Drill-Encoder/android_app/app/src/main/AndroidManifest.xml:17:27-74
 49            </intent-filter>
 50        </activity>
 51        <activity
-51-->/Users/hao/hao/vibe_coding_project/drill_encoder/android_app/app/src/main/AndroidManifest.xml:20:9-23:84
+51-->/Users/hao/hao/vibe_coding_project/Drill-Encoder/android_app/app/src/main/AndroidManifest.xml:20:9-23:84
 52            android:name="com.example.drillencoder.MainActivity"
-52-->/Users/hao/hao/vibe_coding_project/drill_encoder/android_app/app/src/main/AndroidManifest.xml:21:13-41
+52-->/Users/hao/hao/vibe_coding_project/Drill-Encoder/android_app/app/src/main/AndroidManifest.xml:21:13-41
 53            android:exported="false"
-53-->/Users/hao/hao/vibe_coding_project/drill_encoder/android_app/app/src/main/AndroidManifest.xml:22:13-37
+53-->/Users/hao/hao/vibe_coding_project/Drill-Encoder/android_app/app/src/main/AndroidManifest.xml:22:13-37
 54            android:theme="@style/Theme.MaterialComponents.DayNight.NoActionBar" />
-54-->/Users/hao/hao/vibe_coding_project/drill_encoder/android_app/app/src/main/AndroidManifest.xml:23:13-81
+54-->/Users/hao/hao/vibe_coding_project/Drill-Encoder/android_app/app/src/main/AndroidManifest.xml:23:13-81
 55
 56        <meta-data
-56-->/Users/hao/hao/vibe_coding_project/drill_encoder/android_app/app/src/main/AndroidManifest.xml:25:9-81
+56-->/Users/hao/hao/vibe_coding_project/Drill-Encoder/android_app/app/src/main/AndroidManifest.xml:25:9-81
 57            android:name="com.google.ar.core"
-57-->/Users/hao/hao/vibe_coding_project/drill_encoder/android_app/app/src/main/AndroidManifest.xml:25:20-53
+57-->/Users/hao/hao/vibe_coding_project/Drill-Encoder/android_app/app/src/main/AndroidManifest.xml:25:20-53
 58            android:value="optional" />
-58-->/Users/hao/hao/vibe_coding_project/drill_encoder/android_app/app/src/main/AndroidManifest.xml:25:54-78
+58-->/Users/hao/hao/vibe_coding_project/Drill-Encoder/android_app/app/src/main/AndroidManifest.xml:25:54-78
 59
 60        <service
 60-->[androidx.camera:camera-camera2:1.4.0] /Users/hao/.gradle/caches/8.11.1/transforms/25fcd82cdad59cbcfe9e93eaa4258a8c/transformed/jetified-camera-camera2-1.4.0/AndroidManifest.xml:24:9-33:19

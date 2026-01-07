@@ -72,47 +72,60 @@ object ImageUtils {
         val uRowStride = uPlane.rowStride
         val vRowStride = vPlane.rowStride
 
-        val yPixelStride = yPlane.pixelStride
         val uPixelStride = uPlane.pixelStride
         val vPixelStride = vPlane.pixelStride
 
-        val ySize = yBuffer.remaining()
-
-        // Full size of NV21 buffer
-        val nv21 = ByteArray(width * height * 3 / 2)
-        
+        val nv21 = ByteArray(width * height + width * height / 2)
         var pos = 0
+
         // Copy Y plane
         if (yRowStride == width) {
-            yBuffer.get(nv21, pos, ySize)
+            val ySize = yBuffer.remaining()
+            yBuffer.get(nv21, 0, ySize)
             pos += ySize
         } else {
-            var yBufferPos = 0
+            // If rowStride > width, copy row by row
+            val yRowBytes = ByteArray(width)
             for (row in 0 until height) {
-                yBuffer.position(yBufferPos)
-                yBuffer.get(nv21, pos, width)
+                yBuffer.position(row * yRowStride)
+                yBuffer.get(yRowBytes, 0, width)
+                System.arraycopy(yRowBytes, 0, nv21, pos, width)
                 pos += width
-                yBufferPos += yRowStride
             }
         }
 
-        // Copy Interleaved U and V planes
+        // Copy U/V planes (interleaved for NV21: V, U, V, U...)
+        // NV21 expects V first, then U
+        val uvHeight = height / 2
+        val uvWidth = width / 2
         val uRow = ByteArray(uRowStride)
         val vRow = ByteArray(vRowStride)
-        
-        for (row in 0 until height / 2) {
+
+        for (row in 0 until uvHeight) {
+            // Read U row safely
             uBuffer.position(row * uRowStride)
-            uBuffer.get(uRow, 0, uRowStride)
-            
+            val uRemaining = uBuffer.remaining()
+            val uToRead = if (uRowStride <= uRemaining) uRowStride else uRemaining
+            uBuffer.get(uRow, 0, uToRead)
+
+            // Read V row safely
             vBuffer.position(row * vRowStride)
-            vBuffer.get(vRow, 0, vRowStride)
-            
-            for (col in 0 until width / 2) {
-                nv21[pos++] = vRow[col * vPixelStride]
-                nv21[pos++] = uRow[col * uPixelStride]
+            val vRemaining = vBuffer.remaining()
+            val vToRead = if (vRowStride <= vRemaining) vRowStride else vRemaining
+            vBuffer.get(vRow, 0, vToRead)
+
+            for (col in 0 until uvWidth) {
+                if (pos >= nv21.size - 1) break 
+                
+                // NV21 format: V first, then U
+                val vVal = vRow[col * vPixelStride]
+                val uVal = uRow[col * uPixelStride]
+                
+                nv21[pos++] = vVal
+                nv21[pos++] = uVal
             }
         }
-        
+
         return nv21
     }
 }
