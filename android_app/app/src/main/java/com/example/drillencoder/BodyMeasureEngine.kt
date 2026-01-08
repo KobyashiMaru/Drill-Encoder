@@ -73,7 +73,7 @@ class BodyMeasureEngine {
                     frame.transformCoordinates2d(
                         Coordinates2d.VIEW,         // Input: Screen pixels
                         yoloCoords,
-                        Coordinates2d.IMAGE_PIXELS, // Output: Depth image pixels
+                        Coordinates2d.IMAGE_NORMALIZED, // Output: Normalized coordinates (0..1)
                         depthUvCoords
                     )
                 } catch (e: Exception) {
@@ -81,8 +81,9 @@ class BodyMeasureEngine {
                     return null
                 }
 
-                val depthX = depthUvCoords[0].toInt()
-                val depthY = depthUvCoords[1].toInt()
+                // Scale normalized coords to actual depth image dimensions
+                val depthX = (depthUvCoords[0] * depthImage.width).toInt()
+                val depthY = (depthUvCoords[1] * depthImage.height).toInt()
                 
                 // debugLog?.invoke("2D: ($yoloX, $yoloY) -> Depth: ($depthX, $depthY)")
 
@@ -128,12 +129,12 @@ class BodyMeasureEngine {
             frame.transformCoordinates2d(
                 Coordinates2d.VIEW,
                 yoloCoords,
-                Coordinates2d.IMAGE_PIXELS,
+                Coordinates2d.IMAGE_NORMALIZED,
                 depthUvCoords
             )
 
-            val depthX = depthUvCoords[0].toInt()
-            val depthY = depthUvCoords[1].toInt()
+            val depthX = (depthUvCoords[0] * depthImage.width).toInt()
+            val depthY = (depthUvCoords[1] * depthImage.height).toInt()
 
             if (depthX < 0 || depthX >= depthImage.width || depthY < 0 || depthY >= depthImage.height) {
                 debugLog?.invoke("Depth Coords Out of Bounds: $depthX, $depthY")
@@ -144,6 +145,7 @@ class BodyMeasureEngine {
             val planarDepthMeters = getSmoothedDepth(depthImage, depthX, depthY)
 
             if (planarDepthMeters <= 0) {
+                debugLog?.invoke("Invalid Depth: $planarDepthMeters at ($depthX, $depthY)")
                 return null
             }
 
@@ -162,7 +164,7 @@ class BodyMeasureEngine {
      * Extract and calculate median depth from Raw Depth Buffer
      */
     private fun getSmoothedDepth(depthImage: Image, cx: Int, cy: Int): Float {
-        val buffer = depthImage.planes[0].buffer.asShortBuffer()
+        val buffer = depthImage.planes[0].buffer.order(java.nio.ByteOrder.LITTLE_ENDIAN).asShortBuffer()
         val width = depthImage.width
         val height = depthImage.height
         var validCount = 0
@@ -215,9 +217,8 @@ class BodyMeasureEngine {
 
         // ARCore OpenGL coordinate system: Forward is -Z.
         // But to keep physical distance calc simple, we return relative pos in camera space.
-        // Using -z to align with standard convention if needed, or z if we just want distance.
-        // Prompt code returned {x, y, -z}. Let's stick to that.
-        return floatArrayOf(x, y, -z)
+        // We want positive distance for user display
+        return floatArrayOf(x, y, z)
     }
 
     companion object {
