@@ -10,7 +10,8 @@ import android.view.View
 data class Person(val keypoints: List<Keypoint>)
 data class Keypoint(
     val x: Float, val y: Float, val conf: Float,
-    var x3d: Float = 0f, var y3d: Float = 0f, var z3d: Float = 0f
+    var x3d: Float = 0f, var y3d: Float = 0f, var z3d: Float = 0f,
+    var depthError: String? = null
 )
 
 class OverlayView(context: Context, attrs: AttributeSet?) : View(context, attrs) {

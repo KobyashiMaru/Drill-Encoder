@@ -367,9 +367,9 @@ class MainActivity : AppCompatActivity() {
                                             val position3d = bodyMeasureEngine.get3DJointPositionWithProvidedDepth(
                                                 frame, depthImage, screenX, screenY
                                             ) { msg ->
-                                                // Log critical depth errors for high conf points
-                                                if (kpt.conf > 0.8f) {
-                                                     runOnUiThread { logToConsole("3D Err: $msg") }
+                                                // Store critical depth errors for high conf points to display later
+                                                if (kpt.conf > 0.3f) {
+                                                     kpt.depthError = msg
                                                 }
                                             }
                                             if (position3d != null) {
@@ -392,13 +392,16 @@ class MainActivity : AppCompatActivity() {
                             if (findViewById<android.view.View>(R.id.consoleScrollView).visibility == android.view.View.VISIBLE) {
                                 if (transformedPersons.isNotEmpty()) {
                                     val sb = StringBuilder()
-                                    sb.append("[ToF] Detected ${transformedPersons.size} person(s):\n")
+                                    sb.append("[INFO] ToF Detected ${transformedPersons.size} person(s):\n")
                                     transformedPersons.forEachIndexed { index, person ->
                                         sb.append("Person $index:\n")
                                         person.keypoints.forEachIndexed { kIndex, kpt ->
                                             if (kpt.conf > 0.3f) {
                                                 val depthInfo = if (kpt.z3d != 0f) " D:${String.format("%.2f", kpt.z3d)}m" else ""
                                                 sb.append("  Kpt $kIndex: (${String.format("%.2f", kpt.x)}, ${String.format("%.2f", kpt.y)}) Conf:${String.format("%.2f", kpt.conf)}$depthInfo\n")
+                                                if (kpt.depthError != null) {
+                                                    sb.append("  [WARNING] 3D Err: ${kpt.depthError}\n")
+                                                }
                                             }
                                         }
                                     }
@@ -455,12 +458,28 @@ class MainActivity : AppCompatActivity() {
                                     // Un-rotate keypoints to match Sensor Coordinates (Image Normalized)
                                     val unrotatedPersons = persons.map { person ->
                                         val newKpts = person.keypoints.map { kpt ->
-                                            val normX = 1.0f - kpt.y
-                                            val normY = kpt.x
+                                            // Correct un-rotation for 90-degree CW rotation
+                                            // Maps rotated image (0,0 is Top-Left) back to sensor landscape
+                                            // Rotated Top-Left (0,0) -> Sensor Top-Right (0,1)
+                                            // Rotated Top-Right (1,0) -> Sensor Bottom-Right (1,1)
+                                            // Rotated Bottom-Left (0,1) -> Sensor Top-Left (0,0) ?? No wait
+                                            // Clockwise 90deg:
+                                            // (x, y) -> (y, 1-x)
+                                            // Inverse of CW 90 is CCW 90:
+                                            // (x, y) -> (y, 1-x) ? Wait.
+                                            // Original (x,y) -> Rotated (y, 1-x) (if origin is top-left)
+                                            // We have Rotated (kx, ky). We want Original (ox, oy).
+                                            // ox = ky
+                                            // oy = 1 - kx
+                                            val normX = kpt.y
+                                            val normY = 1.0f - kpt.x
                                             Keypoint(normX, normY, kpt.conf)
                                         }
                                         Person(newKpts)
                                     }
+                                    
+                                    // Assign to volatile variable for consumption by GL thread
+                                    pendingDetection = unrotatedPersons
                                     
                                     // DIAGNOSTIC LOOP: Ensure we see 0 results if that's what we got
                                     if (unrotatedPersons.isEmpty()) {
