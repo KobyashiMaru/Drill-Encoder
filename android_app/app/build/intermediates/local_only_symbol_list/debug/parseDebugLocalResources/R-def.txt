@@ -11,6 +11,7 @@ id btnToggleConsole
 id consoleScrollView
 id focusRing
 id ivWormhole
+id loadingLayout
 id overlay
 id particleView
 id surfaceView

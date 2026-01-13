@@ -240,10 +240,65 @@ class MainActivity : AppCompatActivity() {
     private var pendingDetection: List<Person>? = null
     // Add flag to track if initialization success has been logged
     private var hasLoggedARCoreSuccess = false
+    
+    // Sensor Warmup & Animation State
+    private var isSensorWarmedUp = false
+    private var isAnimationFinished = false
+
+    private var warmupStartTime: Long = 0
+    private val warmupHandler = android.os.Handler(android.os.Looper.getMainLooper())
+    private val warmupTimeoutRunnable = Runnable {
+        if (!isSensorWarmedUp || findViewById<android.view.View>(R.id.loadingLayout).visibility == android.view.View.VISIBLE) {
+             val loadingLayout = findViewById<android.view.View>(R.id.loadingLayout)
+             if (loadingLayout.visibility == android.view.View.VISIBLE) {
+                 logToConsole("[ERROR] Sensor Warmup Timed Out (Force Quit).")
+                 loadingLayout.visibility = android.view.View.GONE
+                 isSensorWarmedUp = true // Ensure we don't block subsequent logic
+             }
+        }
+    }
 
     private fun startARCoreSession() {
         Log.i(TAG, "ANTIGRAVITY: Starting ARCore Session - Code Version 2.0")
         hasLoggedARCoreSuccess = false // Reset on start
+        
+        // Reset and Start Sensor Warmup & Animation
+        isSensorWarmedUp = false
+        isAnimationFinished = false
+        warmupStartTime = System.currentTimeMillis()
+        
+        runOnUiThread {
+            val loadingLayout = findViewById<android.view.View>(R.id.loadingLayout)
+            val ivWormhole = findViewById<android.widget.ImageView>(R.id.ivWormhole)
+            loadingLayout.visibility = android.view.View.VISIBLE
+            logToConsole("[INFO] Sensor Warmup Started...")
+            
+            // Start Wormhole Animation (3 seconds)
+            ivWormhole.visibility = android.view.View.VISIBLE
+            ivWormhole.alpha = 0f
+            
+            val scaleX = android.animation.PropertyValuesHolder.ofFloat(android.view.View.SCALE_X, 0f, 300f)
+            val scaleY = android.animation.PropertyValuesHolder.ofFloat(android.view.View.SCALE_Y, 0f, 300f)
+            val rotation = android.animation.PropertyValuesHolder.ofFloat(android.view.View.ROTATION, 0f, 720f)
+            val alpha = android.animation.PropertyValuesHolder.ofFloat(android.view.View.ALPHA, 0f, 1f)
+
+            val animator = android.animation.ObjectAnimator.ofPropertyValuesHolder(ivWormhole, scaleX, scaleY, rotation, alpha)
+            animator.duration = 3000
+            animator.interpolator = android.view.animation.AccelerateInterpolator()
+            
+            animator.addListener(object : android.animation.AnimatorListenerAdapter() {
+                override fun onAnimationEnd(animation: android.animation.Animator) {
+                    isAnimationFinished = true
+                    checkWarmupCompletion()
+                }
+            })
+            animator.start()
+            
+            // Failsafe: Force hide after 4 seconds (Animation 3s + 1s buffer)
+            warmupHandler.removeCallbacks(warmupTimeoutRunnable)
+            warmupHandler.postDelayed(warmupTimeoutRunnable, 4000)
+        }
+        
         if (session == null) {
             try {
                 // Check for ARCore installation
@@ -384,6 +439,48 @@ class MainActivity : AppCompatActivity() {
                         } catch (e: Exception) {
                             // Depth might not be available yet or acquisition failed
                             // runOnUiThread { logToConsole("Depth not ready: ${e.message}") }
+                        }
+
+                        // Implement Global Depth Check for Sensor Warmup
+                        if (!isSensorWarmedUp) {
+                             try {
+                                val depthImage = frame.acquireRawDepthImage16Bits()
+                                depthImage.use { depth ->
+                                    // Check center 50x50 pixels for valid depth (>0)
+                                    val buffer = depth.planes[0].buffer.order(java.nio.ByteOrder.LITTLE_ENDIAN).asShortBuffer()
+                                    val width = depth.width
+                                    val height = depth.height
+                                    val centerX = width / 2
+                                    val centerY = height / 2
+                                    var validPixels = 0
+                                    val scanRadius = 25
+                                    
+                                    for (y in centerY - scanRadius..centerY + scanRadius) {
+                                        for (x in centerX - scanRadius..centerX + scanRadius) {
+                                            if (x in 0 until width && y in 0 until height) {
+                                                val index = y * width + x
+                                                val pixel = buffer.get(index).toInt()
+                                                val depthMm = pixel and 0x1FFF
+                                                if (depthMm > 0) validPixels++
+                                            }
+                                        }
+                                    }
+                                    
+                                    val totalPixels = (scanRadius * 2 + 1) * (scanRadius * 2 + 1)
+                                    val validRatio = validPixels.toFloat() / totalPixels
+                                    
+                                    // If >10% of center pixels are valid, consider sensors converged
+                                    if (validRatio > 0.1f) {
+                                        isSensorWarmedUp = true
+                                        runOnUiThread {
+                                             logToConsole("[SUCCESS] AE/AF Triggered & Converged (Global Depth).")
+                                             checkWarmupCompletion()
+                                        }
+                                    }
+                                }
+                             } catch (e: Exception) {
+                                 // Depth not ready yet
+                             }
                         }
 
                         runOnUiThread {
@@ -595,6 +692,24 @@ class MainActivity : AppCompatActivity() {
                         .start()
                 }
                 .start()
+        }
+    }
+
+    private fun checkWarmupCompletion() {
+        if (isAnimationFinished) {
+            val loadingLayout = findViewById<android.view.View>(R.id.loadingLayout)
+            if (isSensorWarmedUp) {
+                 loadingLayout.visibility = android.view.View.GONE
+            } else {
+                 logToConsole("[INFO] Animation done, waiting for sensors...")
+                 // Optional: Keep showing loading or show specific text "Calibrating..."
+                 // Check timeout as failsafe (though animation is 3s)
+                 val elapsed = System.currentTimeMillis() - warmupStartTime
+                 if (elapsed > 4000) { // Give explicit extra 1s grace if needed
+                      loadingLayout.visibility = android.view.View.GONE
+                      logToConsole("[ERROR] Sensor Timeout after Animation.")
+                 }
+            }
         }
     }
 

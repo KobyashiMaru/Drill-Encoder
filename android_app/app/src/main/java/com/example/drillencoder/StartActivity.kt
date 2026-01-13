@@ -88,37 +88,10 @@ class StartActivity : AppCompatActivity() {
     }
 
     private fun startWormholeAnimation() {
-        // Hide UI elements
-        tvTitle.animate().alpha(0f).setDuration(500).start()
-        tilModel.animate().alpha(0f).setDuration(500).start()
-        tilInference.animate().alpha(0f).setDuration(500).start()
-        btnOpenCamera.animate().alpha(0f).setDuration(500).start()
-
-        // Show and animate wormhole
-        ivWormhole.visibility = View.VISIBLE
-        ivWormhole.alpha = 0f
-        
-        // Scale up massively to cover screen
-        val scaleX = PropertyValuesHolder.ofFloat(View.SCALE_X, 0f, 300f)
-        val scaleY = PropertyValuesHolder.ofFloat(View.SCALE_Y, 0f, 300f)
-        val rotation = PropertyValuesHolder.ofFloat(View.ROTATION, 0f, 720f)
-        val alpha = PropertyValuesHolder.ofFloat(View.ALPHA, 0f, 1f)
-
-        val animator = ObjectAnimator.ofPropertyValuesHolder(ivWormhole, scaleX, scaleY, rotation, alpha)
-        animator.duration = 1500
-        animator.interpolator = AccelerateInterpolator()
-        
-        animator.addListener(object : AnimatorListenerAdapter() {
-            override fun onAnimationEnd(animation: Animator) {
-                // Launch Camera
-                val intent = Intent(this@StartActivity, MainActivity::class.java)
-                intent.putExtra("INFERENCE_METHOD", actvInference.text.toString())
-                startActivity(intent)
-                overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out)
-                // finish() - Removed to allow going back
-            }
-        })
-        
-        animator.start()
+        // Launch Camera Immediately
+        val intent = Intent(this@StartActivity, MainActivity::class.java)
+        intent.putExtra("INFERENCE_METHOD", actvInference.text.toString())
+        startActivity(intent)
+        overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out)
     }
 }

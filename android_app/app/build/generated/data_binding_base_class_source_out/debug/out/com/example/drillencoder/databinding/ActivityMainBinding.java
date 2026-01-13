@@ -6,7 +6,9 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.FrameLayout;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.ScrollView;
 import android.widget.TextView;
 import androidx.annotation.NonNull;
@@ -38,6 +40,12 @@ public final class ActivityMainBinding implements ViewBinding {
   public final View focusRing;
 
   @NonNull
+  public final ImageView ivWormhole;
+
+  @NonNull
+  public final FrameLayout loadingLayout;
+
+  @NonNull
   public final OverlayView overlay;
 
   @NonNull
@@ -51,13 +59,16 @@ public final class ActivityMainBinding implements ViewBinding {
 
   private ActivityMainBinding(@NonNull ConstraintLayout rootView, @NonNull ImageButton btnBack,
       @NonNull Button btnToggleConsole, @NonNull ScrollView consoleScrollView,
-      @NonNull View focusRing, @NonNull OverlayView overlay, @NonNull GLSurfaceView surfaceView,
-      @NonNull TextView tvConsole, @NonNull PreviewView viewFinder) {
+      @NonNull View focusRing, @NonNull ImageView ivWormhole, @NonNull FrameLayout loadingLayout,
+      @NonNull OverlayView overlay, @NonNull GLSurfaceView surfaceView, @NonNull TextView tvConsole,
+      @NonNull PreviewView viewFinder) {
     this.rootView = rootView;
     this.btnBack = btnBack;
     this.btnToggleConsole = btnToggleConsole;
     this.consoleScrollView = consoleScrollView;
     this.focusRing = focusRing;
+    this.ivWormhole = ivWormhole;
+    this.loadingLayout = loadingLayout;
     this.overlay = overlay;
     this.surfaceView = surfaceView;
     this.tvConsole = tvConsole;
@@ -115,6 +126,18 @@ public final class ActivityMainBinding implements ViewBinding {
         break missingId;
       }
 
+      id = R.id.ivWormhole;
+      ImageView ivWormhole = ViewBindings.findChildViewById(rootView, id);
+      if (ivWormhole == null) {
+        break missingId;
+      }
+
+      id = R.id.loadingLayout;
+      FrameLayout loadingLayout = ViewBindings.findChildViewById(rootView, id);
+      if (loadingLayout == null) {
+        break missingId;
+      }
+
       id = R.id.overlay;
       OverlayView overlay = ViewBindings.findChildViewById(rootView, id);
       if (overlay == null) {
@@ -140,7 +163,8 @@ public final class ActivityMainBinding implements ViewBinding {
       }
 
       return new ActivityMainBinding((ConstraintLayout) rootView, btnBack, btnToggleConsole,
-          consoleScrollView, focusRing, overlay, surfaceView, tvConsole, viewFinder);
+          consoleScrollView, focusRing, ivWormhole, loadingLayout, overlay, surfaceView, tvConsole,
+          viewFinder);
     }
     String missingId = rootView.getResources().getResourceName(id);
     throw new NullPointerException("Missing required view with ID: ".concat(missingId));

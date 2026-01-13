@@ -184,7 +184,7 @@ class BodyMeasureEngine {
                 val confidence = (pixel shr 13) and 0x7
 
                 // Filter: Exclude 0 and low confidence
-                if (depthMm > 0 && confidence >= 3) {
+                if (depthMm > 0) {
                     depthWindowCache[validCount++] = depthMm.toShort()
                 }
             }

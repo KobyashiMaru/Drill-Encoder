@@ -24,3 +24,9 @@ It was exported from the custom YOLOv11 model.
 - If the app crashes on launch, check the Logcat for errors.
 - Ensure Camera permissions are granted.
 - If the model fails to load, verify the file name in `MainActivity.kt` matches the asset file.
+
+
+
+## To-Do
+- [ ] AE/AF calibration has initialized but sometimes it doesn't work. Test more.
+- [ ] Startup animation is not exactly correct, need fix. 

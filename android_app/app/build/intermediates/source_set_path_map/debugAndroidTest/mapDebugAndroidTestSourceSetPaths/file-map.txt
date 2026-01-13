@@ -1,0 +1,4 @@
+com.example.drillencoder.test.app-androidTest-0 /Users/hao/hao/vibe_coding_project/Drill-Encoder/android_app/app/build/generated/res/resValues/androidTest/debug
+com.example.drillencoder.test.app-mergeDebugAndroidTestResources-1 /Users/hao/hao/vibe_coding_project/Drill-Encoder/android_app/app/build/intermediates/incremental/debugAndroidTest/mergeDebugAndroidTestResources/merged.dir
+com.example.drillencoder.test.app-mergeDebugAndroidTestResources-2 /Users/hao/hao/vibe_coding_project/Drill-Encoder/android_app/app/build/intermediates/incremental/debugAndroidTest/mergeDebugAndroidTestResources/stripped.dir
+com.example.drillencoder.test.app-debugAndroidTest-3 /Users/hao/hao/vibe_coding_project/Drill-Encoder/android_app/app/build/intermediates/merged_res/debugAndroidTest/mergeDebugAndroidTestResources
