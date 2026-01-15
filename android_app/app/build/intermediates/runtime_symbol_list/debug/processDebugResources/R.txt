@@ -3002,6 +3002,7 @@ int drawable ic_mtrl_chip_checked_black 0x7f070095
 int drawable ic_mtrl_chip_checked_circle 0x7f070096
 int drawable ic_mtrl_chip_close_circle 0x7f070097
 int drawable ic_search_black_24 0x7f070098
+int drawable ic_wormhole_flare 0x7f0700eb
 int drawable m3_avd_hide_password 0x7f070099
 int drawable m3_avd_show_password 0x7f07009a
 int drawable m3_bottom_sheet_drag_handle 0x7f07009b
@@ -3575,6 +3576,7 @@ int id transition_transform 0x7f0801ed
 int id triangle 0x7f0801ee
 int id tvConsole 0x7f0801ef
 int id tvTitle 0x7f0801f0
+int id tvVersion 0x7f080209
 int id unchecked 0x7f0801f1
 int id uniform 0x7f0801f2
 int id unlabeled 0x7f0801f3

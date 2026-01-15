@@ -277,17 +277,45 @@ class MainActivity : AppCompatActivity() {
             ivWormhole.visibility = android.view.View.VISIBLE
             ivWormhole.alpha = 0f
             
-            val scaleX = android.animation.PropertyValuesHolder.ofFloat(android.view.View.SCALE_X, 0f, 300f)
-            val scaleY = android.animation.PropertyValuesHolder.ofFloat(android.view.View.SCALE_Y, 0f, 300f)
-            val rotation = android.animation.PropertyValuesHolder.ofFloat(android.view.View.ROTATION, 0f, 720f)
-            val alpha = android.animation.PropertyValuesHolder.ofFloat(android.view.View.ALPHA, 0f, 1f)
-
-            val animator = android.animation.ObjectAnimator.ofPropertyValuesHolder(ivWormhole, scaleX, scaleY, rotation, alpha)
+            // Custom Wormhole Animation with "Approach" Physics
+            val animator = android.animation.ValueAnimator.ofFloat(0f, 1f)
             animator.duration = 3000
-            animator.interpolator = android.view.animation.AccelerateInterpolator()
             
+            animator.addUpdateListener { animation ->
+                val progress = animation.animatedValue as Float
+                
+                // 1. Scale: Exponential growth to simulate approaching speed
+                // 0.0 -> 0.7: Slow growth (Distnat)
+                // 0.7 -> 1.0: Rapid expansion (Proximity)
+                val baseScale = 0.1f
+                val maxScale = 50f // Enough to fill screen usually
+                
+                // Curve: s = base + (max - base) * p^4
+                val scaleCurve = Math.pow(progress.toDouble(), 4.0).toFloat()
+                val scale = baseScale + (maxScale - baseScale) * scaleCurve
+                
+                ivWormhole.scaleX = scale
+                ivWormhole.scaleY = scale
+                
+                // 2. Rotation: Removed for modern look
+                // ivWormhole.rotation = progress * 720f
+                
+                // 3. Alpha: Fade in, hold, then flash-die
+                // 0.0 -> 0.1: Fade In
+                // 0.1 -> 0.9: Full Opacity
+                // 0.9 -> 1.0: Fade Out (Pass through)
+                if (progress < 0.1f) {
+                    ivWormhole.alpha = progress / 0.1f
+                } else if (progress > 0.9f) {
+                    ivWormhole.alpha = 1f - ((progress - 0.9f) / 0.1f)
+                } else {
+                    ivWormhole.alpha = 1f
+                }
+            }
+
             animator.addListener(object : android.animation.AnimatorListenerAdapter() {
                 override fun onAnimationEnd(animation: android.animation.Animator) {
+                    ivWormhole.visibility = android.view.View.GONE // Ensure it's gone
                     isAnimationFinished = true
                     checkWarmupCompletion()
                 }
@@ -621,14 +649,9 @@ class MainActivity : AppCompatActivity() {
         
         surfaceView?.renderMode = android.opengl.GLSurfaceView.RENDERMODE_CONTINUOUSLY
         
-        // Add touch listener for ToF mode to show focus ring
-        overlayView.setOnTouchListener { _, event ->
-            if (event.action == android.view.MotionEvent.ACTION_UP) {
-                showFocusRing(event.x, event.y)
-                // Note: ARCore handles focus automatically, so we only show the visual feedback
-            }
-            true
-        }
+        // We decide that we don't add touch listener for ToF mode to show focus ring
+        // Note: ARCore handles focus automatically, so we don't need to do anything.
+
     }
     
     override fun onPause() {

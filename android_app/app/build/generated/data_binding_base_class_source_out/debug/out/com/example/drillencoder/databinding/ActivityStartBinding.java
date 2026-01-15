@@ -48,11 +48,14 @@ public final class ActivityStartBinding implements ViewBinding {
   @NonNull
   public final TextView tvTitle;
 
+  @NonNull
+  public final TextView tvVersion;
+
   private ActivityStartBinding(@NonNull ConstraintLayout rootView,
       @NonNull AutoCompleteTextView actvInference, @NonNull AutoCompleteTextView actvModel,
       @NonNull MaterialButton btnOpenCamera, @NonNull ImageView ivWormhole,
       @NonNull ParticleView particleView, @NonNull TextInputLayout tilInference,
-      @NonNull TextInputLayout tilModel, @NonNull TextView tvTitle) {
+      @NonNull TextInputLayout tilModel, @NonNull TextView tvTitle, @NonNull TextView tvVersion) {
     this.rootView = rootView;
     this.actvInference = actvInference;
     this.actvModel = actvModel;
@@ -62,6 +65,7 @@ public final class ActivityStartBinding implements ViewBinding {
     this.tilInference = tilInference;
     this.tilModel = tilModel;
     this.tvTitle = tvTitle;
+    this.tvVersion = tvVersion;
   }
 
   @Override
@@ -139,8 +143,14 @@ public final class ActivityStartBinding implements ViewBinding {
         break missingId;
       }
 
+      id = R.id.tvVersion;
+      TextView tvVersion = ViewBindings.findChildViewById(rootView, id);
+      if (tvVersion == null) {
+        break missingId;
+      }
+
       return new ActivityStartBinding((ConstraintLayout) rootView, actvInference, actvModel,
-          btnOpenCamera, ivWormhole, particleView, tilInference, tilModel, tvTitle);
+          btnOpenCamera, ivWormhole, particleView, tilInference, tilModel, tvTitle, tvVersion);
     }
     String missingId = rootView.getResources().getResourceName(id);
     throw new NullPointerException("Missing required view with ID: ".concat(missingId));

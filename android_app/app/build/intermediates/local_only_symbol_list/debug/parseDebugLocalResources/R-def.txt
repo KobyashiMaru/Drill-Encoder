@@ -2,6 +2,7 @@ R_DEF: Internal format may change without notice
 local
 color button_state_selector
 drawable focus_ring
+drawable ic_wormhole_flare
 drawable wormhole_circle
 id actvInference
 id actvModel
@@ -19,6 +20,7 @@ id tilInference
 id tilModel
 id tvConsole
 id tvTitle
+id tvVersion
 id viewFinder
 layout activity_main
 layout activity_start
