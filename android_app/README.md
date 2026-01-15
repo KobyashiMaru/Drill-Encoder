@@ -60,11 +60,12 @@ To ensure optimal performance and functionality, particularly for the **ToF (Tim
 
 ### To-Do
 - [ ] AE/AF calibration has initialized but sometimes it doesn't work. Test more.
-- [&check;] Add spec requirement for the app
-- [&check;] Startup animation is not exactly correct, need fix. 
-- [&check;] Need version print in menu
+- [x] Add spec requirement for the app
+    * Final Decision: Added
+- [x] Startup animation is not exactly correct, need fix. 
+- [x] Need version print in menu
     * Final Decision: Added version print in the menu
-- [&cross;] Touch-to-focus is not working in ToF mode
+- [x] Touch-to-focus is not working in ToF mode
     * Standard ARCore `Session` API does not expose a method to set a specific focus point (metering area).
     * `FocusMode.AUTO` in ARCore delegates control to the device's default continuous auto-focus algorithm, which is completely unaware of your touch inputs.
     * The `setOnTouchListener` validation in `MainActivity.kt` (lines 625-630) explicitly notes this limitation: 
