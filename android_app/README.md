@@ -73,3 +73,13 @@ To ensure optimal performance and functionality, particularly for the **ToF (Tim
         // Note: ARCore handles focus automatically, so we only show the visual feedback
         ```
     * Final Decision: Remove focus circle
+
+## Version 0.1.1
+
+### To-Do
+- [ ] AE/AF calibration has initialized but sometimes it doesn't work. Test more.
+- [x] adaptive method on device position
+- [x] IPS counter for benchmark
+- [x] Improve IPS across inference methods 
+- [ ] Add in pure visual solution
+
