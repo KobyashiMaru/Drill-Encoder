@@ -43,6 +43,10 @@ class DisplayRotationHelper(context: Context) : DisplayListener {
         }
     }
 
+    fun getRotation(): Int {
+        return display.rotation
+    }
+
     override fun onDisplayAdded(displayId: Int) {}
     override fun onDisplayRemoved(displayId: Int) {}
     override fun onDisplayChanged(displayId: Int) {

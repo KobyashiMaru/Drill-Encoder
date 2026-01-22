@@ -66,9 +66,10 @@ class YoloDetector(context: Context, modelPath: String) {
         interpreter = Interpreter(model, options)
     }
 
-    fun detect(bitmap: Bitmap): List<Person> {
+    fun detect(bitmap: Bitmap, rotation: Int): List<Person> {
         val imageProcessor = ImageProcessor.Builder()
             .add(ResizeOp(inputSize, inputSize, ResizeOp.ResizeMethod.BILINEAR))
+            .add(org.tensorflow.lite.support.image.ops.Rot90Op(-rotation / 90))
             .add(org.tensorflow.lite.support.common.ops.NormalizeOp(0f, 255f))
             .build()
         var tensorImage = TensorImage(org.tensorflow.lite.DataType.FLOAT32)
@@ -77,7 +78,7 @@ class YoloDetector(context: Context, modelPath: String) {
 
         val outputTensor = interpreter.getOutputTensor(0)
         val outputShape = outputTensor.shape()
-        android.util.Log.d("YoloDetector", "Output shape: ${outputShape.contentToString()}")
+        // android.util.Log.d("YoloDetector", "Output shape: ${outputShape.contentToString()}")
 
         // Handle different shapes
         val output = if (outputShape[1] == 56 && outputShape[2] == 8400) {
@@ -101,9 +102,9 @@ class YoloDetector(context: Context, modelPath: String) {
         }
 
         // Debug raw values for the first few anchors
-        for (i in 0 until 5) {
-             android.util.Log.d("YoloDetector", "Anchor $i: Box[${output[0][i]}, ${output[1][i]}, ${output[2][i]}, ${output[3][i]}] Score[${output[4][i]}] Kpt0[${output[5][i]}, ${output[6][i]}, ${output[7][i]}]")
-        }
+        // for (i in 0 until 5) {
+        //      android.util.Log.d("YoloDetector", "Anchor $i: Box[${output[0][i]}, ${output[1][i]}, ${output[2][i]}, ${output[3][i]}] Score[${output[4][i]}] Kpt0[${output[5][i]}, ${output[6][i]}, ${output[7][i]}]")
+        // }
 
         return processOutput(output)
     }

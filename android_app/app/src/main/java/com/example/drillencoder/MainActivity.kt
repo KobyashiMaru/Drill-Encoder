@@ -26,6 +26,13 @@ class MainActivity : AppCompatActivity() {
     private lateinit var previewView: PreviewView
     private lateinit var yoloDetector: YoloDetector
     private val cameraExecutor = Executors.newSingleThreadExecutor()
+    private lateinit var yuvConverter: YuvToRgbConverter
+    private var bitmapBuffer: Bitmap? = null
+
+    // IPS Counter Variables
+    private var inferencesProcessed = 0
+    private var currentIps = 0
+    private var lastIpsTimestamp = System.currentTimeMillis()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -50,10 +57,19 @@ class MainActivity : AppCompatActivity() {
         }
 
         try {
+            // Determine model file from Intent
+            val modelType = intent.getStringExtra("MODEL_TYPE") ?: "Yolo V11N FP32"
+            val modelFilename = if (modelType == "Yolo V11N FP16") {
+                "best_float16.tflite"
+            } else {
+                "best_float32.tflite"
+            }
+            
             // Ensure the model name matches what is in assets
-            yoloDetector = YoloDetector(this, "best_float32.tflite")
-            Toast.makeText(this, "Model loaded successfully", Toast.LENGTH_SHORT).show()
-            logToConsole("Model loaded successfully")
+            yoloDetector = YoloDetector(this, modelFilename)
+            yuvConverter = YuvToRgbConverter(this)
+            Toast.makeText(this, "Model loaded: $modelType", Toast.LENGTH_SHORT).show()
+            logToConsole("Model loaded: $modelFilename ($modelType)")
         } catch (e: Exception) {
             Log.e(TAG, "Error initializing detector", e)
             Toast.makeText(this, "Error initializing detector: ${e.message}", Toast.LENGTH_LONG).show()
@@ -103,64 +119,55 @@ class MainActivity : AppCompatActivity() {
                 .build()
                 .also {
                     it.setAnalyzer(cameraExecutor) { imageProxy ->
-                        // Note: This is a simplified way to get bitmap. 
-                        // For better performance, use YUV to RGB conversion or TensorImage directly from ImageProxy if supported.
-                        // But PreviewView.bitmap is easiest for now, though it might be null or slow.
-                        // A better way is to use the bitmap from the preview view or convert the imageProxy.
-                        // Since we are running on a separate thread, we can use the bitmap from the view (UI thread access required?)
-                        // Actually, previewView.bitmap must be called on UI thread? No, but it captures the current view content.
-                        // Better: use imageProxy.toBitmap() if available (CameraX 1.1+) or conversion.
+                        // Efficient YUV -> RGB Conversion
+                        if (bitmapBuffer == null || bitmapBuffer?.width != imageProxy.width || bitmapBuffer?.height != imageProxy.height) {
+                            bitmapBuffer = Bitmap.createBitmap(imageProxy.width, imageProxy.height, Bitmap.Config.ARGB_8888)
+                        }
                         
-                        // For this example, we'll try to get the bitmap from the view on the UI thread or use a converter.
-                        // Using previewView.bitmap is safe? It returns a copy.
+                        yuvConverter.yuvToRgb(imageProxy, bitmapBuffer!!)
                         
-                        // Let's use a safe approach: run on UI thread to get bitmap? No, that blocks UI.
-                        // Let's use the imageProxy.
+                        val rotation = imageProxy.imageInfo.rotationDegrees
+                        val bitmapToProcess = bitmapBuffer!!
                         
-                        // Since we don't have a robust YUV converter handy in this snippet, 
-                        // and we want to keep it simple, we will try to use the previewView bitmap 
-                        // but we need to be careful about threading.
-                        
-                        // Actually, let's just use the imageProxy if possible.
-                        // But TFLite Support TensorImage can load from Bitmap.
-                        
-                        // Let's stick to the plan:
-                        runOnUiThread {
-                            val bitmap = previewView.bitmap ?: return@runOnUiThread
-                            cameraExecutor.execute {
-                                    try {
-                                        val results = yoloDetector.detect(bitmap)
-                                        runOnUiThread {
-                                            overlayView.setResults(results)
-                                            
-                                            // Log keypoints if console is visible
-                                            if (findViewById<android.view.View>(R.id.consoleScrollView).visibility == android.view.View.VISIBLE) {
-                                                if (results.isNotEmpty()) {
-                                                    val sb = StringBuilder()
-                                                    sb.append("Detected ${results.size} person(s):\n")
-                                                    results.forEachIndexed { index, person ->
-                                                        sb.append("Person $index:\n")
-                                                        person.keypoints.forEachIndexed { kIndex, kpt ->
-                                                            if (kpt.conf > 0.3f) {
-                                                                sb.append("  Kpt $kIndex: (${String.format("%.2f", kpt.x)}, ${String.format("%.2f", kpt.y)}) Conf: ${String.format("%.2f", kpt.conf)}\n")
-                                                            }
-                                                        }
-                                                    }
-                                                    logToConsole(sb.toString())
-                                                } else {
-                                                    // Debug log to see if we are getting empty results
-                                                    // logToConsole("No persons detected in frame")
+                        try {
+                            val results = yoloDetector.detect(bitmapToProcess, rotation)
+                            runOnUiThread {
+                                overlayView.setResults(results)
+
+                                // IPS Counter Update
+                                inferencesProcessed++
+                                val currentTime = System.currentTimeMillis()
+                                if (currentTime - lastIpsTimestamp >= 1000) {
+                                    currentIps = inferencesProcessed
+                                    inferencesProcessed = 0
+                                    lastIpsTimestamp = currentTime
+                                    val tvIps = findViewById<android.widget.TextView>(R.id.tvIps)
+                                    tvIps.text = "IPS: $currentIps"
+                                }
+                                
+                                // Log keypoints if console is visible
+                                if (findViewById<android.view.View>(R.id.consoleScrollView).visibility == android.view.View.VISIBLE) {
+                                    if (results.isNotEmpty()) {
+                                        val sb = StringBuilder()
+                                        sb.append("Detected ${results.size} person(s):\n")
+                                        results.forEachIndexed { index, person ->
+                                            sb.append("Person $index:\n")
+                                            person.keypoints.forEachIndexed { kIndex, kpt ->
+                                                if (kpt.conf > 0.3f) {
+                                                    sb.append("  Kpt $kIndex: (${String.format("%.2f", kpt.x)}, ${String.format("%.2f", kpt.y)}) Conf: ${String.format("%.2f", kpt.conf)}\n")
                                                 }
                                             }
                                         }
-                                    } catch (e: Exception) {
-                                        Log.e(TAG, "Error detecting", e)
-                                        runOnUiThread { logToConsole("Error detecting: ${e.message}") }
+                                        logToConsole(sb.toString())
                                     }
                                 }
                             }
-
-                        imageProxy.close()
+                        } catch (e: Exception) {
+                            Log.e(TAG, "Error detecting", e)
+                            runOnUiThread { logToConsole("Error detecting: ${e.message}") }
+                        } finally {
+                            imageProxy.close()
+                        }
                     }
                 }
 
@@ -513,6 +520,17 @@ class MainActivity : AppCompatActivity() {
 
                         runOnUiThread {
                             overlayView.setResults(transformedPersons)
+                            
+                            // IPS Counter Update (ToF Mode)
+                            inferencesProcessed++
+                            val currentTime = System.currentTimeMillis()
+                            if (currentTime - lastIpsTimestamp >= 1000) {
+                                currentIps = inferencesProcessed
+                                inferencesProcessed = 0
+                                lastIpsTimestamp = currentTime
+                                val tvIps = findViewById<android.widget.TextView>(R.id.tvIps)
+                                tvIps.text = "IPS: $currentIps"
+                            }
                             // Log keypoints if console is visible (Ported from normal camera loop)
                             if (findViewById<android.view.View>(R.id.consoleScrollView).visibility == android.view.View.VISIBLE) {
                                 if (transformedPersons.isNotEmpty()) {
@@ -542,13 +560,12 @@ class MainActivity : AppCompatActivity() {
                         
                         try {
                             val cameraImage = frame.acquireCameraImage()
-                            val width: Int
-                            val height: Int
-                            val nv21Data: ByteArray
                             try {
-                                width = cameraImage.width
-                                height = cameraImage.height
-                                nv21Data = ImageUtils.imageToNv21ByteArray(cameraImage)
+                                if (bitmapBuffer == null || bitmapBuffer?.width != cameraImage.width || bitmapBuffer?.height != cameraImage.height) {
+                                    bitmapBuffer = Bitmap.createBitmap(cameraImage.width, cameraImage.height, Bitmap.Config.ARGB_8888)
+                                }
+                                // Efficient YUV -> RGB
+                                yuvConverter.yuvToRgb(cameraImage, bitmapBuffer!!)
                             } finally {
                                 cameraImage.close() // Close IMMEDIATELY on GL thread
                             }
@@ -556,51 +573,85 @@ class MainActivity : AppCompatActivity() {
                             processingExecutor.execute {
                                 val startTime = System.currentTimeMillis()
                                 try {
-                                    // Log start of detection
-                                    // runOnUiThread { logToConsole("[ToF] Processing frame...") }
-
-                                    val bitmap: Bitmap
-                                    try {
-                                        bitmap = ImageUtils.nv21ToBitmap(nv21Data, width, height, applicationContext)
-                                    } catch (e: Exception) {
-                                        throw RuntimeException("Failed to convert NV21 to Bitmap: ${e.message}", e)
+                                    // Strategy 1: Dynamic Rotation
+                                    val displayRotation = displayRotationHelper?.getRotation() ?: 0
+                                    val rotationDegrees = when (displayRotation) {
+                                        android.view.Surface.ROTATION_0 -> 90f
+                                        android.view.Surface.ROTATION_90 -> 0f
+                                        android.view.Surface.ROTATION_180 -> 270f
+                                        android.view.Surface.ROTATION_270 -> 180f
+                                        else -> 90f
                                     }
                                     
-                                    // DIAGNOSTIC: Check bitmap validity
-                                    if (bitmap.width == 0 || bitmap.height == 0) {
-                                        throw RuntimeException("Created 0-size bitmap")
-                                    }
-                                    
-                                    val matrix = android.graphics.Matrix()
-                                    matrix.postRotate(90f)
-                                    val rotatedBitmap = Bitmap.createBitmap(bitmap, 0, 0, bitmap.width, bitmap.height, matrix, true)
-                                    
-                                    // DIAGNOSTIC: Log input to detector
-                                    // Log.d(TAG, "Sending to detector: ${rotatedBitmap.width}x${rotatedBitmap.height}")
-                                    
-                                    val persons = yoloDetector.detect(rotatedBitmap)
+                                    val bitmap = bitmapBuffer!!
+                                    // Pass rotation to detector instead of creating rotated bitmap
+                                    val persons = yoloDetector.detect(bitmap, rotationDegrees.toInt())
                                     
                                     // Un-rotate keypoints to match Sensor Coordinates (Image Normalized)
                                     val unrotatedPersons = persons.map { person ->
                                         val newKpts = person.keypoints.map { kpt ->
-                                            // Correct un-rotation for 90-degree CW rotation
-                                            // Maps rotated image (0,0 is Top-Left) back to sensor landscape
-                                            // Rotated Top-Left (0,0) -> Sensor Top-Right (0,1)
-                                            // Rotated Top-Right (1,0) -> Sensor Bottom-Right (1,1)
-                                            // Rotated Bottom-Left (0,1) -> Sensor Top-Left (0,0) ?? No wait
-                                            // Clockwise 90deg:
-                                            // (x, y) -> (y, 1-x)
-                                            // Inverse of CW 90 is CCW 90:
-                                            // (x, y) -> (y, 1-x) ? Wait.
-                                            // Original (x,y) -> Rotated (y, 1-x) (if origin is top-left)
-                                            // We have Rotated (kx, ky). We want Original (ox, oy).
-                                            // ox = ky
-                                            // oy = 1 - kx
-                                            val normX = kpt.y
-                                            val normY = 1.0f - kpt.x
+                                            // General Un-rotation Logic
+                                            // The detector sees 'rotated' view. kpt.x, kpt.y are normalized 0..1 relative to that.
+                                            // We need to map them back to the original 'bitmap' (Sensor image) coordinates 0..1.
+                                            
+                                            // 1. De-normalize to Pixels in Rotated Space
+                                            // Note: If rotation is 90 or 270, dimensions are swapped
+                                            val rotW = if (rotationDegrees == 90f || rotationDegrees == 270f) bitmap.height else bitmap.width
+                                            val rotH = if (rotationDegrees == 90f || rotationDegrees == 270f) bitmap.width else bitmap.height
+                                            
+                                            val rx = kpt.x * rotW
+                                            val ry = kpt.y * rotH
+                                            
+                                            // 2. Inverse Transform (Back to Original Bitmap Pixels)
+                                            val ox: Float
+                                            val oy: Float
+                                            
+                                            when (rotationDegrees) {
+                                                90f -> {
+                                                    // CW 90: (x, y) -> (y, H-x)
+                                                    // Inverse: ox = ry, oy = H - rx
+                                                    ox = ry
+                                                    oy = bitmap.height - rx
+                                                }
+                                                0f -> {
+                                                    // No rotation
+                                                    ox = rx
+                                                    oy = ry
+                                                }
+                                                180f -> {
+                                                    // 180 CW: (x, y) -> (W-x, H-y)
+                                                    ox = bitmap.width - rx
+                                                    oy = bitmap.height - ry
+                                                }
+                                                270f -> {
+                                                    // 270 CW: (x, y) -> (w-y, x)
+                                                    // Inverse: ox = w - ry, oy = rx
+                                                    ox = bitmap.width - ry
+                                                    oy = rx
+                                                }
+                                                else -> { ox = rx; oy = ry }
+                                            }
+                                            
+                                            // 3. Normalize back to Original Bitmap Dimensions
+                                            val normX = ox / bitmap.width
+                                            val normY = oy / bitmap.height
+                                            
                                             Keypoint(normX, normY, kpt.conf)
                                         }
                                         Person(newKpts)
+                                    }
+                                    
+                                    // UI Counter-Rotation (Selective)
+                                    runOnUiThread {
+                                        val btnBack = findViewById<android.view.View>(R.id.btnBack)
+                                        val uiRotation = when (displayRotation) {
+                                            android.view.Surface.ROTATION_0 -> 0f
+                                            android.view.Surface.ROTATION_90 -> -90f
+                                            android.view.Surface.ROTATION_180 -> -180f
+                                            android.view.Surface.ROTATION_270 -> 90f
+                                            else -> 0f
+                                        }
+                                        btnBack.rotation = uiRotation
                                     }
                                     
                                     // Assign to volatile variable for consumption by GL thread

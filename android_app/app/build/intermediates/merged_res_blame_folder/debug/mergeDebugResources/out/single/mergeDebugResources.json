@@ -12,12 +12,12 @@
         "source": "/Users/hao/.gradle/daemon/8.11.1/com.example.drillencoder.app-main-41:/drawable/wormhole_circle.xml"
     },
     {
-        "merged": "/Users/hao/.gradle/daemon/8.11.1/com.example.drillencoder.app-debug-39:/drawable_ic_wormhole_flare.xml.flat",
-        "source": "/Users/hao/.gradle/daemon/8.11.1/com.example.drillencoder.app-main-41:/drawable/ic_wormhole_flare.xml"
+        "merged": "com.example.drillencoder.app-debug-39:/layout_activity_start.xml.flat",
+        "source": "com.example.drillencoder.app-main-41:/layout/activity_start.xml"
     },
     {
-        "merged": "com.example.drillencoder.app-debug-39:/layout_activity_main.xml.flat",
-        "source": "com.example.drillencoder.app-main-41:/layout/activity_main.xml"
+        "merged": "/Users/hao/.gradle/daemon/8.11.1/com.example.drillencoder.app-debug-39:/drawable_ic_wormhole_flare.xml.flat",
+        "source": "/Users/hao/.gradle/daemon/8.11.1/com.example.drillencoder.app-main-41:/drawable/ic_wormhole_flare.xml"
     },
     {
         "merged": "/Users/hao/.gradle/daemon/8.11.1/com.example.drillencoder.app-debug-39:/layout_activity_main.xml.flat",

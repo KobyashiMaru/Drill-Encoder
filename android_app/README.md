@@ -80,6 +80,14 @@ To ensure optimal performance and functionality, particularly for the **ToF (Tim
 - [ ] AE/AF calibration has initialized but sometimes it doesn't work. Test more.
 - [x] adaptive method on device position
 - [x] IPS counter for benchmark
-- [x] Improve IPS across inference methods 
+- [ ] Improve IPS across inference methods 
+    * Yolo Model
+        * Use FP16 model, lower the workload and improve IPS
+    * ToF Mode
+        * Convert YUV directly to RGB Bitmap instead of YUV → NV21 → Bitmap
+        * **Do not rotate the bitmap**. Instead, update the `ImageProcessor` in `YoloDetector` to handle the rotation (Resize/Crop/Rotate) during the Tensor loading stage. The TFLite Support Library is optimized for this.
+    * MiDaS Mode
+        * Stop using `previewView.bitmap`. Use `ImageProxy` from `ImageAnalysis` directly. Convert the YUV `ImageProxy` to a Bitmap using a shared `YuvToRgbConverter` (ScriptIntrinsic or Native) or pass the YUV buffer directly if the model allows.
+    * Conclusion: Need more testing and optimization, IPS is improved but not much as expected
 - [ ] Add in pure visual solution
 

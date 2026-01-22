@@ -19,6 +19,7 @@ id surfaceView
 id tilInference
 id tilModel
 id tvConsole
+id tvIps
 id tvTitle
 id tvVersion
 id viewFinder

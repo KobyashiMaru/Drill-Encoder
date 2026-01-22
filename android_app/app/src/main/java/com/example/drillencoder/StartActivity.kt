@@ -62,7 +62,7 @@ class StartActivity : AppCompatActivity() {
     }
 
     private fun setupDropdowns() {
-        val models = listOf("Yolo V11N")
+        val models = listOf("Yolo V11N FP32", "Yolo V11N FP16")
         val inferenceMethods = listOf("ToF", "MiDaS")
 
         val modelAdapter = ArrayAdapter(this, android.R.layout.simple_dropdown_item_1line, models)
@@ -91,6 +91,7 @@ class StartActivity : AppCompatActivity() {
         // Launch Camera Immediately
         val intent = Intent(this@StartActivity, MainActivity::class.java)
         intent.putExtra("INFERENCE_METHOD", actvInference.text.toString())
+        intent.putExtra("MODEL_TYPE", actvModel.text.toString())
         startActivity(intent)
         overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out)
     }

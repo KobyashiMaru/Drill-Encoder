@@ -55,13 +55,16 @@ public final class ActivityMainBinding implements ViewBinding {
   public final TextView tvConsole;
 
   @NonNull
+  public final TextView tvIps;
+
+  @NonNull
   public final PreviewView viewFinder;
 
   private ActivityMainBinding(@NonNull ConstraintLayout rootView, @NonNull ImageButton btnBack,
       @NonNull Button btnToggleConsole, @NonNull ScrollView consoleScrollView,
       @NonNull View focusRing, @NonNull ImageView ivWormhole, @NonNull FrameLayout loadingLayout,
       @NonNull OverlayView overlay, @NonNull GLSurfaceView surfaceView, @NonNull TextView tvConsole,
-      @NonNull PreviewView viewFinder) {
+      @NonNull TextView tvIps, @NonNull PreviewView viewFinder) {
     this.rootView = rootView;
     this.btnBack = btnBack;
     this.btnToggleConsole = btnToggleConsole;
@@ -72,6 +75,7 @@ public final class ActivityMainBinding implements ViewBinding {
     this.overlay = overlay;
     this.surfaceView = surfaceView;
     this.tvConsole = tvConsole;
+    this.tvIps = tvIps;
     this.viewFinder = viewFinder;
   }
 
@@ -156,6 +160,12 @@ public final class ActivityMainBinding implements ViewBinding {
         break missingId;
       }
 
+      id = R.id.tvIps;
+      TextView tvIps = ViewBindings.findChildViewById(rootView, id);
+      if (tvIps == null) {
+        break missingId;
+      }
+
       id = R.id.viewFinder;
       PreviewView viewFinder = ViewBindings.findChildViewById(rootView, id);
       if (viewFinder == null) {
@@ -164,7 +174,7 @@ public final class ActivityMainBinding implements ViewBinding {
 
       return new ActivityMainBinding((ConstraintLayout) rootView, btnBack, btnToggleConsole,
           consoleScrollView, focusRing, ivWormhole, loadingLayout, overlay, surfaceView, tvConsole,
-          viewFinder);
+          tvIps, viewFinder);
     }
     String missingId = rootView.getResources().getResourceName(id);
     throw new NullPointerException("Missing required view with ID: ".concat(missingId));
