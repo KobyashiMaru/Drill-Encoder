@@ -1,9 +1,9 @@
 -- Merging decision tree log ---
 manifest
-ADDED from /Users/hao/hao/vibe_coding_project/Drill-Encoder/android_app/app/src/main/AndroidManifest.xml:2:1-28:12
-INJECTED from /Users/hao/hao/vibe_coding_project/Drill-Encoder/android_app/app/src/main/AndroidManifest.xml:2:1-28:12
-INJECTED from /Users/hao/hao/vibe_coding_project/Drill-Encoder/android_app/app/src/main/AndroidManifest.xml:2:1-28:12
-INJECTED from /Users/hao/hao/vibe_coding_project/Drill-Encoder/android_app/app/src/main/AndroidManifest.xml:2:1-28:12
+ADDED from /Users/hao/hao/vibe_coding_project/Drill-Encoder/android_app/app/src/main/AndroidManifest.xml:2:1-29:12
+INJECTED from /Users/hao/hao/vibe_coding_project/Drill-Encoder/android_app/app/src/main/AndroidManifest.xml:2:1-29:12
+INJECTED from /Users/hao/hao/vibe_coding_project/Drill-Encoder/android_app/app/src/main/AndroidManifest.xml:2:1-29:12
+INJECTED from /Users/hao/hao/vibe_coding_project/Drill-Encoder/android_app/app/src/main/AndroidManifest.xml:2:1-29:12
 MERGED from [androidx.databinding:viewbinding:8.10.1] /Users/hao/.gradle/caches/8.11.1/transforms/58a5496a1e6aabd8b8dd95b98ab2ce4d/transformed/jetified-viewbinding-8.10.1/AndroidManifest.xml:2:1-7:12
 MERGED from [com.google.android.material:material:1.11.0] /Users/hao/.gradle/caches/8.11.1/transforms/00eeb6492ea48024bbce31944ca0b755/transformed/material-1.11.0/AndroidManifest.xml:17:1-24:12
 MERGED from [androidx.constraintlayout:constraintlayout:2.1.4] /Users/hao/.gradle/caches/8.11.1/transforms/0a0912fd2d00a5fdfac076b4b09d7c49/transformed/constraintlayout-2.1.4/AndroidManifest.xml:2:1-11:12
@@ -80,8 +80,8 @@ ADDED from /Users/hao/hao/vibe_coding_project/Drill-Encoder/android_app/app/src/
 	android:name
 		ADDED from /Users/hao/hao/vibe_coding_project/Drill-Encoder/android_app/app/src/main/AndroidManifest.xml:6:22-62
 application
-ADDED from /Users/hao/hao/vibe_coding_project/Drill-Encoder/android_app/app/src/main/AndroidManifest.xml:8:5-26:19
-INJECTED from /Users/hao/hao/vibe_coding_project/Drill-Encoder/android_app/app/src/main/AndroidManifest.xml:8:5-26:19
+ADDED from /Users/hao/hao/vibe_coding_project/Drill-Encoder/android_app/app/src/main/AndroidManifest.xml:8:5-27:19
+INJECTED from /Users/hao/hao/vibe_coding_project/Drill-Encoder/android_app/app/src/main/AndroidManifest.xml:8:5-27:19
 MERGED from [com.google.android.material:material:1.11.0] /Users/hao/.gradle/caches/8.11.1/transforms/00eeb6492ea48024bbce31944ca0b755/transformed/material-1.11.0/AndroidManifest.xml:22:5-20
 MERGED from [com.google.android.material:material:1.11.0] /Users/hao/.gradle/caches/8.11.1/transforms/00eeb6492ea48024bbce31944ca0b755/transformed/material-1.11.0/AndroidManifest.xml:22:5-20
 MERGED from [androidx.constraintlayout:constraintlayout:2.1.4] /Users/hao/.gradle/caches/8.11.1/transforms/0a0912fd2d00a5fdfac076b4b09d7c49/transformed/constraintlayout-2.1.4/AndroidManifest.xml:9:5-20
@@ -141,19 +141,21 @@ ADDED from /Users/hao/hao/vibe_coding_project/Drill-Encoder/android_app/app/src/
 	android:name
 		ADDED from /Users/hao/hao/vibe_coding_project/Drill-Encoder/android_app/app/src/main/AndroidManifest.xml:17:27-74
 activity#com.example.drillencoder.MainActivity
-ADDED from /Users/hao/hao/vibe_coding_project/Drill-Encoder/android_app/app/src/main/AndroidManifest.xml:20:9-23:84
+ADDED from /Users/hao/hao/vibe_coding_project/Drill-Encoder/android_app/app/src/main/AndroidManifest.xml:20:9-24:84
+	android:screenOrientation
+		ADDED from /Users/hao/hao/vibe_coding_project/Drill-Encoder/android_app/app/src/main/AndroidManifest.xml:22:13-49
 	android:exported
-		ADDED from /Users/hao/hao/vibe_coding_project/Drill-Encoder/android_app/app/src/main/AndroidManifest.xml:22:13-37
+		ADDED from /Users/hao/hao/vibe_coding_project/Drill-Encoder/android_app/app/src/main/AndroidManifest.xml:23:13-37
 	android:theme
-		ADDED from /Users/hao/hao/vibe_coding_project/Drill-Encoder/android_app/app/src/main/AndroidManifest.xml:23:13-81
+		ADDED from /Users/hao/hao/vibe_coding_project/Drill-Encoder/android_app/app/src/main/AndroidManifest.xml:24:13-81
 	android:name
 		ADDED from /Users/hao/hao/vibe_coding_project/Drill-Encoder/android_app/app/src/main/AndroidManifest.xml:21:13-41
 meta-data#com.google.ar.core
-ADDED from /Users/hao/hao/vibe_coding_project/Drill-Encoder/android_app/app/src/main/AndroidManifest.xml:25:9-81
+ADDED from /Users/hao/hao/vibe_coding_project/Drill-Encoder/android_app/app/src/main/AndroidManifest.xml:26:9-81
 	android:value
-		ADDED from /Users/hao/hao/vibe_coding_project/Drill-Encoder/android_app/app/src/main/AndroidManifest.xml:25:54-78
+		ADDED from /Users/hao/hao/vibe_coding_project/Drill-Encoder/android_app/app/src/main/AndroidManifest.xml:26:54-78
 	android:name
-		ADDED from /Users/hao/hao/vibe_coding_project/Drill-Encoder/android_app/app/src/main/AndroidManifest.xml:25:20-53
+		ADDED from /Users/hao/hao/vibe_coding_project/Drill-Encoder/android_app/app/src/main/AndroidManifest.xml:26:20-53
 uses-sdk
 INJECTED from /Users/hao/hao/vibe_coding_project/Drill-Encoder/android_app/app/src/main/AndroidManifest.xml reason: use-sdk injection requested
 INJECTED from /Users/hao/hao/vibe_coding_project/Drill-Encoder/android_app/app/src/main/AndroidManifest.xml
@@ -427,8 +429,8 @@ ADDED from [com.google.ai.edge.litert:litert-gpu-api:1.4.1] /Users/hao/.gradle/c
 	android:name
 		ADDED from [com.google.ai.edge.litert:litert-gpu-api:1.4.1] /Users/hao/.gradle/caches/8.11.1/transforms/48585ed9293ad5bb11270defa763a8aa/transformed/jetified-litert-gpu-api-1.4.1/AndroidManifest.xml:9:13-40
 uses-permission#android.permission.WRITE_EXTERNAL_STORAGE
-IMPLIED from /Users/hao/hao/vibe_coding_project/Drill-Encoder/android_app/app/src/main/AndroidManifest.xml:2:1-28:12 reason: org.tensorflow.lite.gpu.api has a targetSdkVersion < 4
+IMPLIED from /Users/hao/hao/vibe_coding_project/Drill-Encoder/android_app/app/src/main/AndroidManifest.xml:2:1-29:12 reason: org.tensorflow.lite.gpu.api has a targetSdkVersion < 4
 uses-permission#android.permission.READ_PHONE_STATE
-IMPLIED from /Users/hao/hao/vibe_coding_project/Drill-Encoder/android_app/app/src/main/AndroidManifest.xml:2:1-28:12 reason: org.tensorflow.lite.gpu.api has a targetSdkVersion < 4
+IMPLIED from /Users/hao/hao/vibe_coding_project/Drill-Encoder/android_app/app/src/main/AndroidManifest.xml:2:1-29:12 reason: org.tensorflow.lite.gpu.api has a targetSdkVersion < 4
 uses-permission#android.permission.READ_EXTERNAL_STORAGE
-IMPLIED from /Users/hao/hao/vibe_coding_project/Drill-Encoder/android_app/app/src/main/AndroidManifest.xml:2:1-28:12 reason: org.tensorflow.lite.gpu.api requested WRITE_EXTERNAL_STORAGE
+IMPLIED from /Users/hao/hao/vibe_coding_project/Drill-Encoder/android_app/app/src/main/AndroidManifest.xml:2:1-29:12 reason: org.tensorflow.lite.gpu.api requested WRITE_EXTERNAL_STORAGE

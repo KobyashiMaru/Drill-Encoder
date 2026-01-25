@@ -51,6 +51,7 @@
         <activity
             android:name="com.example.drillencoder.MainActivity"
             android:exported="false"
+            android:screenOrientation="portrait"
             android:theme="@style/Theme.MaterialComponents.DayNight.NoActionBar" />
 
         <meta-data

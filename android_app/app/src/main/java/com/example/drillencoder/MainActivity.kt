@@ -34,6 +34,10 @@ class MainActivity : AppCompatActivity() {
     private var currentIps = 0
     private var lastIpsTimestamp = System.currentTimeMillis()
 
+    // Adaptive Orientation State
+    private var orientationEventListener: android.view.OrientationEventListener? = null
+    private var currentDeviceRotation = android.view.Surface.ROTATION_0
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
@@ -47,6 +51,8 @@ class MainActivity : AppCompatActivity() {
         overlayView = findViewById(R.id.overlay)
         focusRing = findViewById(R.id.focusRing)
         previewView = findViewById(R.id.viewFinder)
+
+        setupOrientationListener()
 
         if (allPermissionsGranted()) {
             chooseCameraMethod()
@@ -126,11 +132,24 @@ class MainActivity : AppCompatActivity() {
                         
                         yuvConverter.yuvToRgb(imageProxy, bitmapBuffer!!)
                         
-                        val rotation = imageProxy.imageInfo.rotationDegrees
+                        // Adaptive: Use Current Device Rotation Logic
+                        // If locked to Portrait, imageProxy.imageInfo.rotationDegrees is always 90 (Back Cam).
+                        // We need to override this based on currentDeviceRotation.
+                        val deviceRotation = currentDeviceRotation
+                        val sensorRotation = imageProxy.imageInfo.rotationDegrees
+                        
+                        val rotationDegrees = when (deviceRotation) {
+                            android.view.Surface.ROTATION_0 -> sensorRotation // Portrait: Pass 90
+                            android.view.Surface.ROTATION_90 -> 0 // Landscape Left: Pass 0
+                            android.view.Surface.ROTATION_180 -> 270 // Upside Down
+                            android.view.Surface.ROTATION_270 -> 180 // Landscape Right
+                            else -> 90
+                        }
+                        
                         val bitmapToProcess = bitmapBuffer!!
                         
                         try {
-                            val results = yoloDetector.detect(bitmapToProcess, rotation)
+                            val results = yoloDetector.detect(bitmapToProcess, rotationDegrees)
                             runOnUiThread {
                                 overlayView.setResults(results)
 
@@ -445,7 +464,7 @@ class MainActivity : AppCompatActivity() {
                         // Try to acquire and use depth image in one go
                         try {
                             val depthImage = frame.acquireRawDepthImage16Bits()
-                            depthImage.use { depthImage ->
+                            depthImage.use { _ ->
                                 transformedPersons.forEach { person ->
                                     person.keypoints.forEach { kpt ->
                                         if (kpt.conf > 0.3f) {
@@ -573,9 +592,9 @@ class MainActivity : AppCompatActivity() {
                             processingExecutor.execute {
                                 val startTime = System.currentTimeMillis()
                                 try {
-                                    // Strategy 1: Dynamic Rotation
-                                    val displayRotation = displayRotationHelper?.getRotation() ?: 0
-                                    val rotationDegrees = when (displayRotation) {
+                                    // Strategy 2: Custom Rotation Engine
+                                    val deviceRotation = currentDeviceRotation
+                                    val rotationDegrees = when (deviceRotation) {
                                         android.view.Surface.ROTATION_0 -> 90f
                                         android.view.Surface.ROTATION_90 -> 0f
                                         android.view.Surface.ROTATION_180 -> 270f
@@ -633,8 +652,22 @@ class MainActivity : AppCompatActivity() {
                                             }
                                             
                                             // 3. Normalize back to Original Bitmap Dimensions
-                                            val normX = ox / bitmap.width
-                                            val normY = oy / bitmap.height
+                                            // Adaptive strategy: Map to Screen Coordinates (Portrait)
+                                            val normX: Float
+                                            val normY: Float
+                                            
+                                            // If we are in Landscape (0 or 180), we need to SWAP axes to match Portrait Overlay
+                                            // The Bitmap is Landscape (W > H). The Screen is Portrait (H > W).
+                                            if (rotationDegrees == 0f || rotationDegrees == 180f) {
+                                                // Map Bitmap Y (Short) -> Screen X (Short)
+                                                // Map Bitmap X (Long) -> Screen Y (Long)
+                                                normX = oy / bitmap.height
+                                                normY = ox / bitmap.width
+                                            } else {
+                                                // Portrait: Standard mapping
+                                                normX = ox / bitmap.width
+                                                normY = oy / bitmap.height
+                                            }
                                             
                                             Keypoint(normX, normY, kpt.conf)
                                         }
@@ -644,7 +677,7 @@ class MainActivity : AppCompatActivity() {
                                     // UI Counter-Rotation (Selective)
                                     runOnUiThread {
                                         val btnBack = findViewById<android.view.View>(R.id.btnBack)
-                                        val uiRotation = when (displayRotation) {
+                                        val uiRotation = when (deviceRotation) {
                                             android.view.Surface.ROTATION_0 -> 0f
                                             android.view.Surface.ROTATION_90 -> -90f
                                             android.view.Surface.ROTATION_180 -> -180f
@@ -785,6 +818,54 @@ class MainActivity : AppCompatActivity() {
                  }
             }
         }
+    }
+
+    private fun setupOrientationListener() {
+        orientationEventListener = object : android.view.OrientationEventListener(this) {
+            override fun onOrientationChanged(orientation: Int) {
+                if (orientation == android.view.OrientationEventListener.ORIENTATION_UNKNOWN) return
+
+                val newRotation = when (orientation) {
+                    in 45..134 -> android.view.Surface.ROTATION_270 // Reversed for device rotation
+                    in 135..224 -> android.view.Surface.ROTATION_180
+                    in 225..314 -> android.view.Surface.ROTATION_90
+                    else -> android.view.Surface.ROTATION_0
+                }
+
+                if (newRotation != currentDeviceRotation) {
+                    currentDeviceRotation = newRotation
+                    rotateUI(newRotation)
+                }
+            }
+        }
+        if (orientationEventListener?.canDetectOrientation() == true) {
+            orientationEventListener?.enable()
+        }
+    }
+
+    private fun rotateUI(rotation: Int) {
+        val angle = when (rotation) {
+            android.view.Surface.ROTATION_90 -> -90f
+            android.view.Surface.ROTATION_180 -> 180f
+            android.view.Surface.ROTATION_270 -> 90f
+            else -> 0f
+        }
+        
+        // Rotate UI elements
+        val btnBack = findViewById<android.view.View>(R.id.btnBack)
+        val tvIps = findViewById<android.widget.TextView>(R.id.tvIps)
+        val btnToggleConsole = findViewById<android.widget.Button>(R.id.btnToggleConsole)
+        
+        // Animate rotation
+        btnBack.animate().rotation(angle).setDuration(300).start()
+        tvIps.animate().rotation(angle).setDuration(300).start()
+        btnToggleConsole.animate().rotation(angle).setDuration(300).start()
+        
+        // Console needs container rotation or specific handling? 
+        // Rotating the scrollview might cause layout issues (width vs height). 
+        // For now, let's keep console static or just rotate the text view? 
+        // Rotating TextView inside ScrollView is tricky. 
+        // Let's just rotate the Toggle Button and IPS for now to prove concept.
     }
 
     companion object {
