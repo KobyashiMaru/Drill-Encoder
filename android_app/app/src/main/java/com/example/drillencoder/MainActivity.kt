@@ -425,13 +425,87 @@ class MainActivity : AppCompatActivity() {
                     if (detectionResults != null && frame != null) {
                         pendingDetection = null // Clear pending
                         
-                        // Reuse buffers for coordinate transformation
+                        // Reuse buffers for coordinate transformation (UI ONLY)
                         val inputCoords = FloatArray(2)
                         val outputCoords = FloatArray(2)
                         val viewWidth = surfaceView?.width ?: 1
                         val viewHeight = surfaceView?.height ?: 1
-                        
-                        // Transform all persons/keypoints to View Coordinates
+
+                        // Acquire Depth Image ONCE for both Physics and Warmup
+                        var depthImage: android.media.Image? = null
+                        try {
+                            // Helper to safely acquire depth
+                            depthImage = frame.acquireRawDepthImage16Bits()
+                        } catch (e: Exception) {
+                            // Depth not ready
+                        }
+
+                        // --- Path A: Physics (Strategy 4) ---
+                        // Use SINGLE SOURCE OF TRUTH: Normalized Coordinates (0..1 relative to Camera)
+                        // Bypassing screen transformation for physics
+                        if (depthImage != null) {
+                            depthImage.use { depth ->
+                                // 1. Calculate 3D for all detected persons
+                                detectionResults.forEach { person ->
+                                    person.keypoints.forEach { kpt ->
+                                        if (kpt.conf > 0.3f) {
+                                            // Pass IMAGE_NORMALIZED coordinates directly
+                                            val position3d = bodyMeasureEngine.get3DJointPosition(
+                                                frame, depth, kpt.x, kpt.y
+                                            ) { msg ->
+                                                if (kpt.conf > 0.3f) kpt.depthError = msg
+                                            }
+                                            
+                                            if (position3d != null) {
+                                                kpt.x3d = position3d[0]
+                                                kpt.y3d = position3d[1]
+                                                kpt.z3d = position3d[2]
+                                            }
+                                        }
+                                    }
+                                }
+
+                                // 2. Global Depth Check for Sensor Warmup (Optimized Reuse)
+                                if (!isSensorWarmedUp) {
+                                    try {
+                                        val buffer = depth.planes[0].buffer.order(java.nio.ByteOrder.LITTLE_ENDIAN).asShortBuffer()
+                                        val width = depth.width
+                                        val height = depth.height
+                                        val centerX = width / 2
+                                        val centerY = height / 2
+                                        var validPixels = 0
+                                        val scanRadius = 25
+                                        
+                                        for (y in centerY - scanRadius..centerY + scanRadius) {
+                                            for (x in centerX - scanRadius..centerX + scanRadius) {
+                                                if (x in 0 until width && y in 0 until height) {
+                                                    val index = y * width + x
+                                                    val pixel = buffer.get(index).toInt()
+                                                    val depthMm = pixel and 0x1FFF
+                                                    if (depthMm > 0) validPixels++
+                                                }
+                                            }
+                                        }
+                                        
+                                        val totalPixels = (scanRadius * 2 + 1) * (scanRadius * 2 + 1)
+                                        val validRatio = validPixels.toFloat() / totalPixels
+                                        
+                                        if (validRatio > 0.1f) {
+                                            isSensorWarmedUp = true
+                                            runOnUiThread {
+                                                 logToConsole("[SUCCESS] AE/AF Triggered & Converged (Global Depth).")
+                                                 checkWarmupCompletion()
+                                            }
+                                        }
+                                    } catch (e: Exception) {
+                                         // Warmup check failed
+                                    }
+                                }
+                            }
+                        }
+
+                        // --- Path B: UI Visualization ---
+                        // Transform to View Coordinates for Overlay
                         val transformedPersons = detectionResults.map { person ->
                             val newKeypoints = person.keypoints.map { kpt ->
                                 inputCoords[0] = kpt.x
@@ -449,92 +523,20 @@ class MainActivity : AppCompatActivity() {
                                 val screenY = outputCoords[1]
                                 
                                 // Normalize for OverlayView (0..1 relative to View)
-                                val normX = screenX / viewWidth
-                                val normY = screenY / viewHeight
+                                val normViewX = screenX / viewWidth
+                                val normViewY = screenY / viewHeight
                                 
-                                val newKpt = Keypoint(normX, normY, kpt.conf)
+                                val newKpt = Keypoint(normViewX, normViewY, kpt.conf)
                                 
-                                // We will fill x3d/y3d/z3d in the depth block below
+                                // COPY 3D Data from Physics Path
+                                newKpt.x3d = kpt.x3d
+                                newKpt.y3d = kpt.y3d
+                                newKpt.z3d = kpt.z3d
+                                newKpt.depthError = kpt.depthError
+                                
                                 newKpt 
                             }
                             Person(newKeypoints)
-                        }
-
-                        // Check if depth is available
-                        // Try to acquire and use depth image in one go
-                        try {
-                            val depthImage = frame.acquireRawDepthImage16Bits()
-                            depthImage.use { _ ->
-                                transformedPersons.forEach { person ->
-                                    person.keypoints.forEach { kpt ->
-                                        if (kpt.conf > 0.3f) {
-                                            // access coordinates. Since kpt is now normalized to view,
-                                            // we reconvert to screen pixels for BodyMeasureEngine
-                                            val screenX = kpt.x * viewWidth
-                                            val screenY = kpt.y * viewHeight
-                                            
-                                            val position3d = bodyMeasureEngine.get3DJointPositionWithProvidedDepth(
-                                                frame, depthImage, screenX, screenY
-                                            ) { msg ->
-                                                // Store critical depth errors for high conf points to display later
-                                                if (kpt.conf > 0.3f) {
-                                                     kpt.depthError = msg
-                                                }
-                                            }
-                                            if (position3d != null) {
-                                                kpt.x3d = position3d[0]
-                                                kpt.y3d = position3d[1]
-                                                kpt.z3d = position3d[2]
-                                            }
-                                        }
-                                    }
-                                }
-                            }
-                        } catch (e: Exception) {
-                            // Depth might not be available yet or acquisition failed
-                            // runOnUiThread { logToConsole("Depth not ready: ${e.message}") }
-                        }
-
-                        // Implement Global Depth Check for Sensor Warmup
-                        if (!isSensorWarmedUp) {
-                             try {
-                                val depthImage = frame.acquireRawDepthImage16Bits()
-                                depthImage.use { depth ->
-                                    // Check center 50x50 pixels for valid depth (>0)
-                                    val buffer = depth.planes[0].buffer.order(java.nio.ByteOrder.LITTLE_ENDIAN).asShortBuffer()
-                                    val width = depth.width
-                                    val height = depth.height
-                                    val centerX = width / 2
-                                    val centerY = height / 2
-                                    var validPixels = 0
-                                    val scanRadius = 25
-                                    
-                                    for (y in centerY - scanRadius..centerY + scanRadius) {
-                                        for (x in centerX - scanRadius..centerX + scanRadius) {
-                                            if (x in 0 until width && y in 0 until height) {
-                                                val index = y * width + x
-                                                val pixel = buffer.get(index).toInt()
-                                                val depthMm = pixel and 0x1FFF
-                                                if (depthMm > 0) validPixels++
-                                            }
-                                        }
-                                    }
-                                    
-                                    val totalPixels = (scanRadius * 2 + 1) * (scanRadius * 2 + 1)
-                                    val validRatio = validPixels.toFloat() / totalPixels
-                                    
-                                    // If >10% of center pixels are valid, consider sensors converged
-                                    if (validRatio > 0.1f) {
-                                        isSensorWarmedUp = true
-                                        runOnUiThread {
-                                             logToConsole("[SUCCESS] AE/AF Triggered & Converged (Global Depth).")
-                                             checkWarmupCompletion()
-                                        }
-                                    }
-                                }
-                             } catch (e: Exception) {
-                                 // Depth not ready yet
-                             }
                         }
 
                         runOnUiThread {
@@ -550,7 +552,7 @@ class MainActivity : AppCompatActivity() {
                                 val tvIps = findViewById<android.widget.TextView>(R.id.tvIps)
                                 tvIps.text = "IPS: $currentIps"
                             }
-                            // Log keypoints if console is visible (Ported from normal camera loop)
+                            // Log keypoints if console is visible
                             if (findViewById<android.view.View>(R.id.consoleScrollView).visibility == android.view.View.VISIBLE) {
                                 if (transformedPersons.isNotEmpty()) {
                                     val sb = StringBuilder()
@@ -559,8 +561,12 @@ class MainActivity : AppCompatActivity() {
                                         sb.append("Person $index:\n")
                                         person.keypoints.forEachIndexed { kIndex, kpt ->
                                             if (kpt.conf > 0.3f) {
-                                                val depthInfo = if (kpt.z3d != 0f) " D:${String.format("%.2f", kpt.z3d)}m" else ""
-                                                sb.append("  Kpt $kIndex: (${String.format("%.2f", kpt.x)}, ${String.format("%.2f", kpt.y)}) Conf:${String.format("%.2f", kpt.conf)}$depthInfo\n")
+                                                // Strategy 4 Log Format: (x, y, z) Conf
+                                                val xStr = String.format("%.2f", kpt.x3d)
+                                                val yStr = String.format("%.2f", kpt.y3d)
+                                                val zStr = String.format("%.2f", kpt.z3d)
+                                                sb.append("  Kpt $kIndex: ($xStr, $yStr, $zStr)m Conf:${String.format("%.2f", kpt.conf)}\n")
+                                                
                                                 if (kpt.depthError != null) {
                                                     sb.append("  [WARNING] 3D Err: ${kpt.depthError}\n")
                                                 }

@@ -29,139 +29,83 @@ class BodyMeasureEngine {
      * @param inputHeight Height of input source for YOLO
      * @return FloatArray {x, y, z} Unit: meters. Returns null if measurement fails.
      */
-    fun get3DJointPosition(frame: Frame, yoloX: Float, yoloY: Float, debugLog: ((String) -> Unit)? = null): FloatArray? {
+    /**
+     * Core method: Input IMAGE_NORMALIZED 2D points, return 3D points in camera coordinate system (meters)
+     * Strategy 4: Integrated Normalized Workflow
+     * @param frame       ARCore current frame
+     * @param depthImage  The acquired depth image
+     * @param normX       Normalized X (0.0 - 1.0) relative to Camera Image
+     * @param normY       Normalized Y (0.0 - 1.0) relative to Camera Image
+     * @return FloatArray {x, y, z} Unit: meters. Returns null if measurement fails.
+     */
+    fun get3DJointPosition(
+        frame: Frame, 
+        depthImage: Image, 
+        normX: Float, 
+        normY: Float, 
+        debugLog: ((String) -> Unit)? = null
+    ): FloatArray? {
         try {
-            val rawDepth = frame.acquireRawDepthImage16Bits()
-            // debugLog?.invoke("Depth Image acquired: ${rawDepth.width}x${rawDepth.height}") 
-            rawDepth.use { depthImage ->
-                // 1. Coordinate Transformation: Critical!
-                // Map YOLO coordinates (likely screen or RGB) to Depth Image coordinates (usually small like 160x120)
-                yoloCoords[0] = yoloX
-                yoloCoords[1] = yoloY
+            // 1. Scale for Intrinsics (Math Alignment)
+            // We need the 'pixel' coordinates relative to the Intrinsics resolution for the Pinhole Model
+            val intrinsics = frame.camera.imageIntrinsics
+            val dim = intrinsics.imageDimensions
+            // Important: intrinsics dimensions usually match the CPU image resolution (e.g. 640x480)
+            val u_i = normX * dim[0]
+            val v_i = normY * dim[1]
 
-                // Assuming YOLO coordinates are based on "VIEW" (screen pixels)
-                // If YOLO runs on CPU Image, change VIEW to IMAGE_PIXELS and normalize yourself if needed
-                // But typically for full screen view, we use VIEW.
-                // However, the prompt notes: "Coordinates2d.VIEW represents screen pixel coordinates".
-                // We need to confirm if YOLO detections are normalized or pixels.
-                // Our current YoloDetector returns normalized (0-1) or pixel coords depending on how we used it.
-                // But in MainActivity we are drawing them scaled to view size.
-                // If we pass pixel coords relative to the view, we use Coordinates2d.VIEW.
-                
-                // Note: transformCoordinates2d expects normalized values [0, 1] if input is VIEW_NORMALIZED?
-                // No, Coordinates2d.VIEW is not normalized, it's pixels? 
-                // Wait, ARCore docs say: 
-                // VIEW: Coordinates in the View (e.g. SurfaceView) associated with the session.
-                // IMAGE_PIXELS: Coordinates in the camera image buffer.
-                // IMAGE_NORMALIZED: Normalized coordinates in the camera image [0,1].
-                
-                // Let's assume input yoloX/Y are pixels coming from the view size if we use VIEW.
-                // If they are from the camera image, we should use IMAGE_PIXELS.
-                
-                // For simplicity, let's assume we pass in pixel coordinates relative to the IMAGE (since we run YOLO on the bitmap from ImageAnalysis/ARCore frame).
-                // Actually, in the ARCore path (which we will implement), we'll likely get the image from frame.acquireCameraImage().
-                // So yoloX/Y will be in IMAGE_PIXELS space if we detect on that bitmap.
-                
-                // The prompt example says:
-                // frame.transformCoordinates2d(Coordinates2d.VIEW, yoloCoords, Coordinates2d.IMAGE_PIXELS, depthUvCoords);
-                // This implies the input `yoloX/Y` are in Screen View coordinates.
-                
-                // Let's implement exactly as the prompt suggested first (using VIEW -> IMAGE_PIXELS), 
-                // assuming the caller passes Screen Coordinates.
-                
-                try {
-                    frame.transformCoordinates2d(
-                        Coordinates2d.VIEW,         // Input: Screen pixels
-                        yoloCoords,
-                        Coordinates2d.IMAGE_NORMALIZED, // Output: Normalized coordinates (0..1)
-                        depthUvCoords
-                    )
-                } catch (e: Exception) {
-                    debugLog?.invoke("Coord Transform Failed: ${e.message}")
-                    return null
-                }
-
-                // Scale normalized coords to actual depth image dimensions
-                val depthX = (depthUvCoords[0] * depthImage.width).toInt()
-                val depthY = (depthUvCoords[1] * depthImage.height).toInt()
-                
-                // debugLog?.invoke("2D: ($yoloX, $yoloY) -> Depth: ($depthX, $depthY)")
-
-                if (depthX < 0 || depthX >= depthImage.width || depthY < 0 || depthY >= depthImage.height) {
-                    debugLog?.invoke("Depth Coords Out of Bounds: $depthX, $depthY")
-                    return null
-                }
-
-                // 2. Get Planar Depth (Z), apply median filter
-                val planarDepthMeters = getSmoothedDepth(depthImage, depthX, depthY)
-
-                if (planarDepthMeters <= 0) {
-                    // debugLog?.invoke("Invalid Depth: $planarDepthMeters at ($depthX, $depthY)")
-                    return null // Invalid depth
-                }
-
-                // 3. Unprojection: From 2D + Z -> 3D (X, Y, Z)
-                val intrinsics = frame.camera.imageIntrinsics
-                return unproject(depthX, depthY, planarDepthMeters, intrinsics)
+            // 2. Scale for Depth Sampling
+            // We need the 'pixel' coordinates relative to the Depth Image resolution (e.g. 160x120)
+            val dW = depthImage.width
+            val dH = depthImage.height
+            
+            // Clamp to safe bounds to avoid crashes at edges
+            val dU = (normX * dW).toInt().coerceIn(0, dW - 1)
+            val dV = (normY * dH).toInt().coerceIn(0, dH - 1)
+            
+            // 3. Get Depth (Z) with Stability
+            // Use 3x3 Median Filter to ignore noise (Strategy 4 Recommendation)
+            val z = getSmoothedDepth(depthImage, dU, dV) 
+            
+            if (z <= 0) {
+                // debugLog?.invoke("Invalid Depth: $z at ($dU, $dV)")
+                return null
             }
+
+            // 4. Unproject (Pinhole Model)
+            // Formula: X = (u - cx) * Z / fx
+            val principals = intrinsics.principalPoint // {cx, cy}
+            val focals = intrinsics.focalLength        // {fx, fy}
+            
+            val x = (u_i - principals[0]) * z / focals[0]
+            val y = (v_i - principals[1]) * z / focals[1]
+            
+            return floatArrayOf(x, y, z)
+
         } catch (e: Exception) {
             debugLog?.invoke("Error in BodyMeasureEngine: ${e.message}")
-            e.printStackTrace()
+            // e.printStackTrace() // Keep logs clean
             return null
         }
     }
 
     /**
-     * Optimized method that uses a pre-acquired depth image.
+     * Backward compatibility wrapper if needed, or alias for the main function.
+     * In Strategy 4, we use the provided depth image directly.
      */
     fun get3DJointPositionWithProvidedDepth(
         frame: Frame,
         depthImage: Image,
-        yoloX: Float,
-        yoloY: Float,
+        normX: Float,
+        normY: Float,
         debugLog: ((String) -> Unit)? = null
     ): FloatArray? {
-        try {
-            // 1. Coordinate Transformation
-            yoloCoords[0] = yoloX
-            yoloCoords[1] = yoloY
-
-            frame.transformCoordinates2d(
-                Coordinates2d.VIEW,
-                yoloCoords,
-                Coordinates2d.IMAGE_NORMALIZED,
-                depthUvCoords
-            )
-
-            val depthX = (depthUvCoords[0] * depthImage.width).toInt()
-            val depthY = (depthUvCoords[1] * depthImage.height).toInt()
-
-            if (depthX < 0 || depthX >= depthImage.width || depthY < 0 || depthY >= depthImage.height) {
-                debugLog?.invoke("Depth Coords Out of Bounds: $depthX, $depthY")
-                return null
-            }
-
-            // 2. Get Planar Depth (Z)
-            val planarDepthMeters = getSmoothedDepth(depthImage, depthX, depthY)
-
-            if (planarDepthMeters <= 0) {
-                debugLog?.invoke("Invalid Depth: $planarDepthMeters at ($depthX, $depthY)")
-                return null
-            }
-
-            // 3. Unprojection
-            val intrinsics = frame.camera.imageIntrinsics
-            return unproject(depthX, depthY, planarDepthMeters, intrinsics)
-
-        } catch (e: Exception) {
-            debugLog?.invoke("Error in get3DJointPositionWithProvidedDepth: ${e.message}")
-            // Don't print stack trace here to avoid spamming logs
-            return null
-        }
+        return get3DJointPosition(frame, depthImage, normX, normY, debugLog)
     }
 
     /**
      * Extract and calculate median depth from Raw Depth Buffer
+     * Implements 3x3 Median Filter for Stability
      */
     private fun getSmoothedDepth(depthImage: Image, cx: Int, cy: Int): Float {
         val buffer = depthImage.planes[0].buffer.order(java.nio.ByteOrder.LITTLE_ENDIAN).asShortBuffer()
@@ -169,9 +113,11 @@ class BodyMeasureEngine {
         val height = depthImage.height
         var validCount = 0
 
-        // 5x5 window scan
-        for (y in cy - 2..cy + 2) {
-            for (x in cx - 2..cx + 2) {
+        // 3x3 window scan (Radius = 1) - Safer for edges than 5x5, sufficient for stability
+        val scanRadius = 1 
+        
+        for (y in cy - scanRadius..cy + scanRadius) {
+            for (x in cx - scanRadius..cx + scanRadius) {
                 // Bounds check
                 if (x < 0 || x >= width || y < 0 || y >= height) continue
 
@@ -180,10 +126,8 @@ class BodyMeasureEngine {
 
                 // Parse Raw Depth: first 13 bits are distance (mm)
                 val depthMm = pixel and 0x1FFF
-                // Last 3 bits are confidence (0-7)
-                val confidence = (pixel shr 13) and 0x7
-
-                // Filter: Exclude 0 and low confidence
+                
+                // Filter: Exclude 0 (Invalid)
                 if (depthMm > 0) {
                     depthWindowCache[validCount++] = depthMm.toShort()
                 }
