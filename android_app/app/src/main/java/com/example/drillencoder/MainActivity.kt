@@ -645,16 +645,10 @@ class MainActivity : AppCompatActivity() {
                                             
                                             // If we are in Landscape (0 or 180), we need to SWAP axes to match Portrait Overlay
                                             // The Bitmap is Landscape (W > H). The Screen is Portrait (H > W).
-                                            if (rotationDegrees == 0f || rotationDegrees == 180f) {
-                                                // Map Bitmap Y (Short) -> Screen X (Short)
-                                                // Map Bitmap X (Long) -> Screen Y (Long)
-                                                normX = oy / bitmap.height
-                                                normY = ox / bitmap.width
-                                            } else {
-                                                // Portrait: Standard mapping
-                                                normX = ox / bitmap.width
-                                                normY = oy / bitmap.height
-                                            }
+                                            // Always map to original bitmap dimensions (Sensor Space)
+                                            // ARCore's transformCoordinates2d handles rotation/aspect ratio correctly
+                                            normX = ox / bitmap.width
+                                            normY = oy / bitmap.height
                                             
                                             Keypoint(normX, normY, kpt.conf)
                                         }

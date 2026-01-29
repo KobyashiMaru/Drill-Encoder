@@ -102,9 +102,6 @@ To ensure optimal performance and functionality, particularly for the **ToF (Tim
                 - If `false`: Keep `ivWormhole` visible. Rely on `checkWarmupCompletion` or the 4000ms failsafe (`warmupTimeoutRunnable`) to hide it.
         - **Log Cleanup**:
             - Catch `NotYetAvailableException` specifically in the processing loop and log it as `[WARN] Camera not ready` instead of `CRITICAL`.
-
-
-
 - [x] adaptive method on device position
 - [x] IPS counter for benchmark
 - [ ] Improve IPS across inference methods 
