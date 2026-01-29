@@ -65,7 +65,12 @@ class BodyMeasureEngine {
             
             // 3. Get Depth (Z) with Stability
             // Use 3x3 Median Filter to ignore noise (Strategy 4 Recommendation)
-            val z = getSmoothedDepth(depthImage, dU, dV) 
+            var z = getSmoothedDepth(depthImage, dU, dV) 
+            
+            // Strategy 1: Spiral Search Fallback
+            if (z <= 0) {
+                 z = getSpiralDepth(depthImage, dU, dV)
+            }
             
             if (z <= 0) {
                 // debugLog?.invoke("Invalid Depth: $z at ($dU, $dV)")
@@ -148,21 +153,47 @@ class BodyMeasureEngine {
     }
 
     /**
-     * Math core: specific unprojection using camera intrinsics
+     * Strategy 1: Smart Spiral Search
+     * Searches for a valid depth value in a spiral pattern around the given center.
+     * Uses a pre-computed efficient lookup table to minimize CPU usage.
      */
-    private fun unproject(u: Int, v: Int, z: Float, intrinsics: CameraIntrinsics): FloatArray {
-        val principals = intrinsics.principalPoint // {cx, cy}
-        val focals = intrinsics.focalLength        // {fx, fy}
+    private fun getSpiralDepth(
+        depthImage: Image, 
+        centerX: Int, 
+        centerY: Int
+    ): Float {
+        // 1. Check center again (redundant but safe)
+        val centerDepth = getSmoothedDepth(depthImage, centerX, centerY)
+        if (centerDepth > 0) return centerDepth
 
-        // Formula: X = (u - cx) * Z / fx
-        val x = (u - principals[0]) * z / focals[0]
-        // Formula: Y = (v - cy) * Z / fy
-        val y = (v - principals[1]) * z / focals[1]
+        val buffer = depthImage.planes[0].buffer.order(java.nio.ByteOrder.LITTLE_ENDIAN).asShortBuffer()
+        val width = depthImage.width
+        val height = depthImage.height
 
-        // ARCore OpenGL coordinate system: Forward is -Z.
-        // But to keep physical distance calc simple, we return relative pos in camera space.
-        // We want positive distance for user display
-        return floatArrayOf(x, y, z)
+        // 2. Iterate through pre-computed spiral offsets
+        // format: [dx1, dy1, dx2, dy2, ...]
+        for (i in 0 until spiralOffsets.size step 2) {
+            val dx = spiralOffsets[i]
+            val dy = spiralOffsets[i+1]
+            
+            val tx = centerX + dx
+            val ty = centerY + dy
+            
+            // Bounds check
+            if (tx < 0 || tx >= width || ty < 0 || ty >= height) continue
+            
+            // Direct Raw Read (Faster than median filter for search)
+            val index = ty * width + tx
+            val pixel = buffer.get(index).toInt()
+            val depthMm = pixel and 0x1FFF
+            
+            if (depthMm > 0) {
+                // Found valid pixel! Return immediately (Early Exit)
+                return depthMm / 1000.0f
+            }
+        }
+        
+        return -1f // Truly invalid
     }
 
     companion object {
@@ -176,6 +207,42 @@ class BodyMeasureEngine {
                 (p1[1] - p2[1]).pow(2) +
                 (p1[2] - p2[2]).pow(2)
             )
+        }
+        
+        /**
+         * Pre-computed Spiral Offsets
+         * Generated for Radius 15 (Max)
+         * Interleaved dx, dy
+         */
+        private val spiralOffsets = IntArray(450).apply {
+             // Simple generator embedded in static block to keep code clean but offsets static
+             // In a real optimized build we might hardcode the array, but this runs once at class load.
+             var idx = 0
+             var x = 0
+             var y = 0
+             var dx = 0
+             var dy = -1
+             val maxRadius = 15
+             // Max iterations to cover roughly 15px radius box (~225 points * 2)
+             for (j in 0 until 900) { 
+                 if (-maxRadius <= x && x <= maxRadius && -maxRadius <= y && y <= maxRadius) {
+                     if (x != 0 || y != 0) { // Skip center (already checked)
+                         if (idx < size - 1) {
+                             this[idx++] = x
+                             this[idx++] = y
+                         } else {
+                            break
+                         }
+                     }
+                 }
+                 if (x == y || (x < 0 && x == -y) || (x > 0 && x == 1 - y)) {
+                     val t = dx
+                     dx = -dy
+                     dy = t
+                 }
+                 x += dx
+                 y += dy
+             }
         }
     }
 }

@@ -77,7 +77,34 @@ To ensure optimal performance and functionality, particularly for the **ToF (Tim
 ## Version 0.1.1
 
 ### To-Do
-- [ ] AE/AF calibration has initialized but sometimes it doesn't work. Test more.
+- [x] AE/AF calibration has initialized but sometimes it doesn't work. Test more.
+    * The immediate cause is the `get3DJointPosition` function in `BodyMeasureEngine.kt` returning `null`.
+        * This happens when `getSmoothedDepth` detects no valid depth pixels (value > 0) in the 3x3 window around the keypoint.
+        * When `null` is returned, `MainActivity.kt` skips updating the keypoint, leaving `x3d`, `y3d`, and `z3d` to `0f` by default (as defined in `OverlayView.kt`), these zero values persist and are reported.
+    * The user observed `CRITICAL: NotYetAvailableException` *before* `[SUCCESS] AE/AF Triggered`.
+        * **The "CRITICAL" Log**: Originated from `frame.acquireCameraImage()` (for YOLO). This throws `NotYetAvailableException` in the first few frames *before* the RGB camera stream is fully ready. This is a transient startup state.
+        * **The "SUCCESS" Log**: Originated from `checkWarmupCompletion` (for Depth). This fires *after* the depth sensor has warmed up.
+        * **Results**: The delay confirms a **Warmup Period**. During this time, coordinates are zero.
+    * Final Decision: 
+        - **Implement `getSpiralDepth`**: A new private function to search for valid depth.
+            - Uses a `static final int[]` lookup table for offsets `(dx, dy)`.
+            - Limit radius to ~15 pixels.
+            - Returns the first valid non-zero depth found.
+        - **Robust Warmup Check (`checkRobustWarmup`)**:
+            - Scan 5 zones: Center, TL, TR, BL, BR (51x51 pixels each).
+            - Threshold: > 40% valid pixels per zone.
+            - Criteria: `Center Valid && (Count(Corners) >= 2)`.
+        - **Animation Logic**:
+            - Keep `animator.duration = 3000`.
+            - In `onAnimationEnd`:
+                - check `isSensorWarmedUp`.
+                - If `true`: Proceed immediately.
+                - If `false`: Keep `ivWormhole` visible. Rely on `checkWarmupCompletion` or the 4000ms failsafe (`warmupTimeoutRunnable`) to hide it.
+        - **Log Cleanup**:
+            - Catch `NotYetAvailableException` specifically in the processing loop and log it as `[WARN] Camera not ready` instead of `CRITICAL`.
+
+
+
 - [x] adaptive method on device position
 - [x] IPS counter for benchmark
 - [ ] Improve IPS across inference methods 

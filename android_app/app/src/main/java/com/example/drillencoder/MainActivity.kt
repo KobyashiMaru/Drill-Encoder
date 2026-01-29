@@ -341,8 +341,11 @@ class MainActivity : AppCompatActivity() {
 
             animator.addListener(object : android.animation.AnimatorListenerAdapter() {
                 override fun onAnimationEnd(animation: android.animation.Animator) {
-                    ivWormhole.visibility = android.view.View.GONE // Ensure it's gone
                     isAnimationFinished = true
+                    // Strategy 3: Only hide if warmed up. If not, wait for failsafe (4s total) or success callback
+                    if (isSensorWarmedUp) {
+                        ivWormhole.visibility = android.view.View.GONE
+                    }
                     checkWarmupCompletion()
                 }
             })
@@ -468,29 +471,7 @@ class MainActivity : AppCompatActivity() {
                                 // 2. Global Depth Check for Sensor Warmup (Optimized Reuse)
                                 if (!isSensorWarmedUp) {
                                     try {
-                                        val buffer = depth.planes[0].buffer.order(java.nio.ByteOrder.LITTLE_ENDIAN).asShortBuffer()
-                                        val width = depth.width
-                                        val height = depth.height
-                                        val centerX = width / 2
-                                        val centerY = height / 2
-                                        var validPixels = 0
-                                        val scanRadius = 25
-                                        
-                                        for (y in centerY - scanRadius..centerY + scanRadius) {
-                                            for (x in centerX - scanRadius..centerX + scanRadius) {
-                                                if (x in 0 until width && y in 0 until height) {
-                                                    val index = y * width + x
-                                                    val pixel = buffer.get(index).toInt()
-                                                    val depthMm = pixel and 0x1FFF
-                                                    if (depthMm > 0) validPixels++
-                                                }
-                                            }
-                                        }
-                                        
-                                        val totalPixels = (scanRadius * 2 + 1) * (scanRadius * 2 + 1)
-                                        val validRatio = validPixels.toFloat() / totalPixels
-                                        
-                                        if (validRatio > 0.1f) {
+                                        if (checkRobustWarmup(depth)) {
                                             isSensorWarmedUp = true
                                             runOnUiThread {
                                                  logToConsole("[SUCCESS] AE/AF Triggered & Converged (Global Depth).")
@@ -716,6 +697,9 @@ class MainActivity : AppCompatActivity() {
                         } catch (e: com.google.ar.core.exceptions.ResourceExhaustedException) {
                             // Log.e(TAG, "Resource Exhausted (ANTIGRAVITY CHECK): ${e.message}")
                             isProcessing = false
+                        } catch (e: com.google.ar.core.exceptions.NotYetAvailableException) {
+                             // Strategy 3: Silence "CRITICAL" log for normal startup delay
+                             isProcessing = false
                         } catch (t: Throwable) {
                              // Catch EVERYTHING including OutOfMemoryError, LinkageError, etc.
                              Log.e(TAG, "CRITICAL FAILURE in Frame Processing Loop", t)
@@ -878,5 +862,52 @@ class MainActivity : AppCompatActivity() {
         private const val TAG = "DrillEncoder"
         private const val REQUEST_CODE_PERMISSIONS = 10
         private val REQUIRED_PERMISSIONS = arrayOf(Manifest.permission.CAMERA)
+    }
+
+    private fun checkRobustWarmup(depth: android.media.Image): Boolean {
+        val buffer = depth.planes[0].buffer.order(java.nio.ByteOrder.LITTLE_ENDIAN).asShortBuffer()
+        val width = depth.width
+        val height = depth.height
+        val zoneRadius = 25 // 51x51 pixels
+
+        // Centers of 5 zones
+        val zones = listOf(
+            Pair(width / 2, height / 2),       // Center
+            Pair(zoneRadius, zoneRadius),      // Top-Left
+            Pair(width - zoneRadius, zoneRadius), // Top-Right
+            Pair(zoneRadius, height - zoneRadius), // Bot-Left
+            Pair(width - zoneRadius, height - zoneRadius) // Bot-Right
+        )
+
+        var centerValid = false
+        var cornersValidCount = 0
+
+        zones.forEachIndexed { index, (cx, cy) ->
+            var validPixels = 0
+            for (y in cy - zoneRadius..cy + zoneRadius) {
+                for (x in cx - zoneRadius..cx + zoneRadius) {
+                    if (x in 0 until width && y in 0 until height) {
+                        val indexPx = y * width + x
+                        val pixel = buffer.get(indexPx).toInt()
+                        val depthMm = pixel and 0x1FFF
+                        if (depthMm > 0) validPixels++
+                    }
+                }
+            }
+            val totalPixels = (zoneRadius * 2 + 1) * (zoneRadius * 2 + 1)
+            val validRatio = validPixels.toFloat() / totalPixels
+            
+            // Threshold: > 40% valid
+            val isValid = validRatio > 0.4f
+
+            if (index == 0) { // Center
+                if (isValid) centerValid = true
+            } else { // Corners
+                if (isValid) cornersValidCount++
+            }
+        }
+
+        // Success: Center + at least 2 Corners
+        return centerValid && (cornersValidCount >= 2)
     }
 }
