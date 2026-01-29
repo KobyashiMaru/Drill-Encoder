@@ -56,169 +56,168 @@
 37        android:extractNativeLibs="true"
 38        android:label="Drill Encoder"
 38-->/Users/hao/hao/vibe_coding_project/Drill-Encoder/android_app/app/src/main/AndroidManifest.xml:9:9-38
-39        android:testOnly="true"
-40        android:theme="@style/Theme.MaterialComponents.DayNight.NoActionBar" >
-40-->/Users/hao/hao/vibe_coding_project/Drill-Encoder/android_app/app/src/main/AndroidManifest.xml:10:9-77
-41        <activity
-41-->/Users/hao/hao/vibe_coding_project/Drill-Encoder/android_app/app/src/main/AndroidManifest.xml:11:9-19:20
-42            android:name="com.example.drillencoder.StartActivity"
-42-->/Users/hao/hao/vibe_coding_project/Drill-Encoder/android_app/app/src/main/AndroidManifest.xml:12:13-42
-43            android:exported="true"
-43-->/Users/hao/hao/vibe_coding_project/Drill-Encoder/android_app/app/src/main/AndroidManifest.xml:13:13-36
-44            android:theme="@style/Theme.MaterialComponents.DayNight.NoActionBar" >
-44-->/Users/hao/hao/vibe_coding_project/Drill-Encoder/android_app/app/src/main/AndroidManifest.xml:14:13-81
-45            <intent-filter>
-45-->/Users/hao/hao/vibe_coding_project/Drill-Encoder/android_app/app/src/main/AndroidManifest.xml:15:13-18:29
-46                <action android:name="android.intent.action.MAIN" />
-46-->/Users/hao/hao/vibe_coding_project/Drill-Encoder/android_app/app/src/main/AndroidManifest.xml:16:17-69
-46-->/Users/hao/hao/vibe_coding_project/Drill-Encoder/android_app/app/src/main/AndroidManifest.xml:16:25-66
-47
-48                <category android:name="android.intent.category.LAUNCHER" />
-48-->/Users/hao/hao/vibe_coding_project/Drill-Encoder/android_app/app/src/main/AndroidManifest.xml:17:17-77
-48-->/Users/hao/hao/vibe_coding_project/Drill-Encoder/android_app/app/src/main/AndroidManifest.xml:17:27-74
-49            </intent-filter>
-50        </activity>
-51        <activity
-51-->/Users/hao/hao/vibe_coding_project/Drill-Encoder/android_app/app/src/main/AndroidManifest.xml:20:9-24:84
-52            android:name="com.example.drillencoder.MainActivity"
-52-->/Users/hao/hao/vibe_coding_project/Drill-Encoder/android_app/app/src/main/AndroidManifest.xml:21:13-41
-53            android:exported="false"
-53-->/Users/hao/hao/vibe_coding_project/Drill-Encoder/android_app/app/src/main/AndroidManifest.xml:23:13-37
-54            android:screenOrientation="portrait"
-54-->/Users/hao/hao/vibe_coding_project/Drill-Encoder/android_app/app/src/main/AndroidManifest.xml:22:13-49
-55            android:theme="@style/Theme.MaterialComponents.DayNight.NoActionBar" />
-55-->/Users/hao/hao/vibe_coding_project/Drill-Encoder/android_app/app/src/main/AndroidManifest.xml:24:13-81
-56
-57        <meta-data
-57-->/Users/hao/hao/vibe_coding_project/Drill-Encoder/android_app/app/src/main/AndroidManifest.xml:26:9-81
-58            android:name="com.google.ar.core"
-58-->/Users/hao/hao/vibe_coding_project/Drill-Encoder/android_app/app/src/main/AndroidManifest.xml:26:20-53
-59            android:value="optional" />
-59-->/Users/hao/hao/vibe_coding_project/Drill-Encoder/android_app/app/src/main/AndroidManifest.xml:26:54-78
-60
-61        <service
-61-->[androidx.camera:camera-camera2:1.4.0] /Users/hao/.gradle/caches/8.11.1/transforms/25fcd82cdad59cbcfe9e93eaa4258a8c/transformed/jetified-camera-camera2-1.4.0/AndroidManifest.xml:24:9-33:19
-62            android:name="androidx.camera.core.impl.MetadataHolderService"
-62-->[androidx.camera:camera-camera2:1.4.0] /Users/hao/.gradle/caches/8.11.1/transforms/25fcd82cdad59cbcfe9e93eaa4258a8c/transformed/jetified-camera-camera2-1.4.0/AndroidManifest.xml:25:13-75
-63            android:enabled="false"
-63-->[androidx.camera:camera-camera2:1.4.0] /Users/hao/.gradle/caches/8.11.1/transforms/25fcd82cdad59cbcfe9e93eaa4258a8c/transformed/jetified-camera-camera2-1.4.0/AndroidManifest.xml:26:13-36
-64            android:exported="false" >
-64-->[androidx.camera:camera-camera2:1.4.0] /Users/hao/.gradle/caches/8.11.1/transforms/25fcd82cdad59cbcfe9e93eaa4258a8c/transformed/jetified-camera-camera2-1.4.0/AndroidManifest.xml:27:13-37
-65            <meta-data
-65-->[androidx.camera:camera-camera2:1.4.0] /Users/hao/.gradle/caches/8.11.1/transforms/25fcd82cdad59cbcfe9e93eaa4258a8c/transformed/jetified-camera-camera2-1.4.0/AndroidManifest.xml:30:13-32:89
-66                android:name="androidx.camera.core.impl.MetadataHolderService.DEFAULT_CONFIG_PROVIDER"
-66-->[androidx.camera:camera-camera2:1.4.0] /Users/hao/.gradle/caches/8.11.1/transforms/25fcd82cdad59cbcfe9e93eaa4258a8c/transformed/jetified-camera-camera2-1.4.0/AndroidManifest.xml:31:17-103
-67                android:value="androidx.camera.camera2.Camera2Config$DefaultProvider" />
-67-->[androidx.camera:camera-camera2:1.4.0] /Users/hao/.gradle/caches/8.11.1/transforms/25fcd82cdad59cbcfe9e93eaa4258a8c/transformed/jetified-camera-camera2-1.4.0/AndroidManifest.xml:32:17-86
-68        </service>
-69
-70        <provider
-70-->[androidx.emoji2:emoji2:1.2.0] /Users/hao/.gradle/caches/8.11.1/transforms/98c6d0cb6812bb2b59a04ad53707ad66/transformed/jetified-emoji2-1.2.0/AndroidManifest.xml:24:9-32:20
-71            android:name="androidx.startup.InitializationProvider"
-71-->[androidx.emoji2:emoji2:1.2.0] /Users/hao/.gradle/caches/8.11.1/transforms/98c6d0cb6812bb2b59a04ad53707ad66/transformed/jetified-emoji2-1.2.0/AndroidManifest.xml:25:13-67
-72            android:authorities="com.example.drillencoder.androidx-startup"
-72-->[androidx.emoji2:emoji2:1.2.0] /Users/hao/.gradle/caches/8.11.1/transforms/98c6d0cb6812bb2b59a04ad53707ad66/transformed/jetified-emoji2-1.2.0/AndroidManifest.xml:26:13-68
-73            android:exported="false" >
-73-->[androidx.emoji2:emoji2:1.2.0] /Users/hao/.gradle/caches/8.11.1/transforms/98c6d0cb6812bb2b59a04ad53707ad66/transformed/jetified-emoji2-1.2.0/AndroidManifest.xml:27:13-37
-74            <meta-data
-74-->[androidx.emoji2:emoji2:1.2.0] /Users/hao/.gradle/caches/8.11.1/transforms/98c6d0cb6812bb2b59a04ad53707ad66/transformed/jetified-emoji2-1.2.0/AndroidManifest.xml:29:13-31:52
-75                android:name="androidx.emoji2.text.EmojiCompatInitializer"
-75-->[androidx.emoji2:emoji2:1.2.0] /Users/hao/.gradle/caches/8.11.1/transforms/98c6d0cb6812bb2b59a04ad53707ad66/transformed/jetified-emoji2-1.2.0/AndroidManifest.xml:30:17-75
-76                android:value="androidx.startup" />
-76-->[androidx.emoji2:emoji2:1.2.0] /Users/hao/.gradle/caches/8.11.1/transforms/98c6d0cb6812bb2b59a04ad53707ad66/transformed/jetified-emoji2-1.2.0/AndroidManifest.xml:31:17-49
-77            <meta-data
-77-->[androidx.lifecycle:lifecycle-process:2.6.1] /Users/hao/.gradle/caches/8.11.1/transforms/aae860ec5be03271e2f35aecdcf9b581/transformed/jetified-lifecycle-process-2.6.1/AndroidManifest.xml:29:13-31:52
-78                android:name="androidx.lifecycle.ProcessLifecycleInitializer"
-78-->[androidx.lifecycle:lifecycle-process:2.6.1] /Users/hao/.gradle/caches/8.11.1/transforms/aae860ec5be03271e2f35aecdcf9b581/transformed/jetified-lifecycle-process-2.6.1/AndroidManifest.xml:30:17-78
-79                android:value="androidx.startup" />
-79-->[androidx.lifecycle:lifecycle-process:2.6.1] /Users/hao/.gradle/caches/8.11.1/transforms/aae860ec5be03271e2f35aecdcf9b581/transformed/jetified-lifecycle-process-2.6.1/AndroidManifest.xml:31:17-49
-80            <meta-data
-80-->[androidx.profileinstaller:profileinstaller:1.3.0] /Users/hao/.gradle/caches/8.11.1/transforms/eb4dc569fc02f386c16cb2f51ab96e96/transformed/jetified-profileinstaller-1.3.0/AndroidManifest.xml:29:13-31:52
-81                android:name="androidx.profileinstaller.ProfileInstallerInitializer"
-81-->[androidx.profileinstaller:profileinstaller:1.3.0] /Users/hao/.gradle/caches/8.11.1/transforms/eb4dc569fc02f386c16cb2f51ab96e96/transformed/jetified-profileinstaller-1.3.0/AndroidManifest.xml:30:17-85
-82                android:value="androidx.startup" />
-82-->[androidx.profileinstaller:profileinstaller:1.3.0] /Users/hao/.gradle/caches/8.11.1/transforms/eb4dc569fc02f386c16cb2f51ab96e96/transformed/jetified-profileinstaller-1.3.0/AndroidManifest.xml:31:17-49
-83        </provider>
-84
-85        <receiver
-85-->[androidx.profileinstaller:profileinstaller:1.3.0] /Users/hao/.gradle/caches/8.11.1/transforms/eb4dc569fc02f386c16cb2f51ab96e96/transformed/jetified-profileinstaller-1.3.0/AndroidManifest.xml:34:9-52:20
-86            android:name="androidx.profileinstaller.ProfileInstallReceiver"
-86-->[androidx.profileinstaller:profileinstaller:1.3.0] /Users/hao/.gradle/caches/8.11.1/transforms/eb4dc569fc02f386c16cb2f51ab96e96/transformed/jetified-profileinstaller-1.3.0/AndroidManifest.xml:35:13-76
-87            android:directBootAware="false"
-87-->[androidx.profileinstaller:profileinstaller:1.3.0] /Users/hao/.gradle/caches/8.11.1/transforms/eb4dc569fc02f386c16cb2f51ab96e96/transformed/jetified-profileinstaller-1.3.0/AndroidManifest.xml:36:13-44
-88            android:enabled="true"
-88-->[androidx.profileinstaller:profileinstaller:1.3.0] /Users/hao/.gradle/caches/8.11.1/transforms/eb4dc569fc02f386c16cb2f51ab96e96/transformed/jetified-profileinstaller-1.3.0/AndroidManifest.xml:37:13-35
-89            android:exported="true"
-89-->[androidx.profileinstaller:profileinstaller:1.3.0] /Users/hao/.gradle/caches/8.11.1/transforms/eb4dc569fc02f386c16cb2f51ab96e96/transformed/jetified-profileinstaller-1.3.0/AndroidManifest.xml:38:13-36
-90            android:permission="android.permission.DUMP" >
-90-->[androidx.profileinstaller:profileinstaller:1.3.0] /Users/hao/.gradle/caches/8.11.1/transforms/eb4dc569fc02f386c16cb2f51ab96e96/transformed/jetified-profileinstaller-1.3.0/AndroidManifest.xml:39:13-57
-91            <intent-filter>
-91-->[androidx.profileinstaller:profileinstaller:1.3.0] /Users/hao/.gradle/caches/8.11.1/transforms/eb4dc569fc02f386c16cb2f51ab96e96/transformed/jetified-profileinstaller-1.3.0/AndroidManifest.xml:40:13-42:29
-92                <action android:name="androidx.profileinstaller.action.INSTALL_PROFILE" />
-92-->[androidx.profileinstaller:profileinstaller:1.3.0] /Users/hao/.gradle/caches/8.11.1/transforms/eb4dc569fc02f386c16cb2f51ab96e96/transformed/jetified-profileinstaller-1.3.0/AndroidManifest.xml:41:17-91
-92-->[androidx.profileinstaller:profileinstaller:1.3.0] /Users/hao/.gradle/caches/8.11.1/transforms/eb4dc569fc02f386c16cb2f51ab96e96/transformed/jetified-profileinstaller-1.3.0/AndroidManifest.xml:41:25-88
-93            </intent-filter>
-94            <intent-filter>
-94-->[androidx.profileinstaller:profileinstaller:1.3.0] /Users/hao/.gradle/caches/8.11.1/transforms/eb4dc569fc02f386c16cb2f51ab96e96/transformed/jetified-profileinstaller-1.3.0/AndroidManifest.xml:43:13-45:29
-95                <action android:name="androidx.profileinstaller.action.SKIP_FILE" />
-95-->[androidx.profileinstaller:profileinstaller:1.3.0] /Users/hao/.gradle/caches/8.11.1/transforms/eb4dc569fc02f386c16cb2f51ab96e96/transformed/jetified-profileinstaller-1.3.0/AndroidManifest.xml:44:17-85
-95-->[androidx.profileinstaller:profileinstaller:1.3.0] /Users/hao/.gradle/caches/8.11.1/transforms/eb4dc569fc02f386c16cb2f51ab96e96/transformed/jetified-profileinstaller-1.3.0/AndroidManifest.xml:44:25-82
-96            </intent-filter>
-97            <intent-filter>
-97-->[androidx.profileinstaller:profileinstaller:1.3.0] /Users/hao/.gradle/caches/8.11.1/transforms/eb4dc569fc02f386c16cb2f51ab96e96/transformed/jetified-profileinstaller-1.3.0/AndroidManifest.xml:46:13-48:29
-98                <action android:name="androidx.profileinstaller.action.SAVE_PROFILE" />
-98-->[androidx.profileinstaller:profileinstaller:1.3.0] /Users/hao/.gradle/caches/8.11.1/transforms/eb4dc569fc02f386c16cb2f51ab96e96/transformed/jetified-profileinstaller-1.3.0/AndroidManifest.xml:47:17-88
-98-->[androidx.profileinstaller:profileinstaller:1.3.0] /Users/hao/.gradle/caches/8.11.1/transforms/eb4dc569fc02f386c16cb2f51ab96e96/transformed/jetified-profileinstaller-1.3.0/AndroidManifest.xml:47:25-85
-99            </intent-filter>
-100            <intent-filter>
-100-->[androidx.profileinstaller:profileinstaller:1.3.0] /Users/hao/.gradle/caches/8.11.1/transforms/eb4dc569fc02f386c16cb2f51ab96e96/transformed/jetified-profileinstaller-1.3.0/AndroidManifest.xml:49:13-51:29
-101                <action android:name="androidx.profileinstaller.action.BENCHMARK_OPERATION" />
-101-->[androidx.profileinstaller:profileinstaller:1.3.0] /Users/hao/.gradle/caches/8.11.1/transforms/eb4dc569fc02f386c16cb2f51ab96e96/transformed/jetified-profileinstaller-1.3.0/AndroidManifest.xml:50:17-95
-101-->[androidx.profileinstaller:profileinstaller:1.3.0] /Users/hao/.gradle/caches/8.11.1/transforms/eb4dc569fc02f386c16cb2f51ab96e96/transformed/jetified-profileinstaller-1.3.0/AndroidManifest.xml:50:25-92
-102            </intent-filter>
-103        </receiver> <!-- The minimal version code of ARCore APK required for an app using this SDK. -->
-104        <meta-data
-104-->[com.google.ar:core:1.52.0] /Users/hao/.gradle/caches/8.11.1/transforms/70e1695df42544dd7c0c9a5880f806ce/transformed/jetified-core-1.52.0/AndroidManifest.xml:32:9-34:41
-105            android:name="com.google.ar.core.min_apk_version"
-105-->[com.google.ar:core:1.52.0] /Users/hao/.gradle/caches/8.11.1/transforms/70e1695df42544dd7c0c9a5880f806ce/transformed/jetified-core-1.52.0/AndroidManifest.xml:33:13-62
-106            android:value="252570000" /> <!-- This activity is critical for installing ARCore when it is not already present. -->
-106-->[com.google.ar:core:1.52.0] /Users/hao/.gradle/caches/8.11.1/transforms/70e1695df42544dd7c0c9a5880f806ce/transformed/jetified-core-1.52.0/AndroidManifest.xml:34:13-38
-107        <activity
-107-->[com.google.ar:core:1.52.0] /Users/hao/.gradle/caches/8.11.1/transforms/70e1695df42544dd7c0c9a5880f806ce/transformed/jetified-core-1.52.0/AndroidManifest.xml:36:9-42:80
-108            android:name="com.google.ar.core.InstallActivity"
-108-->[com.google.ar:core:1.52.0] /Users/hao/.gradle/caches/8.11.1/transforms/70e1695df42544dd7c0c9a5880f806ce/transformed/jetified-core-1.52.0/AndroidManifest.xml:37:13-62
-109            android:configChanges="keyboardHidden|orientation|screenSize"
-109-->[com.google.ar:core:1.52.0] /Users/hao/.gradle/caches/8.11.1/transforms/70e1695df42544dd7c0c9a5880f806ce/transformed/jetified-core-1.52.0/AndroidManifest.xml:38:13-74
-110            android:excludeFromRecents="true"
-110-->[com.google.ar:core:1.52.0] /Users/hao/.gradle/caches/8.11.1/transforms/70e1695df42544dd7c0c9a5880f806ce/transformed/jetified-core-1.52.0/AndroidManifest.xml:39:13-46
-111            android:exported="false"
-111-->[com.google.ar:core:1.52.0] /Users/hao/.gradle/caches/8.11.1/transforms/70e1695df42544dd7c0c9a5880f806ce/transformed/jetified-core-1.52.0/AndroidManifest.xml:40:13-37
-112            android:launchMode="singleTop"
-112-->[com.google.ar:core:1.52.0] /Users/hao/.gradle/caches/8.11.1/transforms/70e1695df42544dd7c0c9a5880f806ce/transformed/jetified-core-1.52.0/AndroidManifest.xml:41:13-43
-113            android:theme="@android:style/Theme.Material.Light.Dialog.Alert" />
-113-->[com.google.ar:core:1.52.0] /Users/hao/.gradle/caches/8.11.1/transforms/70e1695df42544dd7c0c9a5880f806ce/transformed/jetified-core-1.52.0/AndroidManifest.xml:42:13-77
-114        <!--
-115 Applications that target Android S+ require explicit declaration of
-116             any referenced vendor-provided libraries.
-117        -->
-118        <uses-native-library
-118-->[com.google.ai.edge.litert:litert-gpu-api:1.4.1] /Users/hao/.gradle/caches/8.11.1/transforms/48585ed9293ad5bb11270defa763a8aa/transformed/jetified-litert-gpu-api-1.4.1/AndroidManifest.xml:8:9-10:40
-119            android:name="libOpenCL.so"
-119-->[com.google.ai.edge.litert:litert-gpu-api:1.4.1] /Users/hao/.gradle/caches/8.11.1/transforms/48585ed9293ad5bb11270defa763a8aa/transformed/jetified-litert-gpu-api-1.4.1/AndroidManifest.xml:9:13-40
-120            android:required="false" />
-120-->[com.google.ai.edge.litert:litert-gpu-api:1.4.1] /Users/hao/.gradle/caches/8.11.1/transforms/48585ed9293ad5bb11270defa763a8aa/transformed/jetified-litert-gpu-api-1.4.1/AndroidManifest.xml:10:13-37
-121        <uses-native-library
-121-->[com.google.ai.edge.litert:litert-gpu-api:1.4.1] /Users/hao/.gradle/caches/8.11.1/transforms/48585ed9293ad5bb11270defa763a8aa/transformed/jetified-litert-gpu-api-1.4.1/AndroidManifest.xml:8:9-10:40
-122            android:name="libOpenCL-car.so"
-122-->[com.google.ai.edge.litert:litert-gpu-api:1.4.1] /Users/hao/.gradle/caches/8.11.1/transforms/48585ed9293ad5bb11270defa763a8aa/transformed/jetified-litert-gpu-api-1.4.1/AndroidManifest.xml:9:13-40
-123            android:required="false" />
-123-->[com.google.ai.edge.litert:litert-gpu-api:1.4.1] /Users/hao/.gradle/caches/8.11.1/transforms/48585ed9293ad5bb11270defa763a8aa/transformed/jetified-litert-gpu-api-1.4.1/AndroidManifest.xml:10:13-37
-124        <uses-native-library
-124-->[com.google.ai.edge.litert:litert-gpu-api:1.4.1] /Users/hao/.gradle/caches/8.11.1/transforms/48585ed9293ad5bb11270defa763a8aa/transformed/jetified-litert-gpu-api-1.4.1/AndroidManifest.xml:8:9-10:40
-125            android:name="libOpenCL-pixel.so"
-125-->[com.google.ai.edge.litert:litert-gpu-api:1.4.1] /Users/hao/.gradle/caches/8.11.1/transforms/48585ed9293ad5bb11270defa763a8aa/transformed/jetified-litert-gpu-api-1.4.1/AndroidManifest.xml:9:13-40
-126            android:required="false" />
-126-->[com.google.ai.edge.litert:litert-gpu-api:1.4.1] /Users/hao/.gradle/caches/8.11.1/transforms/48585ed9293ad5bb11270defa763a8aa/transformed/jetified-litert-gpu-api-1.4.1/AndroidManifest.xml:10:13-37
-127    </application>
-128
-129</manifest>
+39        android:theme="@style/Theme.MaterialComponents.DayNight.NoActionBar" >
+39-->/Users/hao/hao/vibe_coding_project/Drill-Encoder/android_app/app/src/main/AndroidManifest.xml:10:9-77
+40        <activity
+40-->/Users/hao/hao/vibe_coding_project/Drill-Encoder/android_app/app/src/main/AndroidManifest.xml:11:9-19:20
+41            android:name="com.example.drillencoder.StartActivity"
+41-->/Users/hao/hao/vibe_coding_project/Drill-Encoder/android_app/app/src/main/AndroidManifest.xml:12:13-42
+42            android:exported="true"
+42-->/Users/hao/hao/vibe_coding_project/Drill-Encoder/android_app/app/src/main/AndroidManifest.xml:13:13-36
+43            android:theme="@style/Theme.MaterialComponents.DayNight.NoActionBar" >
+43-->/Users/hao/hao/vibe_coding_project/Drill-Encoder/android_app/app/src/main/AndroidManifest.xml:14:13-81
+44            <intent-filter>
+44-->/Users/hao/hao/vibe_coding_project/Drill-Encoder/android_app/app/src/main/AndroidManifest.xml:15:13-18:29
+45                <action android:name="android.intent.action.MAIN" />
+45-->/Users/hao/hao/vibe_coding_project/Drill-Encoder/android_app/app/src/main/AndroidManifest.xml:16:17-69
+45-->/Users/hao/hao/vibe_coding_project/Drill-Encoder/android_app/app/src/main/AndroidManifest.xml:16:25-66
+46
+47                <category android:name="android.intent.category.LAUNCHER" />
+47-->/Users/hao/hao/vibe_coding_project/Drill-Encoder/android_app/app/src/main/AndroidManifest.xml:17:17-77
+47-->/Users/hao/hao/vibe_coding_project/Drill-Encoder/android_app/app/src/main/AndroidManifest.xml:17:27-74
+48            </intent-filter>
+49        </activity>
+50        <activity
+50-->/Users/hao/hao/vibe_coding_project/Drill-Encoder/android_app/app/src/main/AndroidManifest.xml:20:9-24:84
+51            android:name="com.example.drillencoder.MainActivity"
+51-->/Users/hao/hao/vibe_coding_project/Drill-Encoder/android_app/app/src/main/AndroidManifest.xml:21:13-41
+52            android:exported="false"
+52-->/Users/hao/hao/vibe_coding_project/Drill-Encoder/android_app/app/src/main/AndroidManifest.xml:23:13-37
+53            android:screenOrientation="portrait"
+53-->/Users/hao/hao/vibe_coding_project/Drill-Encoder/android_app/app/src/main/AndroidManifest.xml:22:13-49
+54            android:theme="@style/Theme.MaterialComponents.DayNight.NoActionBar" />
+54-->/Users/hao/hao/vibe_coding_project/Drill-Encoder/android_app/app/src/main/AndroidManifest.xml:24:13-81
+55
+56        <meta-data
+56-->/Users/hao/hao/vibe_coding_project/Drill-Encoder/android_app/app/src/main/AndroidManifest.xml:26:9-81
+57            android:name="com.google.ar.core"
+57-->/Users/hao/hao/vibe_coding_project/Drill-Encoder/android_app/app/src/main/AndroidManifest.xml:26:20-53
+58            android:value="optional" />
+58-->/Users/hao/hao/vibe_coding_project/Drill-Encoder/android_app/app/src/main/AndroidManifest.xml:26:54-78
+59
+60        <service
+60-->[androidx.camera:camera-camera2:1.4.0] /Users/hao/.gradle/caches/8.11.1/transforms/25fcd82cdad59cbcfe9e93eaa4258a8c/transformed/jetified-camera-camera2-1.4.0/AndroidManifest.xml:24:9-33:19
+61            android:name="androidx.camera.core.impl.MetadataHolderService"
+61-->[androidx.camera:camera-camera2:1.4.0] /Users/hao/.gradle/caches/8.11.1/transforms/25fcd82cdad59cbcfe9e93eaa4258a8c/transformed/jetified-camera-camera2-1.4.0/AndroidManifest.xml:25:13-75
+62            android:enabled="false"
+62-->[androidx.camera:camera-camera2:1.4.0] /Users/hao/.gradle/caches/8.11.1/transforms/25fcd82cdad59cbcfe9e93eaa4258a8c/transformed/jetified-camera-camera2-1.4.0/AndroidManifest.xml:26:13-36
+63            android:exported="false" >
+63-->[androidx.camera:camera-camera2:1.4.0] /Users/hao/.gradle/caches/8.11.1/transforms/25fcd82cdad59cbcfe9e93eaa4258a8c/transformed/jetified-camera-camera2-1.4.0/AndroidManifest.xml:27:13-37
+64            <meta-data
+64-->[androidx.camera:camera-camera2:1.4.0] /Users/hao/.gradle/caches/8.11.1/transforms/25fcd82cdad59cbcfe9e93eaa4258a8c/transformed/jetified-camera-camera2-1.4.0/AndroidManifest.xml:30:13-32:89
+65                android:name="androidx.camera.core.impl.MetadataHolderService.DEFAULT_CONFIG_PROVIDER"
+65-->[androidx.camera:camera-camera2:1.4.0] /Users/hao/.gradle/caches/8.11.1/transforms/25fcd82cdad59cbcfe9e93eaa4258a8c/transformed/jetified-camera-camera2-1.4.0/AndroidManifest.xml:31:17-103
+66                android:value="androidx.camera.camera2.Camera2Config$DefaultProvider" />
+66-->[androidx.camera:camera-camera2:1.4.0] /Users/hao/.gradle/caches/8.11.1/transforms/25fcd82cdad59cbcfe9e93eaa4258a8c/transformed/jetified-camera-camera2-1.4.0/AndroidManifest.xml:32:17-86
+67        </service>
+68
+69        <provider
+69-->[androidx.emoji2:emoji2:1.2.0] /Users/hao/.gradle/caches/8.11.1/transforms/98c6d0cb6812bb2b59a04ad53707ad66/transformed/jetified-emoji2-1.2.0/AndroidManifest.xml:24:9-32:20
+70            android:name="androidx.startup.InitializationProvider"
+70-->[androidx.emoji2:emoji2:1.2.0] /Users/hao/.gradle/caches/8.11.1/transforms/98c6d0cb6812bb2b59a04ad53707ad66/transformed/jetified-emoji2-1.2.0/AndroidManifest.xml:25:13-67
+71            android:authorities="com.example.drillencoder.androidx-startup"
+71-->[androidx.emoji2:emoji2:1.2.0] /Users/hao/.gradle/caches/8.11.1/transforms/98c6d0cb6812bb2b59a04ad53707ad66/transformed/jetified-emoji2-1.2.0/AndroidManifest.xml:26:13-68
+72            android:exported="false" >
+72-->[androidx.emoji2:emoji2:1.2.0] /Users/hao/.gradle/caches/8.11.1/transforms/98c6d0cb6812bb2b59a04ad53707ad66/transformed/jetified-emoji2-1.2.0/AndroidManifest.xml:27:13-37
+73            <meta-data
+73-->[androidx.emoji2:emoji2:1.2.0] /Users/hao/.gradle/caches/8.11.1/transforms/98c6d0cb6812bb2b59a04ad53707ad66/transformed/jetified-emoji2-1.2.0/AndroidManifest.xml:29:13-31:52
+74                android:name="androidx.emoji2.text.EmojiCompatInitializer"
+74-->[androidx.emoji2:emoji2:1.2.0] /Users/hao/.gradle/caches/8.11.1/transforms/98c6d0cb6812bb2b59a04ad53707ad66/transformed/jetified-emoji2-1.2.0/AndroidManifest.xml:30:17-75
+75                android:value="androidx.startup" />
+75-->[androidx.emoji2:emoji2:1.2.0] /Users/hao/.gradle/caches/8.11.1/transforms/98c6d0cb6812bb2b59a04ad53707ad66/transformed/jetified-emoji2-1.2.0/AndroidManifest.xml:31:17-49
+76            <meta-data
+76-->[androidx.lifecycle:lifecycle-process:2.6.1] /Users/hao/.gradle/caches/8.11.1/transforms/aae860ec5be03271e2f35aecdcf9b581/transformed/jetified-lifecycle-process-2.6.1/AndroidManifest.xml:29:13-31:52
+77                android:name="androidx.lifecycle.ProcessLifecycleInitializer"
+77-->[androidx.lifecycle:lifecycle-process:2.6.1] /Users/hao/.gradle/caches/8.11.1/transforms/aae860ec5be03271e2f35aecdcf9b581/transformed/jetified-lifecycle-process-2.6.1/AndroidManifest.xml:30:17-78
+78                android:value="androidx.startup" />
+78-->[androidx.lifecycle:lifecycle-process:2.6.1] /Users/hao/.gradle/caches/8.11.1/transforms/aae860ec5be03271e2f35aecdcf9b581/transformed/jetified-lifecycle-process-2.6.1/AndroidManifest.xml:31:17-49
+79            <meta-data
+79-->[androidx.profileinstaller:profileinstaller:1.3.0] /Users/hao/.gradle/caches/8.11.1/transforms/eb4dc569fc02f386c16cb2f51ab96e96/transformed/jetified-profileinstaller-1.3.0/AndroidManifest.xml:29:13-31:52
+80                android:name="androidx.profileinstaller.ProfileInstallerInitializer"
+80-->[androidx.profileinstaller:profileinstaller:1.3.0] /Users/hao/.gradle/caches/8.11.1/transforms/eb4dc569fc02f386c16cb2f51ab96e96/transformed/jetified-profileinstaller-1.3.0/AndroidManifest.xml:30:17-85
+81                android:value="androidx.startup" />
+81-->[androidx.profileinstaller:profileinstaller:1.3.0] /Users/hao/.gradle/caches/8.11.1/transforms/eb4dc569fc02f386c16cb2f51ab96e96/transformed/jetified-profileinstaller-1.3.0/AndroidManifest.xml:31:17-49
+82        </provider>
+83
+84        <receiver
+84-->[androidx.profileinstaller:profileinstaller:1.3.0] /Users/hao/.gradle/caches/8.11.1/transforms/eb4dc569fc02f386c16cb2f51ab96e96/transformed/jetified-profileinstaller-1.3.0/AndroidManifest.xml:34:9-52:20
+85            android:name="androidx.profileinstaller.ProfileInstallReceiver"
+85-->[androidx.profileinstaller:profileinstaller:1.3.0] /Users/hao/.gradle/caches/8.11.1/transforms/eb4dc569fc02f386c16cb2f51ab96e96/transformed/jetified-profileinstaller-1.3.0/AndroidManifest.xml:35:13-76
+86            android:directBootAware="false"
+86-->[androidx.profileinstaller:profileinstaller:1.3.0] /Users/hao/.gradle/caches/8.11.1/transforms/eb4dc569fc02f386c16cb2f51ab96e96/transformed/jetified-profileinstaller-1.3.0/AndroidManifest.xml:36:13-44
+87            android:enabled="true"
+87-->[androidx.profileinstaller:profileinstaller:1.3.0] /Users/hao/.gradle/caches/8.11.1/transforms/eb4dc569fc02f386c16cb2f51ab96e96/transformed/jetified-profileinstaller-1.3.0/AndroidManifest.xml:37:13-35
+88            android:exported="true"
+88-->[androidx.profileinstaller:profileinstaller:1.3.0] /Users/hao/.gradle/caches/8.11.1/transforms/eb4dc569fc02f386c16cb2f51ab96e96/transformed/jetified-profileinstaller-1.3.0/AndroidManifest.xml:38:13-36
+89            android:permission="android.permission.DUMP" >
+89-->[androidx.profileinstaller:profileinstaller:1.3.0] /Users/hao/.gradle/caches/8.11.1/transforms/eb4dc569fc02f386c16cb2f51ab96e96/transformed/jetified-profileinstaller-1.3.0/AndroidManifest.xml:39:13-57
+90            <intent-filter>
+90-->[androidx.profileinstaller:profileinstaller:1.3.0] /Users/hao/.gradle/caches/8.11.1/transforms/eb4dc569fc02f386c16cb2f51ab96e96/transformed/jetified-profileinstaller-1.3.0/AndroidManifest.xml:40:13-42:29
+91                <action android:name="androidx.profileinstaller.action.INSTALL_PROFILE" />
+91-->[androidx.profileinstaller:profileinstaller:1.3.0] /Users/hao/.gradle/caches/8.11.1/transforms/eb4dc569fc02f386c16cb2f51ab96e96/transformed/jetified-profileinstaller-1.3.0/AndroidManifest.xml:41:17-91
+91-->[androidx.profileinstaller:profileinstaller:1.3.0] /Users/hao/.gradle/caches/8.11.1/transforms/eb4dc569fc02f386c16cb2f51ab96e96/transformed/jetified-profileinstaller-1.3.0/AndroidManifest.xml:41:25-88
+92            </intent-filter>
+93            <intent-filter>
+93-->[androidx.profileinstaller:profileinstaller:1.3.0] /Users/hao/.gradle/caches/8.11.1/transforms/eb4dc569fc02f386c16cb2f51ab96e96/transformed/jetified-profileinstaller-1.3.0/AndroidManifest.xml:43:13-45:29
+94                <action android:name="androidx.profileinstaller.action.SKIP_FILE" />
+94-->[androidx.profileinstaller:profileinstaller:1.3.0] /Users/hao/.gradle/caches/8.11.1/transforms/eb4dc569fc02f386c16cb2f51ab96e96/transformed/jetified-profileinstaller-1.3.0/AndroidManifest.xml:44:17-85
+94-->[androidx.profileinstaller:profileinstaller:1.3.0] /Users/hao/.gradle/caches/8.11.1/transforms/eb4dc569fc02f386c16cb2f51ab96e96/transformed/jetified-profileinstaller-1.3.0/AndroidManifest.xml:44:25-82
+95            </intent-filter>
+96            <intent-filter>
+96-->[androidx.profileinstaller:profileinstaller:1.3.0] /Users/hao/.gradle/caches/8.11.1/transforms/eb4dc569fc02f386c16cb2f51ab96e96/transformed/jetified-profileinstaller-1.3.0/AndroidManifest.xml:46:13-48:29
+97                <action android:name="androidx.profileinstaller.action.SAVE_PROFILE" />
+97-->[androidx.profileinstaller:profileinstaller:1.3.0] /Users/hao/.gradle/caches/8.11.1/transforms/eb4dc569fc02f386c16cb2f51ab96e96/transformed/jetified-profileinstaller-1.3.0/AndroidManifest.xml:47:17-88
+97-->[androidx.profileinstaller:profileinstaller:1.3.0] /Users/hao/.gradle/caches/8.11.1/transforms/eb4dc569fc02f386c16cb2f51ab96e96/transformed/jetified-profileinstaller-1.3.0/AndroidManifest.xml:47:25-85
+98            </intent-filter>
+99            <intent-filter>
+99-->[androidx.profileinstaller:profileinstaller:1.3.0] /Users/hao/.gradle/caches/8.11.1/transforms/eb4dc569fc02f386c16cb2f51ab96e96/transformed/jetified-profileinstaller-1.3.0/AndroidManifest.xml:49:13-51:29
+100                <action android:name="androidx.profileinstaller.action.BENCHMARK_OPERATION" />
+100-->[androidx.profileinstaller:profileinstaller:1.3.0] /Users/hao/.gradle/caches/8.11.1/transforms/eb4dc569fc02f386c16cb2f51ab96e96/transformed/jetified-profileinstaller-1.3.0/AndroidManifest.xml:50:17-95
+100-->[androidx.profileinstaller:profileinstaller:1.3.0] /Users/hao/.gradle/caches/8.11.1/transforms/eb4dc569fc02f386c16cb2f51ab96e96/transformed/jetified-profileinstaller-1.3.0/AndroidManifest.xml:50:25-92
+101            </intent-filter>
+102        </receiver> <!-- The minimal version code of ARCore APK required for an app using this SDK. -->
+103        <meta-data
+103-->[com.google.ar:core:1.52.0] /Users/hao/.gradle/caches/8.11.1/transforms/70e1695df42544dd7c0c9a5880f806ce/transformed/jetified-core-1.52.0/AndroidManifest.xml:32:9-34:41
+104            android:name="com.google.ar.core.min_apk_version"
+104-->[com.google.ar:core:1.52.0] /Users/hao/.gradle/caches/8.11.1/transforms/70e1695df42544dd7c0c9a5880f806ce/transformed/jetified-core-1.52.0/AndroidManifest.xml:33:13-62
+105            android:value="252570000" /> <!-- This activity is critical for installing ARCore when it is not already present. -->
+105-->[com.google.ar:core:1.52.0] /Users/hao/.gradle/caches/8.11.1/transforms/70e1695df42544dd7c0c9a5880f806ce/transformed/jetified-core-1.52.0/AndroidManifest.xml:34:13-38
+106        <activity
+106-->[com.google.ar:core:1.52.0] /Users/hao/.gradle/caches/8.11.1/transforms/70e1695df42544dd7c0c9a5880f806ce/transformed/jetified-core-1.52.0/AndroidManifest.xml:36:9-42:80
+107            android:name="com.google.ar.core.InstallActivity"
+107-->[com.google.ar:core:1.52.0] /Users/hao/.gradle/caches/8.11.1/transforms/70e1695df42544dd7c0c9a5880f806ce/transformed/jetified-core-1.52.0/AndroidManifest.xml:37:13-62
+108            android:configChanges="keyboardHidden|orientation|screenSize"
+108-->[com.google.ar:core:1.52.0] /Users/hao/.gradle/caches/8.11.1/transforms/70e1695df42544dd7c0c9a5880f806ce/transformed/jetified-core-1.52.0/AndroidManifest.xml:38:13-74
+109            android:excludeFromRecents="true"
+109-->[com.google.ar:core:1.52.0] /Users/hao/.gradle/caches/8.11.1/transforms/70e1695df42544dd7c0c9a5880f806ce/transformed/jetified-core-1.52.0/AndroidManifest.xml:39:13-46
+110            android:exported="false"
+110-->[com.google.ar:core:1.52.0] /Users/hao/.gradle/caches/8.11.1/transforms/70e1695df42544dd7c0c9a5880f806ce/transformed/jetified-core-1.52.0/AndroidManifest.xml:40:13-37
+111            android:launchMode="singleTop"
+111-->[com.google.ar:core:1.52.0] /Users/hao/.gradle/caches/8.11.1/transforms/70e1695df42544dd7c0c9a5880f806ce/transformed/jetified-core-1.52.0/AndroidManifest.xml:41:13-43
+112            android:theme="@android:style/Theme.Material.Light.Dialog.Alert" />
+112-->[com.google.ar:core:1.52.0] /Users/hao/.gradle/caches/8.11.1/transforms/70e1695df42544dd7c0c9a5880f806ce/transformed/jetified-core-1.52.0/AndroidManifest.xml:42:13-77
+113        <!--
+114 Applications that target Android S+ require explicit declaration of
+115             any referenced vendor-provided libraries.
+116        -->
+117        <uses-native-library
+117-->[com.google.ai.edge.litert:litert-gpu-api:1.4.1] /Users/hao/.gradle/caches/8.11.1/transforms/48585ed9293ad5bb11270defa763a8aa/transformed/jetified-litert-gpu-api-1.4.1/AndroidManifest.xml:8:9-10:40
+118            android:name="libOpenCL.so"
+118-->[com.google.ai.edge.litert:litert-gpu-api:1.4.1] /Users/hao/.gradle/caches/8.11.1/transforms/48585ed9293ad5bb11270defa763a8aa/transformed/jetified-litert-gpu-api-1.4.1/AndroidManifest.xml:9:13-40
+119            android:required="false" />
+119-->[com.google.ai.edge.litert:litert-gpu-api:1.4.1] /Users/hao/.gradle/caches/8.11.1/transforms/48585ed9293ad5bb11270defa763a8aa/transformed/jetified-litert-gpu-api-1.4.1/AndroidManifest.xml:10:13-37
+120        <uses-native-library
+120-->[com.google.ai.edge.litert:litert-gpu-api:1.4.1] /Users/hao/.gradle/caches/8.11.1/transforms/48585ed9293ad5bb11270defa763a8aa/transformed/jetified-litert-gpu-api-1.4.1/AndroidManifest.xml:8:9-10:40
+121            android:name="libOpenCL-car.so"
+121-->[com.google.ai.edge.litert:litert-gpu-api:1.4.1] /Users/hao/.gradle/caches/8.11.1/transforms/48585ed9293ad5bb11270defa763a8aa/transformed/jetified-litert-gpu-api-1.4.1/AndroidManifest.xml:9:13-40
+122            android:required="false" />
+122-->[com.google.ai.edge.litert:litert-gpu-api:1.4.1] /Users/hao/.gradle/caches/8.11.1/transforms/48585ed9293ad5bb11270defa763a8aa/transformed/jetified-litert-gpu-api-1.4.1/AndroidManifest.xml:10:13-37
+123        <uses-native-library
+123-->[com.google.ai.edge.litert:litert-gpu-api:1.4.1] /Users/hao/.gradle/caches/8.11.1/transforms/48585ed9293ad5bb11270defa763a8aa/transformed/jetified-litert-gpu-api-1.4.1/AndroidManifest.xml:8:9-10:40
+124            android:name="libOpenCL-pixel.so"
+124-->[com.google.ai.edge.litert:litert-gpu-api:1.4.1] /Users/hao/.gradle/caches/8.11.1/transforms/48585ed9293ad5bb11270defa763a8aa/transformed/jetified-litert-gpu-api-1.4.1/AndroidManifest.xml:9:13-40
+125            android:required="false" />
+125-->[com.google.ai.edge.litert:litert-gpu-api:1.4.1] /Users/hao/.gradle/caches/8.11.1/transforms/48585ed9293ad5bb11270defa763a8aa/transformed/jetified-litert-gpu-api-1.4.1/AndroidManifest.xml:10:13-37
+126    </application>
+127
+128</manifest>

@@ -36,7 +36,6 @@
         android:debuggable="true"
         android:extractNativeLibs="true"
         android:label="Drill Encoder"
-        android:testOnly="true"
         android:theme="@style/Theme.MaterialComponents.DayNight.NoActionBar" >
         <activity
             android:name="com.example.drillencoder.StartActivity"
